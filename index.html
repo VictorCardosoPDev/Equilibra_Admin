@@ -101,6 +101,277 @@
           },
         },
       }
+      let currentStressLevel = 0;
+
+    const stressLevels = [
+        {
+            left: "10%",
+            title: "Baixo",
+            description: "Estado emocional estável no momento.",
+            page: "../pages/ajuda.html#bem-estar"
+        },
+
+        {
+            left: "30%",
+            title: "Leve",
+            description: "Pequenos sinais de desgaste emocional.",
+            page: "../pages/ajuda.html#prevencao"
+        },
+
+        {
+            left: "50%",
+            title: "Moderado",
+            description: "Atenção aos sinais de sobrecarga.",
+            page: "../pages/ajuda.html#atencao"
+        },
+
+        {
+            left: "70%",
+            title: "Elevado",
+            description: "Recomenda-se realizar uma pausa breve.",
+            page: "../pages/ajuda.html#respiracao"
+        },
+
+        {
+            left: "90%",
+            title: "Crítico",
+            description: "Considere buscar apoio e reduzir estímulos.",
+            page: "../pages/ajuda.html#apoio"
+        }
+    ];
+
+    function setStressLevel(level) {
+
+        currentStressLevel = level;
+
+        const data = stressLevels[level];
+
+        document.getElementById("stressIndicator").style.left = data.left;
+
+        document.getElementById("stressTitle").innerText = data.title;
+
+        document.getElementById("stressDescription").innerText = data.description;
+    }
+
+    function redirectStressPage() {
+
+        window.location.href = stressLevels[currentStressLevel].page;
+    }
+    const warningCards = [
+
+        {
+            title: "Alterações no Sono",
+            description: "Dificuldade persistente para dormir ou descansar adequadamente.",
+            image: "assets/images/sono.jpg",
+            icon: "bed",
+            iconColor: "text-red-500",
+            overlay: "from-red-100/95",
+            border: "border-red-100",
+            bg: "bg-red-50",
+            page: "pages/ajuda.html#sono"
+        },
+
+        {
+            title: "Irritabilidade",
+            description: "Reações emocionais intensificadas e tensão frequente.",
+            image: "assets/images/irritabilidade.jpg",
+            icon: "mood_bad",
+            iconColor: "text-orange-500",
+            overlay: "from-orange-100/95",
+            border: "border-orange-100",
+            bg: "bg-orange-50",
+            page: "pages/ajuda.html#irritabilidade"
+        },
+
+        {
+            title: "Dificuldade de Concentração",
+            description: "Lapsos de atenção e dificuldade de foco durante a rotina.",
+            image: "assets/images/concentracao.jpg",
+            icon: "psychology",
+            iconColor: "text-yellow-600",
+            overlay: "from-yellow-100/95",
+            border: "border-yellow-100",
+            bg: "bg-yellow-50",
+            page: "pages/ajuda.html#concentracao"
+        },
+
+        {
+            title: "Pensamentos Intrusivos",
+            description: "Pensamentos recorrentes associados ao desgaste emocional.",
+            image: "assets/images/pensamentos.jpg",
+            icon: "neurology",
+            iconColor: "text-pink-500",
+            overlay: "from-pink-100/95",
+            border: "border-pink-100",
+            bg: "bg-pink-50",
+            page: "pages/ajuda.html#pensamentos"
+        }
+
+    ];
+
+    let currentWarningIndex = 0;
+
+    function updateWarningCard() {
+
+        const data = warningCards[currentWarningIndex];
+
+        const card = document.getElementById("warningCard");
+        const image = document.getElementById("warningImage");
+        const overlay = document.getElementById("warningOverlay");
+        const icon = document.getElementById("warningIcon");
+        const title = document.getElementById("warningTitle");
+        const description = document.getElementById("warningDescription");
+
+        image.src = data.image;
+
+        title.innerText = data.title;
+
+        description.innerText = data.description;
+
+        icon.innerText = data.icon;
+
+        icon.className = `material-symbols-outlined ${data.iconColor} text-[32px]`;
+
+        overlay.className = `absolute inset-0 bg-gradient-to-t ${data.overlay} to-transparent`;
+
+        card.className =
+            `w-full h-[280px] relative overflow-hidden rounded-3xl border ${data.border} ${data.bg} text-left transition-all duration-500`;
+    }
+
+    function changeWarningCard(direction) {
+
+        currentWarningIndex += direction;
+
+        if (currentWarningIndex < 0) {
+            currentWarningIndex = warningCards.length - 1;
+        }
+
+        if (currentWarningIndex >= warningCards.length) {
+            currentWarningIndex = 0;
+        }
+
+        updateWarningCard();
+    }
+
+    function openWarningPage() {
+
+        window.location.href = warningCards[currentWarningIndex].page;
+    }
+
+    // Troca automática
+    setInterval(() => {
+
+        changeWarningCard(1);
+
+    }, 6000);
+
+    const careCards = [
+
+        {
+            title: "Pausas Regulares",
+            description: "Realize pausas breves durante a rotina profissional.",
+            image: "assets/images/pausa.jpg",
+            icon: "self_improvement",
+            iconColor: "text-blue-500",
+            overlay: "from-blue-100/95",
+            border: "border-blue-100",
+            bg: "bg-blue-50",
+            page: "pages/dicas.html#pausas"
+        },
+
+        {
+            title: "Hidratação",
+            description: "Mantenha uma rotina adequada de hidratação.",
+            image: "assets/images/hidratacao.jpg",
+            icon: "water_drop",
+            iconColor: "text-cyan-500",
+            overlay: "from-cyan-100/95",
+            border: "border-cyan-100",
+            bg: "bg-cyan-50",
+            page: "pages/dicas.html#hidratacao"
+        },
+
+        {
+            title: "Respiração Guiada",
+            description: "Exercícios respiratórios podem auxiliar na redução da tensão.",
+            image: "assets/images/respiracao.jpg",
+            icon: "air",
+            iconColor: "text-indigo-500",
+            overlay: "from-indigo-100/95",
+            border: "border-indigo-100",
+            bg: "bg-indigo-50",
+            page: "pages/relaxe.html#respiracao"
+        },
+
+        {
+            title: "Alongamento Breve",
+            description: "Movimentos leves auxiliam no relaxamento corporal.",
+            image: "assets/images/alongamento.jpg",
+            icon: "accessibility_new",
+            iconColor: "text-green-500",
+            overlay: "from-green-100/95",
+            border: "border-green-100",
+            bg: "bg-green-50",
+            page: "pages/dicas.html#alongamento"
+        }
+
+    ];
+
+    let currentCareIndex = 0;
+
+    function updateCareCard() {
+
+        const data = careCards[currentCareIndex];
+
+        const card = document.getElementById("careCard");
+        const image = document.getElementById("careImage");
+        const overlay = document.getElementById("careOverlay");
+        const icon = document.getElementById("careIcon");
+        const title = document.getElementById("careTitle");
+        const description = document.getElementById("careDescription");
+
+        image.src = data.image;
+
+        title.innerText = data.title;
+
+        description.innerText = data.description;
+
+        icon.innerText = data.icon;
+
+        icon.className = `material-symbols-outlined ${data.iconColor} text-[32px]`;
+
+        overlay.className = `absolute inset-0 bg-gradient-to-t ${data.overlay} to-transparent`;
+
+        card.className =
+            `w-full h-[280px] relative overflow-hidden rounded-3xl border ${data.border} ${data.bg} text-left transition-all duration-500`;
+    }
+
+    function changeCareCard(direction) {
+
+        currentCareIndex += direction;
+
+        if (currentCareIndex < 0) {
+            currentCareIndex = careCards.length - 1;
+        }
+
+        if (currentCareIndex >= careCards.length) {
+            currentCareIndex = 0;
+        }
+
+        updateCareCard();
+    }
+
+    function openCarePage() {
+
+        window.location.href = careCards[currentCareIndex].page;
+    }
+
+    // Troca automática
+    setInterval(() => {
+
+        changeCareCard(1);
+
+    }, 6000);
     </script>
 <style>
       body {
@@ -151,67 +422,278 @@
 </section>
 <!-- Daily Emotional Check-in -->
 <section class="mb-stack-lg">
-<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm">
-<div class="flex flex-wrap gap-4 justify-between md:justify-start items-center">
-<button class="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
-<span class="text-4xl">😊</span>
-<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary">Radiante</span>
-</button>
-<button class="flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container text-primary shadow-sm ring-1 ring-primary/10">
-<span class="text-4xl">😌</span>
-<span class="font-label-md text-label-md">Calmo</span>
-</button>
-<button class="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
-<span class="text-4xl">😐</span>
-<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary">Neutro</span>
-</button>
-<button class="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
-<span class="text-4xl">🤯</span>
-<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary">Estressado</span>
-</button>
-<button class="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
-<span class="text-4xl">😔</span>
-<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary">Cansado</span>
-</button>
-</div>
-</div>
+
+    <div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm">
+
+        <div class="mb-6">
+
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-2">
+                Nível atual de sobrecarga
+            </h2>
+
+            <p class="text-body-md text-on-surface-variant">
+                Ajuste o indicador conforme sua percepção atual de estresse e desgaste emocional.
+            </p>
+
+        </div>
+
+        <!-- Barra -->
+        <div class="relative mb-6">
+
+            <!-- Indicador -->
+            <div 
+                id="stressIndicator"
+                class="absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-4 border-white shadow-lg bg-primary transition-all duration-300"
+                style="left: 10%;">
+            </div>
+
+            <!-- Barra -->
+            <div class="flex h-4 rounded-full overflow-hidden">
+
+                <button onclick="setStressLevel(0)"
+                    class="flex-1 bg-blue-500 hover:brightness-110 transition-all duration-300">
+                </button>
+
+                <button onclick="setStressLevel(1)"
+                    class="flex-1 bg-green-500 hover:brightness-110 transition-all duration-300">
+                </button>
+
+                <button onclick="setStressLevel(2)"
+                    class="flex-1 bg-yellow-400 hover:brightness-110 transition-all duration-300">
+                </button>
+
+                <button onclick="setStressLevel(3)"
+                    class="flex-1 bg-orange-500 hover:brightness-110 transition-all duration-300">
+                </button>
+
+                <button onclick="setStressLevel(4)"
+                    class="flex-1 bg-red-500 hover:brightness-110 transition-all duration-300">
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Texto Dinâmico -->
+        <div class="flex items-center justify-between flex-wrap gap-4">
+
+            <div>
+                <p id="stressTitle"
+                    class="font-headline-md text-on-surface">
+                    Baixo
+                </p>
+
+                <p id="stressDescription"
+                    class="text-body-md text-on-surface-variant">
+                    Estado emocional estável no momento.
+                </p>
+            </div>
+
+            <button id="stressAction"
+                onclick="redirectStressPage()"
+                class="px-6 py-3 rounded-xl bg-primary text-on-primary hover:opacity-90 transition-all duration-300">
+
+                Continuar
+
+            </button>
+
+        </div>
+
+    </div>
+
 </section>
-<!-- Bento Grid Layout -->
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<!-- Quick Access: Breathing Tool -->
-<div class="md:col-span-7 bg-primary text-on-primary p-8 rounded-xl relative overflow-hidden flex flex-col justify-between min-h-[320px] shadow-lg">
-<div class="absolute top-0 right-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
-<div class="z-10">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-4 block">Prática Sugerida</span>
-<h2 class="font-headline-lg text-headline-lg mb-4">Ferramenta de Respiração</h2>
-<p class="font-body-md text-body-md text-on-primary/80 max-w-md">Uma pausa de 3 minutos para reencontrar seu equilíbrio e reduzir a tensão acumulada do dia.</p>
-</div>
-<div class="z-10 mt-6">
-<button class="bg-secondary-container text-on-secondary-container px-6 py-3 rounded-full font-label-md text-label-md flex items-center gap-2 hover:shadow-md transition-all active:scale-95">
-<span class="material-symbols-outlined" data-icon="air">air</span>
-                        Começar Agora
-                    </button>
-</div>
-<div class="absolute bottom-4 right-8 opacity-20 pointer-events-none">
-<span class="material-symbols-outlined text-[120px]" data-icon="spa">spa</span>
-</div>
-</div>
-<!-- Message of the Day -->
-<div class="md:col-span-5 bg-surface-container-high p-8 rounded-xl flex flex-col justify-between shadow-sm border border-outline-variant">
-<div>
-<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary mb-6 shadow-sm">
-<span class="material-symbols-outlined" data-icon="format_quote">format_quote</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-primary mb-4">Mensagem de Apoio do Dia</h3>
-<p class="italic font-body-lg text-body-lg text-on-surface-variant">"Seu trabalho molda o futuro, mas seu bem-estar sustenta o presente. Lembre-se de ser gentil consigo mesmo hoje."</p>
-</div>
-<div class="mt-8 pt-6 border-t border-outline-variant/30 flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-on-surface-variant/60">Equipe MindCare</span>
-<button class="text-primary hover:bg-primary/5 p-2 rounded-full transition-colors">
-<span class="material-symbols-outlined" data-icon="share">share</span>
-</button>
-</div>
-</div>
+<!-- ================================================= -->
+<!-- CARROSSEL - SINAIS DE ATENÇÃO -->
+<!-- ================================================= -->
+
+<section class="mb-stack-lg">
+
+    <div class="mb-4">
+
+        <h2 class="font-headline-md text-headline-md text-on-surface">
+            Sinais de Atenção
+        </h2>
+
+        <p class="text-body-md text-on-surface-variant">
+            Observe manifestações persistentes de desgaste emocional.
+        </p>
+
+    </div>
+
+    <div class="relative">
+
+        <!-- Botão esquerda -->
+        <button
+            onclick="changeWarningCard(-1)"
+            class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
+
+            <span class="material-symbols-outlined">
+                chevron_left
+            </span>
+
+        </button>
+
+        <!-- CARD -->
+        <button
+            id="warningCard"
+            onclick="openWarningPage()"
+            class="w-full h-[280px] relative overflow-hidden rounded-3xl border border-red-100 bg-red-50 text-left transition-all duration-500">
+
+            <!-- Imagem -->
+            <img id="warningImage"
+                src="assets/images/sono.jpg"
+                class="absolute inset-0 w-full h-full object-cover opacity-20">
+
+            <!-- Overlay -->
+            <div id="warningOverlay"
+                class="absolute inset-0 bg-gradient-to-t from-red-100/95 to-transparent">
+            </div>
+
+            <!-- Conteúdo -->
+            <div class="relative z-10 h-full flex flex-col justify-end p-8">
+
+                <div id="warningIconContainer"
+                    class="w-16 h-16 rounded-2xl bg-white/80 backdrop-blur-sm flex items-center justify-center mb-5">
+
+                    <span id="warningIcon"
+                        class="material-symbols-outlined text-red-500 text-[32px]">
+
+                        bed
+
+                    </span>
+
+                </div>
+
+                <h3 id="warningTitle"
+                    class="font-headline-lg text-on-surface mb-3">
+
+                    Alterações no Sono
+
+                </h3>
+
+                <p id="warningDescription"
+                    class="text-body-lg text-on-surface-variant max-w-[700px]">
+
+                    Dificuldade persistente para dormir ou descansar adequadamente.
+
+                </p>
+
+            </div>
+
+        </button>
+
+        <!-- Botão direita -->
+        <button
+            onclick="changeWarningCard(1)"
+            class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
+
+            <span class="material-symbols-outlined">
+                chevron_right
+            </span>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- CARROSSEL - CUIDADOS RECOMENDADOS -->
+<!-- ================================================= -->
+
+<section class="mb-stack-lg">
+
+    <div class="mb-4">
+
+        <h2 class="font-headline-md text-headline-md text-on-surface">
+            Cuidados Recomendados
+        </h2>
+
+        <p class="text-body-md text-on-surface-variant">
+            Pequenas ações podem auxiliar na manutenção do bem-estar.
+        </p>
+
+    </div>
+
+    <div class="relative">
+
+        <!-- Botão esquerda -->
+        <button
+            onclick="changeCareCard(-1)"
+            class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
+
+            <span class="material-symbols-outlined">
+                chevron_left
+            </span>
+
+        </button>
+
+        <!-- CARD -->
+        <button
+            id="careCard"
+            onclick="openCarePage()"
+            class="w-full h-[280px] relative overflow-hidden rounded-3xl border border-blue-100 bg-blue-50 text-left transition-all duration-500">
+
+            <!-- Imagem -->
+            <img id="careImage"
+                src="assets/images/pausa.jpg"
+                class="absolute inset-0 w-full h-full object-cover opacity-20">
+
+            <!-- Overlay -->
+            <div id="careOverlay"
+                class="absolute inset-0 bg-gradient-to-t from-blue-100/95 to-transparent">
+            </div>
+
+            <!-- Conteúdo -->
+            <div class="relative z-10 h-full flex flex-col justify-end p-8">
+
+                <div id="careIconContainer"
+                    class="w-16 h-16 rounded-2xl bg-white/80 backdrop-blur-sm flex items-center justify-center mb-5">
+
+                    <span id="careIcon"
+                        class="material-symbols-outlined text-blue-500 text-[32px]">
+
+                        self_improvement
+
+                    </span>
+
+                </div>
+
+                <h3 id="careTitle"
+                    class="font-headline-lg text-on-surface mb-3">
+
+                    Pausas Regulares
+
+                </h3>
+
+                <p id="careDescription"
+                    class="text-body-lg text-on-surface-variant max-w-[700px]">
+
+                    Realize pausas breves durante a rotina profissional.
+
+                </p>
+
+            </div>
+
+        </button>
+
+        <!-- Botão direita -->
+        <button
+            onclick="changeCareCard(1)"
+            class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
+
+            <span class="material-symbols-outlined">
+                chevron_right
+            </span>
+
+        </button>
+
+    </div>
+
+</section>
+
+
 <!-- Emotional Health Metric -->
 <!-- Support Banner -->
 <div class="md:col-span-12 lg:col-span-8 bg-error-container/20 border border-error/10 p-6 rounded-xl flex items-center gap-6">
@@ -222,29 +704,25 @@
 <h4 class="font-headline-md text-headline-md text-on-error-container text-[18px]">Precisa de suporte imediato?</h4>
 <p class="text-body-sm text-on-error-container/80">Nossos conselheiros estão disponíveis 24/7 para uma conversa acolhedora e segura.</p>
 </div>
-<button class="bg-error text-white px-6 py-3 rounded-full font-label-md text-label-md hover:bg-error/90 transition-colors shrink-0">
-                    Falar Agora
-                </button>
+<a href="./pages/informativo.html" class="bg-error text-white px-6 py-3 rounded-full font-label-md text-label-md hover:bg-error/90 transition-colors shrink-0">
+    Falar Agora
+</a>
 </div>
 </div>
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_12px_rgba(0,35,111,0.05)]">
-<a href="#" class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-150" href="#">
+<a href="#" class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-150" >
 <span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
 <span class="font-label-sm text-label-sm">Início</span>
 </a>
-<a href="pages/dicas.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" href="#">
-<span class="material-symbols-outlined" data-icon="self_care">self_care</span>
-<span class="font-label-sm text-label-sm">Dicas</span>
-</a>
-<a href="pages/relaxe.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" href="#">
+<a href="./pages/ajuda.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" >
 <span class="material-symbols-outlined" data-icon="spa">spa</span>
-<span class="font-label-sm text-label-sm"><span class="" style="letter-spacing: 0.48px; text-align: center;">Relaxe</span></span>
+<span class="font-label-sm text-label-sm"><span class="" style="letter-spacing: 0.48px; text-align: center;">Ajuda</span></span>
 </a>
-<a href="pages/informacoes.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" href="#">
+<a href="./pages/informativo.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" >
 <span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
-<span class="font-label-sm text-label-sm">Informações</span>
+<span class="font-label-sm text-label-sm">Informativo</span>
 </a>
 </nav>
 </body></html>
