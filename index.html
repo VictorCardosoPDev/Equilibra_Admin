@@ -101,42 +101,43 @@
           },
         },
       }
+
       let currentStressLevel = 0;
 
     const stressLevels = [
         {
             left: "10%",
             title: "Baixo",
-            description: "Estado emocional estável no momento.",
+            description: "Estado emocional estável no momento. Alongamentos leves podem ajudar a manter o equilíbrio.",
             page: "../pages/ajuda.html#bem-estar"
         },
 
         {
             left: "30%",
             title: "Leve",
-            description: "Pequenos sinais de desgaste emocional.",
+            description: "Pequenos sinais de desgaste emocional. Considere dar uma pausa e alongar-se.",
             page: "../pages/ajuda.html#prevencao"
         },
 
         {
             left: "50%",
             title: "Moderado",
-            description: "Atenção aos sinais de sobrecarga.",
-            page: "../pages/ajuda.html#atencao"
+            description: "Atenção aos sinais de sobrecarga. Exercícios de respiração podem ser benéficos ou alongamento rápido podem ajudar.",
+            page: "../pages/ajuda.html#respiracao"
         },
 
         {
             left: "70%",
             title: "Elevado",
-            description: "Recomenda-se realizar uma pausa breve.",
-            page: "../pages/ajuda.html#respiracao"
+            description: "Recomenda-se realizar uma pausa breve. Fique atento aos sintomas do stress atravess do Informativo por aqui.",
+            page: "../pages/informativo.html#atencao"
         },
 
         {
             left: "90%",
             title: "Crítico",
-            description: "Considere buscar apoio e reduzir estímulos.",
-            page: "../pages/ajuda.html#apoio"
+            description: "Considere buscar apoio e reduzir estímulos. Entre em contato pelo CVV por aqui",
+            page: "../pages/informativo.html#cvv"
         }
     ];
 
@@ -485,7 +486,7 @@
 
                 <p id="stressDescription"
                     class="text-body-md text-on-surface-variant">
-                    Estado emocional estável no momento.
+                    Estado emocional estável no momento. Alongamentos leves podem ajudar a manter o equilíbrio.
                 </p>
             </div>
 
@@ -704,7 +705,7 @@
 <h4 class="font-headline-md text-headline-md text-on-error-container text-[18px]">Precisa de suporte imediato?</h4>
 <p class="text-body-sm text-on-error-container/80">Nossos conselheiros estão disponíveis 24/7 para uma conversa acolhedora e segura.</p>
 </div>
-<a href="./pages/informativo.html" class="bg-error text-white px-6 py-3 rounded-full font-label-md text-label-md hover:bg-error/90 transition-colors shrink-0">
+<a href="./pages/informativo.html#cvv" class="bg-error text-white px-6 py-3 rounded-full font-label-md text-label-md hover:bg-error/90 transition-colors shrink-0">
     Falar Agora
 </a>
 </div>
@@ -717,8 +718,9 @@
 <span class="font-label-sm text-label-sm">Início</span>
 </a>
 <a href="./pages/ajuda.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" >
-<span class="material-symbols-outlined" data-icon="spa">spa</span>
-<span class="font-label-sm text-label-sm"><span class="" style="letter-spacing: 0.48px; text-align: center;">Ajuda</span></span>
+<span class="material-symbols-outlined">
+            volunteer_activism
+        </span><span class="font-label-sm text-label-sm"><span class="" style="letter-spacing: 0.48px; text-align: center;">Ajuda</span></span>
 </a>
 <a href="./pages/informativo.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" >
 <span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>

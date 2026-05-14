@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="pt-BR"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MindCare - Diário</title>
+<title>MindCare - Informativo</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Lexend:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
@@ -99,6 +99,104 @@
           },
         },
       }
+      const mentalHealthCards = [
+
+        {
+            title: "Problemas com o Sono",
+            description: "Dificuldade persistente para dormir ou descansar adequadamente após períodos intensos de trabalho.",
+            image: "assets/images/sono.jpg",
+            icon: "bed",
+            iconColor: "text-red-500",
+            overlay: "from-red-100/95",
+            border: "border-red-100",
+            bg: "bg-red-50"
+        },
+
+        {
+            title: "Irritabilidade Aumentada",
+            description: "Reações emocionais intensificadas, tensão frequente e sensação constante de sobrecarga.",
+            image: "assets/images/irritabilidade.jpg",
+            icon: "mood_bad",
+            iconColor: "text-orange-500",
+            overlay: "from-orange-100/95",
+            border: "border-orange-100",
+            bg: "bg-orange-50"
+        },
+
+        {
+            title: "Dificuldade de Concentração",
+            description: "Lapsos de memória, dificuldade de foco e sensação de confusão mental durante a rotina.",
+            image: "assets/images/concentracao.jpg",
+            icon: "psychology",
+            iconColor: "text-yellow-600",
+            overlay: "from-yellow-100/95",
+            border: "border-yellow-100",
+            bg: "bg-yellow-50"
+        },
+
+        {
+            title: "Sobrecarga Emocional",
+            description: "Sensação persistente de cansaço físico e emocional associada às demandas do trabalho.",
+            image: "assets/images/esgotamento.jpg",
+            icon: "sentiment_stressed",
+            iconColor: "text-pink-500",
+            overlay: "from-pink-100/95",
+            border: "border-pink-100",
+            bg: "bg-pink-50"
+        }
+
+    ];
+
+    let currentMentalHealthIndex = 0;
+
+    function updateMentalHealthCard() {
+
+        const data = mentalHealthCards[currentMentalHealthIndex];
+
+        const card = document.getElementById("mentalHealthCard");
+        const image = document.getElementById("mentalHealthImage");
+        const overlay = document.getElementById("mentalHealthOverlay");
+        const icon = document.getElementById("mentalHealthIcon");
+        const title = document.getElementById("mentalHealthTitle");
+        const description = document.getElementById("mentalHealthDescription");
+
+        image.src = data.image;
+
+        title.innerText = data.title;
+
+        description.innerText = data.description;
+
+        icon.innerText = data.icon;
+
+        icon.className = `material-symbols-outlined ${data.iconColor} text-[32px]`;
+
+        overlay.className = `absolute inset-0 bg-gradient-to-t ${data.overlay} to-transparent`;
+
+        card.className =
+            `w-full h-[320px] relative overflow-hidden rounded-3xl border ${data.border} ${data.bg} transition-all duration-500`;
+    }
+
+    function changeMentalHealthCard(direction) {
+
+        currentMentalHealthIndex += direction;
+
+        if (currentMentalHealthIndex < 0) {
+            currentMentalHealthIndex = mentalHealthCards.length - 1;
+        }
+
+        if (currentMentalHealthIndex >= mentalHealthCards.length) {
+            currentMentalHealthIndex = 0;
+        }
+
+        updateMentalHealthCard();
+    }
+
+    setInterval(() => {
+
+        changeMentalHealthCard(1);
+
+    }, 7000);
+
     </script>
 <style>
         .material-symbols-outlined {
@@ -131,123 +229,703 @@
 </header>
 <main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max-width mx-auto">
 <!-- Hero Section / Encouragement -->
-<section class="mb-stack-lg">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
-<div class="space-y-stack-sm">
-<h2 class="font-headline-lg text-headline-lg text-primary">Como está o seu coração hoje?</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-                        Este é o seu refúgio seguro. Transformar sentimentos em palavras é o primeiro passo para uma mente em equilíbrio. O que você gostaria de desabafar agora?
+
+<section class="mb-stack-xl">
+
+    <!-- HEADER -->
+    <div class="mb-8" >
+
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-container text-primary font-label-md text-label-md mb-4">
+
+            <span class="material-symbols-outlined text-[20px]">
+                health_and_safety
+            </span>
+
+            Saúde Mental no Trabalho
+
+        </span>
+
+        <h2 class="font-display-sm text-display-sm text-on-surface mb-3 max-w-[800px]">
+
+            Cuidar da saúde emocional também faz parte do cuidado profissional.
+
+        </h2>
+
+        <p class="text-body-lg text-on-surface-variant max-w-[900px] leading-relaxed">
+
+            Reconhecer sinais de desgaste emocional e adotar estratégias de autocuidado é essencial para preservar o bem-estar durante a rotina de trabalho.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- CARROSSEL - SINAIS DE ATENÇÃO -->
+    <!-- ================================================= -->
+
+    <div class="mb-10" id="#atencao">
+
+        <div class="flex items-center justify-between mb-5">
+
+            <div>
+
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-1">
+                    Sinais de Atenção
+                </h3>
+
+                <p class="text-body-md text-on-surface-variant">
+                    Observe manifestações persistentes de desgaste emocional.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="relative">
+
+            <!-- BOTÃO ESQUERDA -->
+            <button
+                onclick="changeMentalHealthCard(-1)"
+                class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
+
+                <span class="material-symbols-outlined">
+                    chevron_left
+                </span>
+
+            </button>
+
+            <!-- CARD -->
+            <div
+                id="mentalHealthCard"
+                class="w-full h-[320px] relative overflow-hidden rounded-3xl border border-red-100 bg-red-50 transition-all duration-500">
+
+                <!-- IMAGEM -->
+                <img id="mentalHealthImage"
+                    src="assets/images/sono.jpg"
+                    class="absolute inset-0 w-full h-full object-cover opacity-20">
+
+                <!-- OVERLAY -->
+                <div id="mentalHealthOverlay"
+                    class="absolute inset-0 bg-gradient-to-t from-red-100/95 to-transparent">
+                </div>
+
+                <!-- CONTEÚDO -->
+                <div class="relative z-10 h-full flex flex-col justify-end p-8">
+
+                    <div
+                        id="mentalHealthIconContainer"
+                        class="w-16 h-16 rounded-2xl bg-white/80 backdrop-blur-sm flex items-center justify-center mb-5">
+
+                        <span
+                            id="mentalHealthIcon"
+                            class="material-symbols-outlined text-red-500 text-[32px]">
+
+                            bed
+
+                        </span>
+
+                    </div>
+
+                    <h3
+                        id="mentalHealthTitle"
+                        class="font-display-xs text-display-xs text-on-surface mb-3">
+
+                        Problemas com o sono
+
+                    </h3>
+
+                    <p
+                        id="mentalHealthDescription"
+                        class="text-body-lg text-on-surface-variant max-w-[700px] leading-relaxed">
+
+                        Dificuldade persistente para dormir ou descansar adequadamente após períodos intensos de trabalho.
+
                     </p>
-<button class="mt-4 flex items-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-full font-label-md text-label-md shadow-lg active:scale-95 transition-transform">
-<span class="material-symbols-outlined">add</span>
-                        Nova Reflexão
+
+                </div>
+
+            </div>
+
+            <!-- BOTÃO DIREITA -->
+            <button
+                onclick="changeMentalHealthCard(1)"
+                class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
+
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ================================================= -->
+    <!-- CARDS - CUIDADOS RECOMENDADOS -->
+    <!-- ================================================= -->
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-10">
+
+        <!-- CARD -->
+        <div class="p-6 rounded-3xl bg-blue-50 border border-blue-100">
+
+            <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center mb-5">
+
+                <span class="material-symbols-outlined text-blue-500 text-[28px]">
+                    self_improvement
+                </span>
+
+            </div>
+
+            <h4 class="font-headline-sm text-on-surface mb-2">
+                Pausas Regulares
+            </h4>
+
+            <p class="text-body-md text-on-surface-variant leading-relaxed">
+
+                Pequenos intervalos durante o expediente auxiliam na redução da tensão física e emocional.
+
+            </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="p-6 rounded-3xl bg-cyan-50 border border-cyan-100">
+
+            <div class="w-14 h-14 rounded-2xl bg-cyan-100 flex items-center justify-center mb-5">
+
+                <span class="material-symbols-outlined text-cyan-500 text-[28px]">
+                    water_drop
+                </span>
+
+            </div>
+
+            <h4 class="font-headline-sm text-on-surface mb-2">
+                Hidratação e Alimentação
+            </h4>
+
+            <p class="text-body-md text-on-surface-variant leading-relaxed">
+
+                Manter cuidados básicos ajuda na recuperação física e emocional durante jornadas intensas.
+
+            </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="p-6 rounded-3xl bg-indigo-50 border border-indigo-100">
+
+            <div class="w-14 h-14 rounded-2xl bg-indigo-100 flex items-center justify-center mb-5">
+
+                <span class="material-symbols-outlined text-indigo-500 text-[28px]">
+                    groups
+                </span>
+
+            </div>
+
+            <h4 class="font-headline-sm text-on-surface mb-2">
+                Rede de Apoio
+            </h4>
+
+            <p class="text-body-md text-on-surface-variant leading-relaxed">
+
+                Compartilhar experiências com colegas fortalece o suporte emocional coletivo.
+
+            </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="p-6 rounded-3xl bg-green-50 border border-green-100">
+
+            <div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5">
+
+                <span class="material-symbols-outlined text-green-500 text-[28px]">
+                    favorite
+                </span>
+
+            </div>
+
+            <h4 class="font-headline-sm text-on-surface mb-2">
+                Respeite seus Limites
+            </h4>
+
+            <p class="text-body-md text-on-surface-variant leading-relaxed">
+
+                Reconhecer sinais de cansaço e permitir pausas é parte importante do autocuidado.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- CARTILHAS -->
+    <!-- ================================================= -->
+
+    <div class="mb-10">
+
+        <div class="flex items-center justify-between mb-5">
+
+            <div>
+
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-1">
+                    Cartilhas e Guias Rápidos
+                </h3>
+
+                <p class="text-body-md text-on-surface-variant">
+                    Materiais informativos sobre saúde mental e autocuidado.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <!-- CARTILHA -->
+            <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant flex items-start gap-5">
+
+                <div class="w-16 h-16 rounded-2xl bg-primary-container flex items-center justify-center flex-shrink-0">
+
+                    <span class="material-symbols-outlined text-primary text-[32px]">
+                        menu_book
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <h4 class="font-headline-sm text-on-surface mb-2">
+                        Guia de Autocuidado
+                    </h4>
+
+                    <p class="text-body-md text-on-surface-variant mb-4 leading-relaxed">
+
+                        Estratégias práticas de cuidado emocional para profissionais expostos a situações de alta pressão.
+
+                    </p>
+
+                    <button class="px-5 py-2 rounded-full bg-primary text-on-primary hover:opacity-90 transition-all duration-300">
+
+                        Abrir Cartilha
+
                     </button>
-</div>
-<div class="hidden md:block">
-<div class="relative h-64 rounded-xl overflow-hidden shadow-sm border border-outline-variant/30">
-<img alt="Journaling environment" class="w-full h-full object-cover" data-alt="A serene workspace for journaling, featuring a minimalist notebook and a sleek pen on a clean wooden desk. Soft morning sunlight streams through a nearby window, casting long, gentle shadows. A small green plant sits in the corner, adding a touch of nature. The color palette is composed of soft blues, warm whites, and light wood tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU9mux19UnPxAxacrHUXGqJWldLu3xPSXkcHZkvfI4PJj7_BEr-b4N4uOKYppdh8gPNMnYx4dSBLu5daNQ-ky13E_1a1d6kqEwDRRi63eghpHdGi0FUoSuW1sQ6DUFLCslB0NmvjXTTd_ZI8T1Z5FHq9NsawDKgvblxq8NX5tCc1weVfNukCN0gzK5qd2DIJqyE8ecvyWLwdmIExffauZANzNzPyHAaxnQHSAR_xusd03mdaLEF9jzxRRbw-hFli_scagr-TChQFIT">
-<div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
-</div>
-</div>
-</div>
+
+                </div>
+
+            </div>
+
+            <!-- CARTILHA -->
+            <div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant flex items-start gap-5">
+
+                <div class="w-16 h-16 rounded-2xl bg-error-container flex items-center justify-center flex-shrink-0">
+
+                    <span class="material-symbols-outlined text-error text-[32px]">
+                        emergency_home
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <h4 class="font-headline-sm text-on-surface mb-2">
+                        Sinais para Buscar Ajuda
+                    </h4>
+
+                    <p class="text-body-md text-on-surface-variant mb-4 leading-relaxed">
+
+                        Conheça sinais emocionais e comportamentais que indicam necessidade de apoio especializado.
+
+                    </p>
+
+                    <button class="px-5 py-2 rounded-full bg-error text-on-error hover:opacity-90 transition-all duration-300">
+
+                        Ver Orientações
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- BANNER FINAL -->
+    <!-- ================================================= -->
+
+    <div class="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-primary to-blue-700 p-10">
+
+        <div class="absolute top-0 right-0 w-[320px] h-[320px] bg-white/5 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 max-w-[850px]">
+
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-label-md text-label-md mb-5">
+
+                <span class="material-symbols-outlined text-[20px]">
+                    favorite
+                </span>
+
+                Apoio Psicossocial
+
+            </span>
+
+            <h3 class="font-display-sm text-display-sm text-white mb-4">
+
+                Cuidar de quem cuida também é essencial.
+
+            </h3>
+
+            <p class="text-body-lg text-white/90 leading-relaxed max-w-[700px]">
+
+                Buscar apoio emocional, reconhecer limites e adotar estratégias de autocuidado são atitudes fundamentais para preservar a saúde mental e fortalecer o cuidado oferecido aos outros.
+
+            </p>
+        </div>
+    </div>
 </section>
-<!-- Bento Grid Entries -->
-<section class="space-y-stack-md">
-<div class="flex items-center justify-between">
-<h3 class="font-headline-md text-headline-md text-primary">Suas Memórias</h3>
-<div class="flex gap-2">
-<button class="p-2 rounded-lg bg-surface-container border border-outline-variant/20 text-primary">
-<span class="material-symbols-outlined">calendar_today</span>
-</button>
-<button class="p-2 rounded-lg bg-surface-container border border-outline-variant/20 text-primary">
-<span class="material-symbols-outlined">filter_list</span>
-</button>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<!-- Large Card (Recent Entry) -->
-<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20 shadow-sm flex flex-col justify-between space-y-4">
-<div>
-<div class="flex items-center justify-between mb-4">
-<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full">Hoje, 24 de Outubro</span>
-<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">sentiment_satisfied</span>
-</div>
-<h4 class="font-headline-md text-headline-md text-primary mb-2">Um dia de conquistas na sala de aula</h4>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-4">
-                            Hoje consegui implementar aquela nova dinâmica de grupo e a resposta dos alunos foi surpreendente. Senti uma conexão genuína e uma calma que não sentia há semanas. É gratificante ver o impacto positivo quando estamos centrados...
-                        </p>
-</div>
-<div class="flex items-center gap-2 pt-4 border-t border-outline-variant/10">
-<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-container rounded-full text-label-sm">Gratidão</span>
-<span class="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full text-label-sm">Trabalho</span>
-</div>
-</div>
-<!-- Featured Image Card -->
-<div class="bg-primary-container text-on-primary-container p-8 rounded-xl flex flex-col justify-end relative overflow-hidden">
-<div class="absolute top-0 left-0 w-full h-full opacity-10">
-<img alt="Inner peace" class="w-full h-full object-cover" data-alt="An abstract representation of inner peace featuring soft, flowing blue and purple silk-like waves against a dark navy background. The light is ethereal and diffused, creating a sense of depth and tranquility. The image is sophisticated and artistic, aligning with a premium emotional wellness theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQUgqywsJlRgmsCn8vmXnBvSG91s545UT213MrJ7oMu2oxEGUQXNaY-bw-tD2p9FIz9qvIDzHuJp2gPeeQpPrxNda05skKPK-4zFxisdvAzGTiXMdhfPLwv8IbpryRG-Rnb_Fr3z3I8BwDmQk1aqZdv_Q-r1EAPfPWiHBdTE7pCFmwRRfmluES-YR1l7TGhehOkkUBkRkz4iM-Exj5QY-lvhjFX4Wln1gKfPzHba8xFcU_I3c6f8VsQkyQRjKcClA3LTWthACrqa-S">
-</div>
-<div class="relative z-10">
-<span class="material-symbols-outlined text-4xl mb-4">spa</span>
-<h4 class="font-headline-md text-headline-md mb-2">Lembrete Gentil</h4>
-<p class="font-body-sm text-body-sm opacity-90 italic">"Sua mente é um jardim, seus pensamentos são as sementes. Você pode cultivar flores ou ervas daninhas."</p>
-</div>
-</div>
-<!-- Small Entry Card -->
-<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20 shadow-sm flex flex-col space-y-3">
-<div class="flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-on-surface-variant">22 Out</span>
-<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">sentiment_dissatisfied</span>
-</div>
-<h4 class="font-label-md text-label-md font-semibold text-primary">Cansaço acumulado</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">A reunião de pais foi exaustiva. Preciso aprender a não levar essas tensões para casa...</p>
-</div>
-<!-- Small Entry Card -->
-<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20 shadow-sm flex flex-col space-y-3">
-<div class="flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-on-surface-variant">21 Out</span>
-<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">sentiment_neutral</span>
-</div>
-<h4 class="font-label-md text-label-md font-semibold text-primary">Rotina produtiva</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">Um dia estável. Sem grandes picos emocionais, o que já é uma vitória.</p>
-</div>
-<!-- Small Entry Card -->
-<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20 shadow-sm flex flex-col space-y-3">
-<div class="flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-on-surface-variant">19 Out</span>
-<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">sentiment_very_satisfied</span>
-</div>
-<h4 class="font-label-md text-label-md font-semibold text-primary">Final de semana revigorante</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">Passeio no parque me ajudou a recarregar as energias para a próxima semana.</p>
-</div>
-</div>
-</section>
-<!-- Stats/Insight Section -->
-<section class="mt-stack-lg bg-surface-container-high/50 p-8 rounded-2xl border border-outline-variant/20">
-<div class="flex flex-col md:flex-row items-center gap-8">
-<div class="flex-1 space-y-4">
-<h4 class="font-headline-md text-headline-md text-primary">Insights da Semana</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">Você escreveu 4 vezes esta semana. Suas emoções predominantes foram <strong>Tranquilidade</strong> e <strong>Foco</strong>. Continue assim!</p>
-<div class="w-full bg-surface-container-lowest h-3 rounded-full overflow-hidden">
-<div class="bg-secondary-container h-full w-[80%] rounded-full"></div>
-</div>
-<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Progresso do Hábito: 80%</p>
-</div>
-<div class="flex gap-4">
-<div class="text-center">
-<div class="w-16 h-16 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary mb-2 shadow-sm">
-<span class="material-symbols-outlined text-3xl">local_fire_department</span>
-</div>
-<span class="text-label-sm font-bold">5 Dias</span>
-</div>
-<div class="text-center">
-<div class="w-16 h-16 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary mb-2 shadow-sm">
-<span class="material-symbols-outlined text-3xl">edit_square</span>
-</div>
-<span class="text-label-sm font-bold">28 Notas</span>
-</div>
-</div>
-</div>
+<!-- ================================================= -->
+<!-- SEÇÃO - PREVENÇÃO E APOIO EM SAÚDE MENTAL -->
+<!-- ================================================= -->
+<section class="mb-stack-xl" >
+
+    <!-- HEADER -->
+    <div class="mb-8">
+
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-100 text-yellow-800 font-label-md text-label-md mb-4">
+
+            <span class="material-symbols-outlined text-[20px]">
+                health_and_safety
+            </span>
+
+            Apoio Emocional e Prevenção
+
+        </span>
+
+        <h2 class="font-display-sm text-display-sm text-on-surface mb-3 max-w-[850px]">
+
+            Falar sobre sofrimento emocional também é uma forma de cuidado.
+
+        </h2>
+
+        <p class="text-body-lg text-on-surface-variant leading-relaxed max-w-[900px]">
+
+            Situações de estresse intenso, sobrecarga emocional e esgotamento prolongado podem impactar significativamente a saúde mental. Reconhecer sinais de sofrimento e buscar apoio é um passo importante para a preservação da vida e do bem-estar.
+
+        </p>
+
+    </div>
+
+    <!-- ================================================= -->
+    <!-- BANNER PRINCIPAL -->
+    <!-- ================================================= -->
+
+    <div class="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-yellow-500 to-orange-500 p-10 mb-10" id="valorizacaovida">
+
+        <div class="absolute top-0 right-0 w-[320px] h-[320px] bg-white/10 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 max-w-[800px]">
+
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 text-white font-label-md text-label-md mb-5">
+
+                <span class="material-symbols-outlined text-[20px]">
+                    favorite
+                </span>
+
+                Você não precisa enfrentar isso sozinho
+
+            </span>
+
+            <h3 class="font-display-sm text-display-sm text-white mb-4">
+
+                Buscar ajuda é um ato de coragem e cuidado consigo mesmo.
+
+            </h3>
+
+            <p class="text-body-lg text-white/90 leading-relaxed">
+
+                Conversar com profissionais de saúde, colegas de confiança ou serviços especializados pode auxiliar na redução do sofrimento emocional e fortalecer estratégias de enfrentamento em momentos difíceis.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- SINAIS DE ALERTA -->
+    <!-- ================================================= -->
+
+    <div class="mb-10">
+
+        <div class="mb-5">
+
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2">
+                Sinais que Merecem Atenção
+            </h3>
+
+            <p class="text-body-md text-on-surface-variant">
+                Alguns sinais emocionais e comportamentais podem indicar sofrimento intenso e necessidade de apoio especializado.
+            </p>
+
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+
+            <!-- CARD -->
+            <div class="p-6 rounded-3xl bg-red-50 border border-red-100">
+
+                <div class="w-14 h-14 rounded-2xl bg-red-100 flex items-center justify-center mb-5">
+
+                    <span class="material-symbols-outlined text-red-500 text-[28px]">
+                        mood_bad
+                    </span>
+
+                </div>
+
+                <h4 class="font-headline-sm text-on-surface mb-2">
+                    Desânimo Persistente
+                </h4>
+
+                <p class="text-body-md text-on-surface-variant leading-relaxed">
+
+                    Sensação constante de tristeza, desesperança ou perda de interesse pelas atividades diárias.
+
+                </p>
+
+            </div>
+
+            <!-- CARD -->
+            <div class="p-6 rounded-3xl bg-orange-50 border border-orange-100">
+
+                <div class="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mb-5">
+
+                    <span class="material-symbols-outlined text-orange-500 text-[28px]">
+                        bed
+                    </span>
+
+                </div>
+
+                <h4 class="font-headline-sm text-on-surface mb-2">
+                    Alterações no Sono
+                </h4>
+
+                <p class="text-body-md text-on-surface-variant leading-relaxed">
+
+                    Dificuldade frequente para dormir, descansar ou manter uma rotina adequada de sono.
+
+                </p>
+
+            </div>
+
+            <!-- CARD -->
+            <div class="p-6 rounded-3xl bg-yellow-50 border border-yellow-100">
+
+                <div class="w-14 h-14 rounded-2xl bg-yellow-100 flex items-center justify-center mb-5">
+
+                    <span class="material-symbols-outlined text-yellow-600 text-[28px]">
+                        psychology
+                    </span>
+
+                </div>
+
+                <h4 class="font-headline-sm text-on-surface mb-2">
+                    Sobrecarga Mental
+                </h4>
+
+                <p class="text-body-md text-on-surface-variant leading-relaxed">
+
+                    Pensamentos recorrentes, dificuldade de concentração e sensação constante de pressão emocional.
+
+                </p>
+
+            </div>
+
+            <!-- CARD -->
+            <div class="p-6 rounded-3xl bg-pink-50 border border-pink-100">
+
+                <div class="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center mb-5">
+
+                    <span class="material-symbols-outlined text-pink-500 text-[28px]">
+                        groups
+                    </span>
+
+                </div>
+
+                <h4 class="font-headline-sm text-on-surface mb-2">
+                    Isolamento Social
+                </h4>
+
+                <p class="text-body-md text-on-surface-variant leading-relaxed">
+
+                    Afastamento de colegas, familiares e redução do contato com a rede de apoio.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- CONTATOS DE APOIO -->
+    <!-- ================================================= -->
+
+    <div class="mb-10" id="cvv">
+
+        <div class="mb-5">
+
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2">
+                Canais de Apoio e Escuta
+            </h3>
+
+            <p class="text-body-md text-on-surface-variant">
+                Serviços especializados podem oferecer acolhimento emocional e orientação em momentos difíceis.
+            </p>
+
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <!-- CVV -->
+            <div class="p-7 rounded-3xl bg-primary text-white relative overflow-hidden">
+
+                <div class="absolute top-0 right-0 w-[220px] h-[220px] bg-white/10 rounded-full blur-3xl"></div>
+
+                <div class="relative z-10">
+
+                    <div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-5">
+
+                        <span class="material-symbols-outlined text-[34px]">
+                            support_agent
+                        </span>
+
+                    </div>
+
+                    <h4 class="font-display-xs text-display-xs mb-3">
+                        Centro de Valorização da Vida (CVV)
+                    </h4>
+
+                    <p class="text-body-lg text-white/90 mb-5 leading-relaxed">
+
+                        Atendimento gratuito e sigiloso disponível 24 horas por dia para apoio emocional e prevenção do suicídio.
+
+                    </p>
+
+                    <div class="flex flex-wrap gap-3">
+
+                        <a href="tel:188"
+                           class="px-5 py-3 rounded-full bg-white text-primary font-medium hover:scale-[1.02] transition-all duration-300">
+
+                            Ligar 188
+
+                        </a>
+
+                        <a href="https://www.cvv.org.br"
+                           target="_blank"
+                           class="px-5 py-3 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all duration-300">
+
+                            Acessar Site
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SUS -->
+            <div class="p-7 rounded-3xl bg-surface-container-low border border-outline-variant relative overflow-hidden">
+
+                <div class="absolute top-0 right-0 w-[220px] h-[220px] bg-primary/5 rounded-full blur-3xl"></div>
+
+                <div class="relative z-10">
+
+                    <div class="w-16 h-16 rounded-2xl bg-primary-container flex items-center justify-center mb-5">
+
+                        <span class="material-symbols-outlined text-primary text-[34px]">
+                            local_hospital
+                        </span>
+
+                    </div>
+
+                    <h4 class="font-display-xs text-display-xs text-on-surface mb-3">
+                        Rede de Atenção Psicossocial
+                    </h4>
+
+                    <p class="text-body-lg text-on-surface-variant mb-5 leading-relaxed">
+
+                        Unidades de saúde, CAPS e serviços da rede pública podem auxiliar no acolhimento e acompanhamento em saúde mental.
+
+                    </p>
+
+                    <button class="px-5 py-3 rounded-full bg-primary text-on-primary hover:opacity-90 transition-all duration-300">
+
+                        Buscar Atendimento
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- TEXTO FINAL -->
+    <!-- ================================================= -->
+
+    <div class="p-8 rounded-[32px] bg-surface-container-low border border-outline-variant">
+
+        <div class="flex items-start gap-5 flex-col md:flex-row">
+
+            <div class="w-16 h-16 rounded-2xl bg-primary-container flex items-center justify-center flex-shrink-0">
+
+                <span class="material-symbols-outlined text-primary text-[32px]">
+                    favorite
+                </span>
+
+            </div>
+
+            <div>
+
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-3">
+                    Cuidar de si também é parte do cuidado com o outro.
+                </h3>
+
+                <p class="text-body-lg text-on-surface-variant leading-relaxed max-w-[900px]">
+
+                    Reconhecer limites, conversar sobre emoções e buscar apoio especializado são atitudes importantes para preservar a saúde mental e fortalecer vínculos de cuidado dentro e fora do ambiente profissional.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 </main>
 <!-- FAB (Contextual for Journal) -->
@@ -256,18 +934,30 @@
 </button>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_12px_rgba(0,35,111,0.05)]">
-<a href="../index.html" class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-150" href="#">
-<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<a href="../index.html" class="flex flex-col items-center justify-center dark:bg-primary-container  dark:text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
 <span class="font-label-sm text-label-sm">Início</span>
 </a>
 <a href="ajuda.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" href="#">
-<span class="material-symbols-outlined" data-icon="spa">spa</span>
-<span class="font-label-sm text-label-sm"><span class="" style="letter-spacing: 0.48px; text-align: center;">
+<span class="material-symbols-outlined">
+            volunteer_activism
+        </span>
+        <span class="font-label-sm text-label-sm"><span class="" style="letter-spacing: 0.48px; text-align: center;">
   Ajuda</span></span>
 </a>
-<a href="#" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" href="#">
-<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
-<span class="font-label-sm text-label-sm">Informações</span>
+<a href="informativo.html"
+   class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-5 py-2 shadow-sm ring-1 ring-primary/10 active:scale-90 transition-all duration-300">
+
+    <span class="material-symbols-outlined"
+          style="font-variation-settings: 'FILL' 1;">
+
+        menu_book
+
+    </span>
+
+    <span class="font-label-sm text-label-sm">
+        Informativo
+    </span>
 </a>
 </nav>
 </body></html>
