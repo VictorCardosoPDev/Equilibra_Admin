@@ -21,44 +21,54 @@ async function loadAnalytics() {
 
     data.forEach(page => {
 
-        totalViews += page.views;
+    totalViews += page.views;
 
-        table.innerHTML += `
+    table.innerHTML += `
 
-            <tr class="border-t border-outline-variant">
+        <div
+            style="
+                background:white;
+                border:1px solid #d4d4d8;
+                border-radius:24px;
+                padding:20px;
+            "
+        >
 
-                <td class="px-6 py-4 text-on-surface-variant">
+            <div
+                style="
+                    font-size:14px;
+                    color:#6b7280;
+                    margin-bottom:10px;
+                    word-break:break-word;
+                "
+            >
 
-                    ${page.path}
+                ${page.path}
 
-                </td>
+            </div>
 
-                <td class="px-6 py-4">
+            <div
+                style="
+                    display:inline-flex;
+                    align-items:center;
+                    justify-content:center;
+                    background:#00236f;
+                    color:white;
+                    padding:10px 18px;
+                    border-radius:999px;
+                    font-weight:600;
+                    font-size:14px;
+                "
+            >
 
-                    <div class="
-                        inline-flex
-                        items-center
-                        justify-center
-                        min-w-[60px]
-                        px-4
-                        py-2
-                        rounded-full
-                        bg-primary
-                        text-white
-                        font-semibold
-                        text-sm
-                    ">
+                ${page.views} visualizações
 
-                        ${page.views}
+            </div>
 
-                    </div>
+        </div>
 
-                </td>
-
-            </tr>
-
-        `;
-    });
+    `;
+});
 
     document.getElementById('totalViews')
         .innerText = totalViews;

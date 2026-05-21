@@ -128,7 +128,6 @@
 <h1 class="font-headline-md text-headline-md font-bold text-primary">MindCare</h1>
 </div>
 <button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-200">
-<span class="material-symbols-outlined text-primary">notifications</span>
 </button>
 </div>
 </header>
@@ -258,63 +257,56 @@
 
     <section class="mb-10">
 
-    <div class="p-8 rounded-3xl bg-surface-container-low border border-outline-variant">
+            <div class="p-8 rounded-3xl bg-surface-container-low border border-outline-variant">
 
-        <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center justify-between mb-6">
 
-            <div>
+                    <div>
 
-                <h3 class="font-headline-md text-headline-md text-on-surface mb-2">
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">
 
-                    Monitoramento de Acessos
+                            Monitoramento de Acessos
 
-                </h3>
+                        </h3>
 
-                <p class="text-body-md text-on-surface-variant">
+                        <p class="text-body-md text-on-surface-variant">
 
-                    Visualizações registradas pelo sistema.
+                            Visualizações registradas pelo sistema.
 
-                </p>
+                        </p>
 
-            </div>
+                    </div>
 
-        </div>
+                </div>
 
-        <div class="overflow-hidden rounded-2xl border border-outline-variant">
+                <div class="overflow-x-auto rounded-2xl border border-outline-variant">
 
-            <table class="w-full">
+                <table class="w-full table-fixed">
 
-                <thead class="bg-surface-container">
+                    <thead class="bg-surface-container">
 
-                    <tr>
+                        <tr>
 
-                        <th class="text-left px-6 py-4 text-on-surface">
+                            <th class="w-[80%] text-left px-6 py-4 text-on-surface">
 
-                            Página
+                                Página
 
-                        </th>
+                            </th>
 
-                        <th class="text-left px-6 py-4 text-on-surface">
+                    
 
-                            Visualizações
+                        </tr>
 
-                        </th>
+                    </thead>
 
-                    </tr>
+                    <tbody id="analyticsTable"></tbody>
+                </table>
 
-                </thead>
+            </div>    
 
-                <tbody id="analyticsTable">
 
-                </tbody>
 
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
+    </section>
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_12px_rgba(0,35,111,0.05)]">
