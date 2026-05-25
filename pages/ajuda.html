@@ -101,6 +101,30 @@
             },
           },
         }
+        function openVideoModal() {
+
+        document
+            .getElementById("videoModal")
+            .classList.remove("hidden");
+    }
+
+    function closeVideoModal() {
+
+        document
+            .getElementById("videoModal")
+            .classList.add("hidden");
+    }
+    function openAlongamentoModal() {
+    document
+        .getElementById("alongamentoModal")
+        .classList.remove("hidden");
+}
+
+function closeAlongamentoModal() {
+    document
+        .getElementById("alongamentoModal")
+        .classList.add("hidden");
+}
     </script>
 <style>
         .material-symbols-outlined {
@@ -187,6 +211,59 @@
 </div>
 </div>
 <!-- Meditação Rápida -->
+<div
+    id="meditacaoModal"
+    class="hidden fixed inset-0 z-[999] bg-black/70 flex items-center justify-center p-4">
+
+    <div
+        class="bg-white rounded-[32px] p-4 w-full max-w-xl relative shadow-2xl">
+
+        <!-- BOTÃO FECHAR -->
+        <button
+            onclick="closeMeditacaoModal()"
+            class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+
+            <span class="material-symbols-outlined">
+
+                close
+
+            </span>
+
+        </button>
+
+        <!-- TÍTULO -->
+        <div class="mb-4 mt-2">
+
+            <h3 class="text-headline-md font-headline-md text-primary">
+
+                Alongamento no Trabalho
+
+            </h3>
+
+            <p class="text-body-sm text-on-surface-variant">
+
+                Exercícios guiados para aliviar tensão muscular.
+
+            </p>
+
+        </div>
+
+        <!-- PLAYLIST YOUTUBE -->
+        <iframe
+            width="100%"
+            height="220"
+            style="border-radius:24px;"
+            src="https://www.youtube.com/embed/videoseries?list=SEU_ID_DA_PLAYLIST"
+            title="Playlist Alongamento"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+</div>
 <div class="glass-card rounded-xl p-6 flex flex-col shadow-sm border border-surface-container-highest group">
 <div class="flex justify-between items-start mb-4">
 <div class="p-3 bg-surface-container-highest rounded-xl text-primary">
@@ -200,13 +277,69 @@
 <div class="flex gap-1">
 <span class="px-2 py-0.5 bg-surface-container-low text-primary rounded-full text-[10px] font-bold uppercase tracking-wider">Foco</span>
 </div>
-<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md flex items-center gap-2 group-hover:bg-primary-container transition-all active:scale-95">
+
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md flex items-center gap-2 group-hover:bg-primary-container transition-all active:scale-95" onclick="openMeditacaoModal()">
 <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
                         Começar
                     </button>
+    
 </div>
+
 </div>
 <!-- Alongamento no Trabalho -->
+ <div
+    id="videoModal"
+    class="hidden fixed inset-0 z-[999] bg-black/70 flex items-center justify-center p-4">
+
+    <div
+        class="bg-white rounded-[32px] p-4 w-full max-w-xl relative shadow-2xl">
+
+        <!-- BOTÃO FECHAR -->
+        <button
+            onclick="closeVideoModal()"
+            class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+
+            <span class="material-symbols-outlined">
+
+                close
+
+            </span>
+
+        </button>
+
+        <!-- TÍTULO -->
+        <div class="mb-4 mt-2">
+
+            <h3 class="text-headline-md font-headline-md text-primary">
+
+                Alongamento no Trabalho
+
+            </h3>
+
+            <p class="text-body-sm text-on-surface-variant">
+
+                Exercícios guiados para aliviar tensão muscular.
+
+            </p>
+
+        </div>
+
+        <!-- PLAYLIST YOUTUBE -->
+        <iframe
+            width="100%"
+            height="220"
+            style="border-radius:24px;"
+            src="https://www.youtube.com/embed/6-Mxh62G7a4?si=A4isr-CNVgWuoNo8"
+            title="Playlist Alongamento"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+
+        </iframe>
+
+    </div>
+
+</div>
 <div class="glass-card rounded-xl p-6 flex flex-col shadow-sm border border-surface-container-highest group">
 <div class="flex justify-between items-start mb-4">
 <div class="p-3 bg-secondary-fixed-dim rounded-xl text-on-secondary-container">
