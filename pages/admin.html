@@ -257,56 +257,36 @@
 
     <section class="mb-10">
 
-            <div class="p-8 rounded-3xl bg-surface-container-low border border-outline-variant">
-
-                <div class="flex items-center justify-between mb-6">
-
-                    <div>
-
-                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">
-
-                            Monitoramento de Acessos
-
-                        </h3>
-
-                        <p class="text-body-md text-on-surface-variant">
-
-                            Visualizações registradas pelo sistema.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="overflow-x-auto rounded-2xl border border-outline-variant">
-
-                <table class="w-full table-fixed">
-
-                    <thead class="bg-surface-container">
-
-                        <tr>
-
-                            <th class="w-[80%] text-left px-6 py-4 text-on-surface">
-
-                                Página
-
-                            </th>
-
-                    
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="analyticsTable"></tbody>
-                </table>
-
-            </div>    
-
-
-
+                
     </section>
+    <section class="mb-stack-lg">
+
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-3xl p-6 shadow-sm">
+
+        <div class="mb-6">
+
+            <h2 class="font-headline-md text-headline-md text-primary mb-2">
+
+                Análise de Acessos e Estresse
+
+            </h2>
+
+            <p class="text-body-md text-on-surface-variant">
+
+                Monitoramento das páginas acessadas e níveis emocionais registrados.
+
+            </p>
+
+        </div>
+
+        <!-- GRÁFICOS -->
+        <div id="analyticsCharts" class="flex flex-col gap-6">
+
+        </div>
+
+    </div>
+
+</section>
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_12px_rgba(0,35,111,0.05)]">

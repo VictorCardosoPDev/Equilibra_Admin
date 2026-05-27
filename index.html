@@ -104,7 +104,7 @@
         },
       }
 
-      let currentStressLevel = 0;
+    let currentStressLevel = 0;
 
     const stressLevels = [
         {
@@ -155,11 +155,42 @@
 
         document.getElementById("stressDescription").innerText = data.description;
     }
+    saveStressAccess();
+    async function redirectStressPage() {
 
-    function redirectStressPage() {
+    const currentStress =
+        stressLevels[currentStressLevel];
 
-        window.location.href = stressLevels[currentStressLevel].page;
+    // SALVA NO SUPABASE
+    const { error } =
+        await supabaseClient
+            .from("page_access_logs")
+            .insert({
+
+                path: currentStress.page,
+
+                stress_level: currentStress.title
+
+            });
+
+    if(error) {
+
+        console.error(
+            "Erro ao salvar stress:",
+            error
+        );
+
+    } else {
+
+        console.log(
+            "Stress registrado!"
+        );
     }
+
+    // REDIRECIONA
+    window.location.href =
+        currentStress.page;
+}
     const warningCards = [
 
         {

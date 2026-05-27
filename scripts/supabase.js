@@ -6,20 +6,41 @@ const supabaseClient = window.supabase.createClient(
     supabaseKey
 );
 
-async function registerPageView() {
+async function registerAccess(stressLevel) {
 
-    const { error } = await supabaseClient.rpc(
-        "increment_page_count",
-        {
-            p_path: window.location.pathname
-        }
-    );
+    const { error } = await supabaseClient
+        .from("page_access_logs")
+        .insert({
+
+            path: window.location.pathname,
+
+            stress_level: stressLevel
+
+        });
 
     if (error) {
-        console.error("Erro ao registrar acesso:", error);
+
+        console.error(
+            "Erro ao registrar acesso:",
+            error
+        );
+
     } else {
-        console.log("Acesso registrado!");
+
+        console.log(
+            "Acesso registrado!"
+        );
     }
 }
+function saveStressAccess() {
 
-registerPageView();
+    if (currentStressLevel === 0) {
+
+        return;
+
+    }
+
+    registerAccess(
+        stressLevels[currentStressLevel].title
+    );
+}
