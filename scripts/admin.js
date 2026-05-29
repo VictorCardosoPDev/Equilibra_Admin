@@ -48,7 +48,6 @@ async function loadEmotionTimeline() {
                 minute: '2-digit'
             });
 
-        // cria grupo se não existir
         if (!groupedByDate[formattedDate]) {
 
             groupedByDate[formattedDate] = {
@@ -150,6 +149,58 @@ async function loadEmotionTimeline() {
         // HTML
         // =========================
 
+        const timelineHTML = logs.map(log => {
+
+    const logDate =
+                new Date(log.created_at + 'Z');
+
+            const hour =
+                logDate.toLocaleTimeString('pt-BR', {
+                    timeZone: 'America/Sao_Paulo',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+            const stress =
+                log.stress_level;
+
+            const stressColors = {
+
+                baixo: 'bg-blue-500',
+                leve: 'bg-green-500',
+                moderado: 'bg-yellow-400',
+                elevado: 'bg-orange-500',
+                crítico: 'bg-red-500'
+
+            };
+
+            return `
+
+                <div class="flex items-center justify-between bg-surface-container-high rounded-xl px-4 py-3">
+
+                    <div class="flex items-center gap-3">
+
+                        <div class="w-3 h-3 rounded-full ${stressColors[stress.toLowerCase()]}"></div>
+
+                        <span class="text-body-sm text-on-surface">
+
+                            ${hour}
+
+                        </span>
+
+                    </div>
+
+                    <span class="text-body-sm font-semibold capitalize text-primary">
+
+                        ${stress}
+
+                    </span>
+
+                </div>
+
+            `;
+
+        }).join('');
         container.innerHTML += `
 
             <div class="bg-surface-container rounded-3xl p-5">
@@ -218,7 +269,7 @@ async function loadEmotionTimeline() {
                 <div
                     id="stress-${index}"
                     class="hidden flex flex-col gap-4 pt-2">
-
+                    
                     ${renderStressBar(
                         "Baixo",
                         levels.baixo,
@@ -248,10 +299,25 @@ async function loadEmotionTimeline() {
                         levels.crítico,
                         "bg-red-500"
                     )}
+                    <div class="pt-4 border-t border-outline-variant">
+
+                    <p class="text-body-sm font-semibold text-on-surface mb-3">
+
+                        Linha do tempo emocional
+
+                    </p>
+
+                    <div class="flex flex-col gap-2">
+
+                        ${timelineHTML}
+
+                    </div>
 
                 </div>
-
+                </div>
+                    
             </div>
+            
 
         `;
     });
