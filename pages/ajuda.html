@@ -127,6 +127,146 @@ function closeMeditacaoModal() {
         .getElementById("meditacaoModal")
         .classList.add("hidden");
 }
+
+let breathingInterval;
+
+function openBreathingModal() {
+
+    document
+        .getElementById("breathingModal")
+        .classList.remove("hidden");
+}
+
+function closeBreathingModal() {
+
+    document
+        .getElementById("breathingModal")
+        .classList.add("hidden");
+}
+
+function closeExerciseModal() {
+
+    clearInterval(breathingInterval);
+
+    document
+        .getElementById("exerciseModal")
+        .classList.add("hidden");
+}
+function startTechnique(type) {
+
+    closeBreathingModal();
+
+    document
+        .getElementById("exerciseModal")
+        .classList.remove("hidden");
+
+    let phases = [];
+    let title = "";
+
+    if (type === "diafragmatica") {
+
+        title = "Exercício Diafragmático";
+
+        phases = [
+
+            { text: "Inspire", seconds: 3, scale: "scale-125" },
+
+            { text: "Segure", seconds: 3, scale: "scale-125" },
+
+            { text: "Expire", seconds: 6, scale: "scale-100" }
+
+        ];
+    }
+
+    if (type === "kumbhaka") {
+
+        title = "Kumbhaka";
+
+        phases = [
+
+            { text: "Inspire", seconds: 4, scale: "scale-125" },
+
+            { text: "Segure", seconds: 16, scale: "scale-125" },
+
+            { text: "Expire", seconds: 8, scale: "scale-100" }
+
+        ];
+    }
+
+    if (type === "narinas") {
+
+        title = "Narinas Alternadas";
+
+        phases = [
+
+            { text: "Narina Esquerda", seconds: 4, scale: "scale-125" },
+
+            { text: "Segure", seconds: 4, scale: "scale-125" },
+
+            { text: "Narina Direita", seconds: 4, scale: "scale-100" }
+
+        ];
+    }
+
+    document
+        .getElementById("exerciseTitle")
+        .innerText = title;
+
+    runBreathing(phases);
+}
+function runBreathing(phases) {
+
+    clearInterval(breathingInterval);
+
+    const counter =
+        document.getElementById("breathingCounter");
+
+    const instruction =
+        document.getElementById("breathingInstruction");
+
+    const circle =
+        document.getElementById("breathingCircle");
+
+    let phaseIndex = 0;
+    let timeLeft = phases[0].seconds;
+
+    instruction.innerText =
+        phases[0].text;
+
+    counter.innerText =
+        timeLeft;
+
+    breathingInterval =
+        setInterval(() => {
+
+            timeLeft--;
+
+            counter.innerText =
+                timeLeft;
+
+            if (timeLeft <= 0) {
+
+                phaseIndex =
+                    (phaseIndex + 1) % phases.length;
+
+                const phase =
+                    phases[phaseIndex];
+
+                instruction.innerText =
+                    phase.text;
+
+                counter.innerText =
+                    phase.seconds;
+
+                timeLeft =
+                    phase.seconds;
+
+                circle.className =
+                    `w-40 h-40 mx-auto rounded-full border-4 border-primary bg-primary/10 flex items-center justify-center transition-all duration-1000 ${phase.scale}`;
+            }
+
+        }, 1000);
+}
 </script>
 <style>
         .material-symbols-outlined {
@@ -206,11 +346,167 @@ function closeMeditacaoModal() {
 <div class="flex gap-1">
 <span class="px-2 py-0.5 bg-surface-container-low text-primary rounded-full text-[10px] font-bold uppercase tracking-wider">Calma</span>
 </div>
-<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md flex items-center gap-2 group-hover:bg-primary-container transition-all active:scale-95">
-<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                        Começar
-                    </button>
+<button
+    onclick="openBreathingModal()"
+    class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md flex items-center gap-2 group-hover:bg-primary-container transition-all active:scale-95">
+
+    <span
+        class="material-symbols-outlined text-[18px]"
+        style="font-variation-settings: 'FILL' 1;">
+
+        play_arrow
+
+    </span>
+
+    Começar
+
+</button>
 </div>
+</div>
+<div
+    id="breathingModal"
+    class="hidden fixed inset-0 z-[999] bg-black/70 flex items-center justify-center p-4">
+
+    <div class="bg-white rounded-[32px] p-6 w-full max-w-lg relative max-h-[85vh] overflow-y-auto">
+
+        <button
+            onclick="closeBreathingModal()"
+            class="absolute top-4 right-4">
+
+            <span class="material-symbols-outlined">
+
+                close
+
+            </span>
+
+        </button>
+        <img src="../assets/imagens/img_modalRespiracao.png" alt="" width="80%" class="mx-auto mb-4 rounded-lg border border-surface-container-high">
+        <h2 class="text-headline-md text-primary mb-2">
+
+            Técnicas de Respiração
+
+        </h2>
+
+        <p class="text-on-surface-variant mb-6">
+
+            Escolha uma técnica para iniciar.
+
+        </p>
+
+        <div class="grid gap-4">
+
+            <!-- Diafragmática -->
+            <button
+                onclick="startTechnique('diafragmatica')"
+                class="text-left p-4 rounded-2xl border border-surface-container-high hover:bg-surface-container-low transition-all">
+
+                <h3 class="font-semibold text-primary">
+
+                    🫁 Exercício Diafragmático
+
+                </h3>
+
+                <p class="text-sm text-on-surface-variant mt-1">
+
+                    Inspira 3 • Segura 3 • Expira 6
+
+                </p>
+
+            </button>
+
+            <!-- Narinas Alternadas -->
+            <button
+                onclick="startTechnique('narinas')"
+                class="text-left p-4 rounded-2xl border border-surface-container-high hover:bg-surface-container-low transition-all">
+
+                <h3 class="font-semibold text-primary">
+
+                    🌬️ Narinas Alternadas
+
+                </h3>
+
+                <p class="text-sm text-on-surface-variant mt-1">
+
+                    Equilíbrio e concentração
+
+                </p>
+
+            </button>
+
+            <!-- Kumbhaka -->
+            <button
+                onclick="startTechnique('kumbhaka')"
+                class="text-left p-4 rounded-2xl border border-surface-container-high hover:bg-surface-container-low transition-all">
+
+                <h3 class="font-semibold text-primary">
+
+                    🧘 Kumbhaka
+
+                </h3>
+
+                <p class="text-sm text-on-surface-variant mt-1">
+
+                    Inspira 4 • Segura 16 • Expira 8
+
+                </p>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<div
+    id="exerciseModal"
+    class="hidden fixed inset-0 z-[999] bg-black/70 flex items-center justify-center p-4">
+
+    <div class="bg-white rounded-3xl p-6 w-full max-w-md">
+
+        <h3
+            id="exerciseTitle"
+            class="text-xl font-bold mb-4">
+
+            Exercício
+
+        </h3>
+
+        <div
+            id="breathingCircle"
+            class="w-40 h-40 mx-auto rounded-full border-4 border-primary bg-primary/10 flex items-center justify-center">
+
+            <div class="text-center">
+
+                <p
+                    id="breathingInstruction"
+                    class="font-bold text-lg">
+
+                    Inspire
+
+                </p>
+
+                <p
+                    id="breathingCounter"
+                    class="text-3xl">
+
+                    4
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            onclick="closeExerciseModal()"
+            class="mt-6 w-full bg-primary text-white py-3 rounded-xl">
+
+            Encerrar
+
+        </button>
+
+    </div>
+
 </div>
 <!-- Meditação Rápida -->
 <div
@@ -218,7 +514,7 @@ function closeMeditacaoModal() {
     class="hidden fixed inset-0 z-[999] bg-black/70 flex items-center justify-center p-4">
 
     <div
-        class="bg-white rounded-[32px] p-4 w-full max-w-xl relative shadow-2xl">
+        class="bg-[#fbfaf7] rounded-[32px] p-4 w-full max-w-xl relative shadow-2xl overflow-y-auto max-h-[85vh]">
 
         <!-- BOTÃO FECHAR -->
         <button
@@ -232,7 +528,7 @@ function closeMeditacaoModal() {
             </span>
 
         </button>
-
+        <img src="../assets/imagens/img_modalRespiracao.png" alt="" width="80%" class="mx-auto mb-4 rounded-lg border-surface-container-high">
         <!-- TÍTULO -->
         <div class="mb-4 mt-2">
 
@@ -249,7 +545,7 @@ function closeMeditacaoModal() {
             </p>
 
         </div>
-
+        
         <!-- PLAYLIST YOUTUBE -->
         <iframe
             width="100%"
@@ -260,9 +556,18 @@ function closeMeditacaoModal() {
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
-
         </iframe>
-
+        <iframe
+            width="100%"
+            height="220"
+            style="border-radius:24px;"
+            src="https://www.youtube.com/embed/_19x_vCtb-E?si=Fr4O7GRm3HAxL-JT"
+            title="Playlist Meditação"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+        <img src="../assets/imagens/petal.png" alt="" width="50%" class="mx-auto h-32 w-auto  mb-4 rounded-lg border-surface-container-high opacity-25">
     </div>
 
 </div>
@@ -370,7 +675,6 @@ function closeMeditacaoModal() {
 <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 relative">
 </div>
 </div>
-
 </section>
 </main>
 <!-- BottomNavBar -->
