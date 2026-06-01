@@ -162,6 +162,7 @@ function startTechnique(type) {
 
     let phases = [];
     let title = "";
+    let images = {};
 
     if (type === "diafragmatica") {
 
@@ -176,6 +177,16 @@ function startTechnique(type) {
             { text: "Expire", seconds: 6, scale: "scale-100" }
 
         ];
+
+        images = {
+
+            "Inspire": "../assets/imagens/inspire.png",
+
+            "Segure": "../assets/imagens/inspire.png",
+
+            "Expire": "../assets/imagens/expire.png"
+
+        };
     }
 
     if (type === "kumbhaka") {
@@ -191,6 +202,16 @@ function startTechnique(type) {
             { text: "Expire", seconds: 8, scale: "scale-100" }
 
         ];
+
+        images = {
+
+            "Inspire": "../assets/imagens/kumbhaka-inspire.png",
+
+            "Segure": "../assets/imagens/kumbhaka-segure.png",
+
+            "Expire": "../assets/imagens/kumbhaka-expire.png"
+
+        };
     }
 
     if (type === "narinas") {
@@ -206,15 +227,38 @@ function startTechnique(type) {
             { text: "Narina Direita", seconds: 4, scale: "scale-100" }
 
         ];
+
+        images = {
+
+            "Narina Esquerda": "../assets/imagens/narina-esquerda.png",
+
+            "Segure": "../assets/imagens/narina-segure.png",
+
+            "Narina Direita": "../assets/imagens/narina-direita.png"
+
+        };
     }
 
     document
         .getElementById("exerciseTitle")
         .innerText = title;
 
-    runBreathing(phases);
+    runBreathing(phases, images);
 }
-function runBreathing(phases) {
+const breathingImages = {
+
+    "Inspire": "../assets/imagens/inspire.png",
+
+    "Expire": "../assets/imagens/expire.png",
+
+    "Segure": "../assets/imagens/segure.png",
+
+    "Narina Esquerda": "../assets/imagens/narina-esquerda.png",
+
+    "Narina Direita": "../assets/imagens/narina-direita.png"
+
+};
+function runBreathing(phases, images) {
 
     clearInterval(breathingInterval);
 
@@ -227,6 +271,9 @@ function runBreathing(phases) {
     const circle =
         document.getElementById("breathingCircle");
 
+    const image =
+        document.getElementById("breathingImage");
+
     let phaseIndex = 0;
     let timeLeft = phases[0].seconds;
 
@@ -235,6 +282,11 @@ function runBreathing(phases) {
 
     counter.innerText =
         timeLeft;
+
+    image.src =
+        images[phases[0].text];
+
+    image.style.opacity = "1";
 
     breathingInterval =
         setInterval(() => {
@@ -263,9 +315,157 @@ function runBreathing(phases) {
 
                 circle.className =
                     `w-40 h-40 mx-auto rounded-full border-4 border-primary bg-primary/10 flex items-center justify-center transition-all duration-1000 ${phase.scale}`;
+
+                image.style.opacity = "0";
+
+                setTimeout(() => {
+
+                    image.src =
+                        images[phase.text];
+
+                    if (phase.text === "Expire") {
+
+                        image.style.transform =
+                            "scale(0.95)";
+                    }
+
+                    else if (phase.text === "Narina Esquerda") {
+
+                        image.style.transform =
+                            "translateX(-10px) scale(1.05)";
+                    }
+
+                    else if (phase.text === "Narina Direita") {
+
+                        image.style.transform =
+                            "translateX(10px) scale(1.05)";
+                    }
+
+                    else {
+
+                        image.style.transform =
+                            "scale(1.08)";
+                    }
+
+                    image.style.opacity = "1";
+
+                }, 300);
             }
 
         }, 1000);
+}
+function closeTechniqueInfoModal() {
+
+    document
+        .getElementById("techniqueInfoModal")
+        .classList.add("hidden");
+}
+function openTechniqueInfo(type) {
+
+    const modal =
+        document.getElementById("techniqueInfoModal");
+
+    const image =
+        document.getElementById("techniqueImage");
+
+    const title =
+        document.getElementById("techniqueTitle");
+
+    const benefits =
+        document.getElementById("techniqueBenefits");
+
+    const steps =
+        document.getElementById("techniqueSteps");
+
+    const button =
+        document.getElementById("startTechniqueBtn");
+
+    if (type === "diafragmatica") {
+
+        image.src =
+            "../assets/imagens/diafragmatica-capa.png";
+
+        title.innerText =
+            "Exercício Diafragmático";
+
+        benefits.innerHTML = `
+            <strong>Benefícios</strong><br>
+            • Reduz ansiedade<br>
+            • Promove relaxamento<br>
+            • Auxilia no controle emocional
+        `;
+
+        steps.innerHTML = `
+            <strong>Como fazer:</strong><br><br>
+
+            1. Sente-se confortavelmente.<br>
+            2. Coloque as mãos sobre o abdômen.<br>
+            3. Inspire expandindo o abdômen.<br>
+            4. Expire lentamente.
+        `;
+    }
+
+    if (type === "narinas") {
+
+        image.src =
+            "../assets/imagens/narina-capa.png";
+
+        title.innerText =
+            "Narinas Alternadas";
+
+        benefits.innerHTML = `
+            <strong>Benefícios</strong><br>
+            • Melhora concentração<br>
+            • Promove equilíbrio emocional<br>
+            • Reduz tensão mental
+        `;
+
+        steps.innerHTML = `
+            <strong>Como fazer:</strong><br><br>
+
+            1. Feche uma narina.<br>
+            2. Inspire pela outra.<br>
+            3. Segure o ar.<br>
+            4. Alterne as narinas.
+        `;
+    }
+
+    if (type === "kumbhaka") {
+
+        image.src =
+            "../assets/imagens/kumbhaka-capa.png";
+
+        title.innerText =
+            "Kumbhaka";
+
+        benefits.innerHTML = `
+            <strong>Benefícios</strong><br>
+            • Aumenta foco<br>
+            • Desenvolve autocontrole<br>
+            • Relaxamento profundo<br>
+            • Proporciona tranquilização do sistema
+                nervoso e da frequência cardíaca, além
+                de proporcionar calma e
+                harmonização consigo mesmo.
+        `;
+
+        steps.innerHTML = `
+            <strong>Como fazer:</strong><br><br>
+
+            1. Inspire profundamente.<br>
+            2. Retenha o ar.<br>
+            3. Expire lentamente.
+        `;
+    }
+
+    button.onclick = () => {
+
+        closeTechniqueInfoModal();
+
+        startTechnique(type);
+    };
+
+    modal.classList.remove("hidden");
 }
 </script>
 <style>
@@ -380,7 +580,7 @@ function runBreathing(phases) {
             </span>
 
         </button>
-        <img src="../assets/imagens/img_modalRespiracao.png" alt="" width="80%" class="mx-auto mb-4 rounded-lg border border-surface-container-high">
+        <img src="../assets/imagens/img_modalRespiracao.png" alt="" width="80%" class="mx-auto mb-4 border-surface-container-high">
         <h2 class="text-headline-md text-primary mb-2">
 
             Técnicas de Respiração
@@ -396,8 +596,10 @@ function runBreathing(phases) {
         <div class="grid gap-4">
 
             <!-- Diafragmática -->
+             
             <button
-                onclick="startTechnique('diafragmatica')"
+            
+                onclick="openTechniqueInfo('diafragmatica')"
                 class="text-left p-4 rounded-2xl border border-surface-container-high hover:bg-surface-container-low transition-all">
 
                 <h3 class="font-semibold text-primary">
@@ -405,8 +607,9 @@ function runBreathing(phases) {
                     🫁 Exercício Diafragmático
 
                 </h3>
-
+                
                 <p class="text-sm text-on-surface-variant mt-1">
+                    
 
                     Inspira 3 • Segura 3 • Expira 6
 
@@ -416,7 +619,7 @@ function runBreathing(phases) {
 
             <!-- Narinas Alternadas -->
             <button
-                onclick="startTechnique('narinas')"
+                onclick="openTechniqueInfo('narinas')"
                 class="text-left p-4 rounded-2xl border border-surface-container-high hover:bg-surface-container-low transition-all">
 
                 <h3 class="font-semibold text-primary">
@@ -435,7 +638,7 @@ function runBreathing(phases) {
 
             <!-- Kumbhaka -->
             <button
-                onclick="startTechnique('kumbhaka')"
+                onclick="openTechniqueInfo('kumbhaka')"
                 class="text-left p-4 rounded-2xl border border-surface-container-high hover:bg-surface-container-low transition-all">
 
                 <h3 class="font-semibold text-primary">
@@ -458,6 +661,54 @@ function runBreathing(phases) {
 
 </div>
 <div
+    id="techniqueInfoModal"
+    class="hidden fixed inset-0 z-[999] bg-black/70 flex items-center justify-center p-4">
+
+    <div
+        class="bg-white rounded-3xl p-6 w-full max-w-md max-h-[90vh] overflow-y-auto relative">
+
+        <button
+            onclick="closeTechniqueInfoModal()"
+            class="absolute top-4 right-4">
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+        <img
+            id="techniqueImage"
+            src=""
+            class="mx-auto h-40 w-auto mb-4">
+
+        <h3
+            id="techniqueTitle"
+            class="text-2xl font-bold text-primary mb-3">
+        </h3>
+
+        <p
+            id="techniqueBenefits"
+            class="text-on-surface-variant mb-4">
+        </p>
+
+        <div
+            id="techniqueSteps"
+            class="bg-green-50 p-4 rounded-xl mb-4">
+        </div>
+
+        <button
+            id="startTechniqueBtn"
+            class="w-full bg-primary text-white py-3 rounded-xl">
+
+            Começar Exercício
+
+        </button>
+
+    </div>
+
+</div>
+<div
     id="exerciseModal"
     class="hidden fixed inset-0 z-[999] bg-black/70 flex items-center justify-center p-4">
 
@@ -471,6 +722,14 @@ function runBreathing(phases) {
 
         </h3>
 
+        <!-- IMAGEM ANIMADA -->
+        <img
+            id="breathingImage"
+            src="../assets/imagens/inspire.png"
+            alt="Respiração"
+            class="mx-auto h-48 w-auto mb-4 transition-opacity duration-500">
+
+        <!-- CÍRCULO -->
         <div
             id="breathingCircle"
             class="w-40 h-40 mx-auto rounded-full border-4 border-primary bg-primary/10 flex items-center justify-center">
@@ -528,7 +787,7 @@ function runBreathing(phases) {
             </span>
 
         </button>
-        <img src="../assets/imagens/img_modalRespiracao.png" alt="" width="80%" class="mx-auto mb-4 rounded-lg border-surface-container-high">
+        <img src="../assets/imagens/img_modalMeditacao.png" alt="" width="80%" class="mx-auto mb-4 rounded-lg border-surface-container-high">
         <!-- TÍTULO -->
         <div class="mb-4 mt-2">
 
@@ -557,16 +816,7 @@ function runBreathing(phases) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
         </iframe>
-        <iframe
-            width="100%"
-            height="220"
-            style="border-radius:24px;"
-            src="https://www.youtube.com/embed/_19x_vCtb-E?si=Fr4O7GRm3HAxL-JT"
-            title="Playlist Meditação"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
+        
         <img src="../assets/imagens/petal.png" alt="" width="50%" class="mx-auto h-32 w-auto  mb-4 rounded-lg border-surface-container-high opacity-25">
     </div>
 
@@ -735,4 +985,5 @@ function runBreathing(phases) {
     </span>
 </a>
 </nav>
+
 </body></html>
