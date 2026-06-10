@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MindCare Edu - Biblioteca</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#89f5e7",
+                        "on-surface-variant": "#444651",
+                        "on-primary-container": "#90a8ff",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "inverse-surface": "#2d3133",
+                        "surface-dim": "#d8dadc",
+                        "outline-variant": "#c5c5d3",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-secondary-container": "#006f66",
+                        "secondary-container": "#86f2e4",
+                        "primary-container": "#1e3a8a",
+                        "surface": "#f7f9fb",
+                        "inverse-primary": "#b6c4ff",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-container": "#9dadc6",
+                        "on-secondary-fixed": "#00201d",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#005049",
+                        "primary": "#00236f",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#4059aa",
+                        "background": "#f7f9fb",
+                        "primary-fixed": "#dce1ff",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "outline": "#757682",
+                        "on-primary-fixed-variant": "#264191",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "surface-container-low": "#f2f4f6",
+                        "on-surface": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-background": "#191c1e",
+                        "secondary": "#006a61",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#00164e",
+                        "tertiary": "#1b2b3f",
+                        "surface-bright": "#f7f9fb",
+                        "tertiary-container": "#314156",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-high": "#e6e8ea"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "lg": "48px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "md": "24px",
+                        "base": "8px",
+                        "xl": "80px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Source Serif 4"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "headline-xl": ["Source Serif 4"],
+                        "headline-lg": ["Source Serif 4"],
+                        "label-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-xl": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface h-16 shadow-sm flex justify-between items-center px-margin-mobile md:px-margin-desktop">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Perfil" class="w-full h-full object-cover" data-alt="A professional headshot of a female clinician in her 40s wearing a clean white medical coat. She has a warm, empathetic smile, conveying trustworthiness and clinical expertise. The background is a soft-focus clinical setting with muted blues and whites, maintaining a serene and professional atmosphere consistent with a modern minimalist healthcare design system." src="https://cdn.pixabay.com/photo/2022/08/14/21/41/heart-7386672_1280.png"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Biblioteca</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</header>
+<main class="pt-20 pb-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<!-- Search Bar -->
+<section class="mb-8">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-lowest border-2 border-transparent focus:border-primary-container focus:ring-0 rounded-xl font-body-md text-on-surface transition-all shadow-sm" placeholder="Buscar artigos, cartilhas e diretrizes..." type="text"/>
+</div>
+</section>
+<!-- Categories/Tabs -->
+<section class="mb-10 overflow-x-auto hide-scrollbar -mx-margin-mobile px-margin-mobile">
+<div class="flex gap-3 whitespace-nowrap">
+<button class="px-6 py-2.5 bg-primary text-on-primary rounded-full font-label-md transition-transform active:scale-95">Tudo</button>
+<button class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">Artigos</button>
+<button class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">Cartilhas</button>
+<button class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">Saúde Mental</button>
+<button class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">Burnout</button>
+</div>
+</section>
+
+<!-- List Section: Artigos Recentes -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface border-l-4 border-primary pl-4">Artigos Recentes</h2>
+<a class="text-primary font-label-md hover:underline" href="#">Ver todos</a>
+</div>
+<div class="space-y-2">
+<!-- Accordion Item 1 -->
+<details class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+<div class="flex flex-col">
+<span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">#SaudeMental</span>
+<h4 class="font-label-md text-on-surface">Meditação Mindfulness para Médicos</h4>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-4 pt-0 border-t border-outline-variant/30">
+<div class="flex flex-col md:flex-row gap-4 mt-4">
+<img alt="Thumbnail" class="w-full md:w-32 h-32 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpKqnh6KiW2Z29hGmm8sekgjDTGY5mwCMgZyzSg8emRqljgXnloFkpVkvdWew9cXni2HRnjxGzGctwEWThJAEQM1ggkqYP8Khk9dChwwpCvie2V6dionLWMBuppybodTi7ozDx9MHZTtm_2sR0vrMqLHnqTFNeVbg5ZXTMFqZj4tKx7YArY5RJs-HSkUwmi0C72IH6psT0VwUmcUJxG0yNDWcZrVZ-O3OGpgB97IbraizcgH2WCL4CYDaFbELo3KbjUMyuceM733Kz"/>
+<div class="flex-1 flex flex-col">
+<p class="font-body-md text-sm text-on-surface-variant mb-4">Como 5 minutos diários podem reduzir erros clínicos e aumentar o foco.</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xs text-outline font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 8 min leitura
+            </span>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-label-md">Ler Agora</button>
+</div>
+</div>
+</div>
+</div>
+</details>
+<!-- Accordion Item 2 -->
+<details class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+<div class="flex flex-col">
+<span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">#ResilienciaClinica</span>
+<h4 class="font-label-md text-on-surface">Nutrição e Cognição em Plantões</h4>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-4 pt-0 border-t border-outline-variant/30">
+<div class="flex flex-col md:flex-row gap-4 mt-4">
+<img alt="Thumbnail" class="w-full md:w-32 h-32 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhAQ69TRVnZNrInxDbgYufldIae34msHwfblblnSwa6VEeBeEmGW4Zw0dBXAxsuCOl0zPU3yLrZn7LhqjQcCZlxQ6cnoN0ZLG-2-iTRfjQAtey71LYK2ue7VEtwGsOSYmWUubhB50KRzCDo7KSGU-s4MBjqfV5EfUtGuYyi3b1qKiI5DJqXOMPEn__OmGZCiLiDHUoURrVRCtkjfNWDOJg3CvQ8vvHeMmskVCZarat_aZqeMeLFJ53wbcAokTfjVvWx5oFoWEDXk5F"/>
+<div class="flex-1 flex flex-col">
+<p class="font-body-md text-sm text-on-surface-variant mb-4">Alimentos que auxiliam na manutenção do estado de alerta durante a noite.</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xs text-outline font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 12 min leitura
+            </span>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-label-md">Ler Agora</button>
+</div>
+</div>
+</div>
+</div>
+</details>
+<!-- Accordion Item 3 -->
+<details class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+<div class="flex flex-col">
+<span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">#PrevencaoBurnout</span>
+<h4 class="font-label-md text-on-surface">Higiene do Sono Pós-Plantão</h4>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-4 pt-0 border-t border-outline-variant/30">
+<div class="flex flex-col md:flex-row gap-4 mt-4">
+<img alt="Thumbnail" class="w-full md:w-32 h-32 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr_XCOrIshzk4XS7kK1YOAsnCpWLmerhJgG_f6pIlgyzKkZiSC_otNkoRUWeu09rLjUblKyp71Z6oh4PmrdgaZc8lVVP9Nr2C4tIG8-QnYNOKXZ6rGj72u2n_TqFMfxAsnH7Tew_CmFX2O-ZEkOnlHIfvem67Gqc9aDTibF8qj1XWDWUXDKYEawM3JHis8M2CqevP1iKtF7sgXJLJGE4txT9833XcaPYWK7egaTiUThnhzvP5um-T1YjedoG-9R8FQjygmS0Cnw_rU"/>
+<div class="flex-1 flex flex-col">
+<p class="font-body-md text-sm text-on-surface-variant mb-4">Técnicas de descompressão para garantir um descanso reparador imediato.</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xs text-outline font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 10 min leitura
+            </span>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-label-md">Ler Agora</button>
+</div>
+</div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<!-- List Section: Cartilhas Educativas (Horizontal Layout) -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface border-l-4 border-secondary pl-4">Cartilhas Educativas</h2>
+</div>
+<div class="space-y-2">
+<!-- Booklet Accordion 1 -->
+<details class="group bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+<div class="flex flex-col">
+<span class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">PDF • 1.2 MB</span>
+<h4 class="font-label-md text-on-surface">Guia Rápido: Primeiros Socorros Psicológicos</h4>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-4 pt-0 border-t border-outline-variant/30">
+<div class="flex items-center gap-4 mt-4">
+<div class="w-16 h-20 bg-primary-container rounded flex items-center justify-center text-on-primary-container shrink-0">
+<span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<p class="text-xs text-on-surface-variant font-body-md mb-3">Atualizado em Jan/2024. Guia essencial para suporte imediato em crises emocionais no ambiente clínico.</p>
+<button class="flex items-center gap-2 bg-secondary text-on-secondary px-4 py-2 rounded-lg text-sm font-label-md">
+<span class="material-symbols-outlined text-sm">download</span> Download PDF
+          </button>
+</div>
+</div>
+</div>
+</details>
+<!-- Booklet Accordion 2 -->
+<details class="group bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+<div class="flex flex-col">
+<span class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">PDF • 850 KB</span>
+<h4 class="font-label-md text-on-surface">Checklist de Descompressão de Equipe</h4>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-4 pt-0 border-t border-outline-variant/30">
+<div class="flex items-center gap-4 mt-4">
+<div class="w-16 h-20 bg-secondary-container rounded flex items-center justify-center text-on-secondary-container shrink-0">
+<span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<p class="text-xs text-on-surface-variant font-body-md mb-3">Essencial para Gestores. Ferramenta prática para debriefing após turnos críticos.</p>
+<button class="flex items-center gap-2 bg-secondary text-on-secondary px-4 py-2 rounded-lg text-sm font-label-md">
+<span class="material-symbols-outlined text-sm">download</span> Download PDF
+          </button>
+</div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_12px_rgba(0,35,111,0.05)]">
+
+    <!-- Início -->
+    <a href="../index.html"
+       class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 active:scale-90">
+
+        <span class="material-symbols-outlined">
+            home
+        </span>
+
+        <span class="font-label-sm text-label-sm">
+            Início
+        </span>
+
+    </a>
+    <!-- Ajuda -->
+    <a href="ajuda.html"
+       class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-5 py-2 shadow-sm ring-1 ring-primary/10 active:scale-90 transition-all duration-300">
+
+        <span class="material-symbols-outlined"
+              style="font-variation-settings: 'FILL' 1;">
+            volunteer_activism
+        </span>
+        <span class="font-label-sm text-label-sm">
+            Ajuda
+        </span>
+
+    </a>
+
+    <!-- Informativo -->
+    <a href="informativo.html"
+       class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 active:scale-90">
+
+        <span class="material-symbols-outlined">
+            menu_book
+        </span>
+
+        <span class="font-label-sm text-label-sm">
+            Informativo
+        </span>
+
+    </a>
+    <!-- Admin -->
+    <a href="admin.html"
+   class="flex flex-col items-center justify-center ring-primary/10 active:scale-90 transition-all duration-300">
+
+    <span class="material-symbols-outlined"
+          style="font-variation-settings: 'FILL' 0;">
+
+        admin_panel_settings
+
+    </span>
+
+    <span class="font-label-sm text-label-sm">
+        Admin
+    </span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for category tabs
+        const tabs = document.querySelectorAll('button.rounded-full');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-primary', 'text-on-primary');
+                    t.classList.add('bg-surface-container-low', 'text-on-surface-variant', 'border', 'border-outline-variant');
+                });
+                tab.classList.remove('bg-surface-container-low', 'text-on-surface-variant', 'border', 'border-outline-variant');
+                tab.classList.add('bg-primary', 'text-on-primary');
+            });
+        });
+
+        // Add visual feedback to PDF download buttons
+        const downloadButtons = document.querySelectorAll('button:has(.material-symbols-outlined:contains("download"))');
+        downloadButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('.material-symbols-outlined');
+                const originalText = icon.innerText;
+                icon.innerText = 'check_circle';
+                this.classList.add('bg-secondary-container');
+                setTimeout(() => {
+                    icon.innerText = originalText;
+                    this.classList.remove('bg-secondary-container');
+                }, 2000);
+            });
+        });
+    </script>
+</body></html>

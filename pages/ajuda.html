@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html><html lang="pt-BR"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MindCare - Relaxamento</title>
+<title>MindCare - Ajuda</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../scripts/supabase.js"></script>
@@ -158,6 +158,7 @@ function closeExerciseModal() {
 }
 function startTechnique(type) {
 
+    currentTechnique = type;
     closeBreathingModal();
 
     document
@@ -1310,6 +1311,7 @@ function openSuggestedTechnique() {
         </span>
 
     </a>
+    <!-- Ajuda -->
     <a href="ajuda.html"
        class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-5 py-2 shadow-sm ring-1 ring-primary/10 active:scale-90 transition-all duration-300">
 
