@@ -480,30 +480,37 @@
             });
         });
 
-        // Simple form validation visual feedback
+        // Simple form validation visual feedback and upload
         const form = document.querySelector('form');
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = e.target.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Publicando...';
             btn.disabled = true;
             btn.classList.add('opacity-70');
+
+            const success = await uploadPdf();
+
+            if (!success) {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-70');
+                return;
+            }
+
+            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Publicado!';
+            btn.classList.remove('bg-primary');
+            btn.classList.add('bg-green-600');
             
             setTimeout(() => {
-                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Publicado!';
-                btn.classList.remove('bg-primary');
-                btn.classList.add('bg-green-600');
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.classList.remove('bg-green-600');
-                    btn.classList.add('bg-primary');
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-70');
-                    form.reset();
-                }, 2000);
-            }, 1500);
+                btn.innerHTML = originalText;
+                btn.classList.remove('bg-green-600');
+                btn.classList.add('bg-primary');
+                btn.disabled = false;
+                btn.classList.remove('opacity-70');
+                form.reset();
+            }, 2000);
         });
 
         // Drop shadow lift on card hover
@@ -556,7 +563,7 @@ async function uploadPdf() {
 
         alert("Selecione um PDF.");
 
-        return;
+        return false;
     }
     const extension =
     file.name.split(".").pop();
@@ -575,7 +582,7 @@ async function uploadPdf() {
 
         alert("Erro ao enviar PDF.");
 
-        return;
+        return false;
     }
 
 
@@ -586,6 +593,10 @@ async function uploadPdf() {
 
     const thumbnailUrl =
     await uploadThumbnail();
+    console.log(
+    "Thumbnail URL:",
+    thumbnailUrl
+);
 
     console.log("title:", document.getElementById("title"));
     console.log("autores:", document.getElementById("autores"));
@@ -600,11 +611,11 @@ async function uploadPdf() {
 
     const categoria =
         document.getElementById("categoria").value;
-
+    
     const tipo =
-        document.querySelector(
-            'input[name="contentType"]:checked'
-        )?.value || "";
+    document.querySelector(
+        'input[name="content_type"]:checked'
+    )?.value || "";
 
     const resumo =
         document.getElementById("resumo").value;
@@ -630,80 +641,13 @@ async function uploadPdf() {
             "PDF enviado, mas houve erro ao salvar no banco."
         );
 
-        return;
+        return false;
     }
 
     alert("Conteúdo publicado com sucesso!");
+    return true;
 }
-document
-    .getElementById("thumbnailInput")
-    .addEventListener("change", function () {
-
-        const file = this.files[0];
-
-        if (!file) return;
-
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-
-            document
-                .getElementById("cover-preview")
-                .src = e.target.result;
-        };
-
-        reader.readAsDataURL(file);
-
-        async function uploadThumbnail() {
-
-    const thumbnailInput =
-        document.getElementById(
-            "thumbnailInput"
-        );
-
-    const file =
-        thumbnailInput.files[0];
-
-    if (!file) {
-
-        return null;
-    }
-
-    const extension =
-        file.name
-            .split(".")
-            .pop();
-
-    const fileName =
-        `${Date.now()}.${extension}`;
-
-    const { error } =
-        await supabaseClient.storage
-            .from("biblioteca-thumbnails")
-            .upload(
-                fileName,
-                file
-            );
-
-    if (error) {
-
-        console.error(error);
-
-        return null;
-    }
-
-    const { data } =
-        supabaseClient.storage
-            .from("biblioteca-thumbnails")
-            .getPublicUrl(
-                fileName
-            );
-
-    return data.publicUrl;
-}
-    });
-
-    async function uploadThumbnail() {
+async function uploadThumbnail() {
 
     const thumbnailInput =
         document.getElementById("thumbnailInput");
@@ -712,6 +656,8 @@ document
         thumbnailInput.files[0];
 
     if (!file) {
+
+        console.log("Nenhuma thumbnail selecionada");
 
         return null;
     }
@@ -729,7 +675,15 @@ document
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            "ERRO THUMBNAIL:",
+            error
+        );
+
+        alert(
+            "Erro ao enviar thumbnail: " +
+            error.message
+        );
 
         return null;
     }
@@ -739,26 +693,13 @@ document
             .from("biblioteca-thumbnails")
             .getPublicUrl(fileName);
 
+    console.log(
+        "Thumbnail enviada:",
+        data.publicUrl
+    );
+
     return data.publicUrl;
 }
-document
-    .getElementById("thumbnailInput")
-    .addEventListener("change", function () {
 
-        const file = this.files[0];
-
-        if (!file) return;
-
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-
-            document
-                .getElementById("cover-preview")
-                .src = e.target.result;
-        };
-
-        reader.readAsDataURL(file);
-    });
 </script>
 </body></html>
