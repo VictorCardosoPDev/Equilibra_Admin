@@ -100,6 +100,7 @@
                 },
             },
         }
+    
     </script>
 <style>
         body {
@@ -132,8 +133,9 @@
 </div>
 <h1 class="font-headline-md text-headline-md font-bold text-primary">Biblioteca</h1>
 </div>
-<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
-<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<button onclick="window.location.href='bibliotecaAdmin.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
+<p>Adicionar Conteúdo</p>
+<span class="material-symbols-outlined text-on-surface-variant">add_circle</span>
 </button>
 </header>
 <main class="pt-20 pb-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
@@ -147,11 +149,23 @@
 <!-- Categories/Tabs -->
 <section class="mb-10 overflow-x-auto hide-scrollbar -mx-margin-mobile px-margin-mobile">
 <div class="flex gap-3 whitespace-nowrap">
-<button class="px-6 py-2.5 bg-primary text-on-primary rounded-full font-label-md transition-transform active:scale-95">Tudo</button>
-<button class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">Artigos</button>
-<button class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">Cartilhas</button>
-<button class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">Saúde Mental</button>
-<button class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">Burnout</button>
+<button id="filter-all">Tudo</button>
+
+<button id="filter-artigos">
+    Artigos
+</button>
+
+<button id="filter-cartilhas">
+    Cartilhas
+</button>
+
+<button id="filter-saude">
+    Saúde Mental
+</button>
+
+<button id="filter-burnout">
+    Burnout
+</button>
 </div>
 </section>
 
@@ -163,7 +177,7 @@
 </div>
 <div class="space-y-2">
 <!-- Accordion Item 1 -->
-<details class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
+<details class="content-item artigo saude-mental group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all ">
 <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
 <div class="flex flex-col">
 <span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">#SaudeMental</span>
@@ -187,7 +201,7 @@
 </div>
 </details>
 <!-- Accordion Item 2 -->
-<details class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
+<details class="content-item artigo resiliencia-clinica group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
 <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
 <div class="flex flex-col">
 <span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">#ResilienciaClinica</span>
@@ -211,7 +225,7 @@
 </div>
 </details>
 <!-- Accordion Item 3 -->
-<details class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
+<details class="content-item artigo burnout group group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
 <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
 <div class="flex flex-col">
 <span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">#PrevencaoBurnout</span>
@@ -377,19 +391,41 @@
             });
         });
 
-        // Add visual feedback to PDF download buttons
-        const downloadButtons = document.querySelectorAll('button:has(.material-symbols-outlined:contains("download"))');
-        downloadButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const icon = this.querySelector('.material-symbols-outlined');
-                const originalText = icon.innerText;
-                icon.innerText = 'check_circle';
-                this.classList.add('bg-secondary-container');
-                setTimeout(() => {
-                    icon.innerText = originalText;
-                    this.classList.remove('bg-secondary-container');
-                }, 2000);
-            });
-        });
-    </script>
+        
+            const items =
+    document.querySelectorAll(".content-item");
+
+function filterContent(category) {
+
+    items.forEach(item => {
+
+        item.style.display = "none";
+
+        if (category === "all") {
+
+            item.style.display = "block";
+
+        } else if (item.classList.contains(category)) {
+
+            item.style.display = "block";
+        }
+    });
+}
+
+document.getElementById("filter-all")
+    .addEventListener("click", () => filterContent("all"));
+
+document.getElementById("filter-artigos")
+    .addEventListener("click", () => filterContent("artigo"));
+
+document.getElementById("filter-cartilhas")
+    .addEventListener("click", () => filterContent("cartilha"));
+
+document.getElementById("filter-saude")
+    .addEventListener("click", () => filterContent("saude-mental"));
+
+document.getElementById("filter-burnout")
+    .addEventListener("click", () => filterContent("burnout"));
+
+</script>
 </body></html>
