@@ -3,11 +3,12 @@
 <html class="light" lang="pt-BR"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MindCare Edu - Biblioteca</title>
+<title>MindCare - Biblioteca</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -175,79 +176,13 @@
 <h2 class="font-headline-md text-headline-md text-on-surface border-l-4 border-primary pl-4">Artigos Recentes</h2>
 <a class="text-primary font-label-md hover:underline" href="#">Ver todos</a>
 </div>
-<div class="space-y-2">
+<div id="artigosContainer" class="space-y-2">
 <!-- Accordion Item 1 -->
-<details class="content-item artigo saude-mental group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all ">
-<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
-<div class="flex flex-col">
-<span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">#SaudeMental</span>
-<h4 class="font-label-md text-on-surface">Meditação Mindfulness para Médicos</h4>
-</div>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
-</summary>
-<div class="p-4 pt-0 border-t border-outline-variant/30">
-<div class="flex flex-col md:flex-row gap-4 mt-4">
-<img alt="Thumbnail" class="w-full md:w-32 h-32 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpKqnh6KiW2Z29hGmm8sekgjDTGY5mwCMgZyzSg8emRqljgXnloFkpVkvdWew9cXni2HRnjxGzGctwEWThJAEQM1ggkqYP8Khk9dChwwpCvie2V6dionLWMBuppybodTi7ozDx9MHZTtm_2sR0vrMqLHnqTFNeVbg5ZXTMFqZj4tKx7YArY5RJs-HSkUwmi0C72IH6psT0VwUmcUJxG0yNDWcZrVZ-O3OGpgB97IbraizcgH2WCL4CYDaFbELo3KbjUMyuceM733Kz"/>
-<div class="flex-1 flex flex-col">
-<p class="font-body-md text-sm text-on-surface-variant mb-4">Como 5 minutos diários podem reduzir erros clínicos e aumentar o foco.</p>
-<div class="mt-auto flex items-center justify-between">
-<span class="text-xs text-outline font-label-md flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">schedule</span> 8 min leitura
-            </span>
-<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-label-md">Ler Agora</button>
-</div>
-</div>
-</div>
-</div>
-</details>
+
 <!-- Accordion Item 2 -->
-<details class="content-item artigo resiliencia-clinica group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
-<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
-<div class="flex flex-col">
-<span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">#ResilienciaClinica</span>
-<h4 class="font-label-md text-on-surface">Nutrição e Cognição em Plantões</h4>
-</div>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
-</summary>
-<div class="p-4 pt-0 border-t border-outline-variant/30">
-<div class="flex flex-col md:flex-row gap-4 mt-4">
-<img alt="Thumbnail" class="w-full md:w-32 h-32 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhAQ69TRVnZNrInxDbgYufldIae34msHwfblblnSwa6VEeBeEmGW4Zw0dBXAxsuCOl0zPU3yLrZn7LhqjQcCZlxQ6cnoN0ZLG-2-iTRfjQAtey71LYK2ue7VEtwGsOSYmWUubhB50KRzCDo7KSGU-s4MBjqfV5EfUtGuYyi3b1qKiI5DJqXOMPEn__OmGZCiLiDHUoURrVRCtkjfNWDOJg3CvQ8vvHeMmskVCZarat_aZqeMeLFJ53wbcAokTfjVvWx5oFoWEDXk5F"/>
-<div class="flex-1 flex flex-col">
-<p class="font-body-md text-sm text-on-surface-variant mb-4">Alimentos que auxiliam na manutenção do estado de alerta durante a noite.</p>
-<div class="mt-auto flex items-center justify-between">
-<span class="text-xs text-outline font-label-md flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">schedule</span> 12 min leitura
-            </span>
-<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-label-md">Ler Agora</button>
-</div>
-</div>
-</div>
-</div>
-</details>
+
 <!-- Accordion Item 3 -->
-<details class="content-item artigo burnout group group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all">
-<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
-<div class="flex flex-col">
-<span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">#PrevencaoBurnout</span>
-<h4 class="font-label-md text-on-surface">Higiene do Sono Pós-Plantão</h4>
-</div>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
-</summary>
-<div class="p-4 pt-0 border-t border-outline-variant/30">
-<div class="flex flex-col md:flex-row gap-4 mt-4">
-<img alt="Thumbnail" class="w-full md:w-32 h-32 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr_XCOrIshzk4XS7kK1YOAsnCpWLmerhJgG_f6pIlgyzKkZiSC_otNkoRUWeu09rLjUblKyp71Z6oh4PmrdgaZc8lVVP9Nr2C4tIG8-QnYNOKXZ6rGj72u2n_TqFMfxAsnH7Tew_CmFX2O-ZEkOnlHIfvem67Gqc9aDTibF8qj1XWDWUXDKYEawM3JHis8M2CqevP1iKtF7sgXJLJGE4txT9833XcaPYWK7egaTiUThnhzvP5um-T1YjedoG-9R8FQjygmS0Cnw_rU"/>
-<div class="flex-1 flex flex-col">
-<p class="font-body-md text-sm text-on-surface-variant mb-4">Técnicas de descompressão para garantir um descanso reparador imediato.</p>
-<div class="mt-auto flex items-center justify-between">
-<span class="text-xs text-outline font-label-md flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">schedule</span> 10 min leitura
-            </span>
-<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-label-md">Ler Agora</button>
-</div>
-</div>
-</div>
-</div>
-</details>
+
 </div>
 </section>
 <!-- List Section: Cartilhas Educativas (Horizontal Layout) -->
@@ -255,53 +190,11 @@
 <div class="flex items-center justify-between mb-6">
 <h2 class="font-headline-md text-headline-md text-on-surface border-l-4 border-secondary pl-4">Cartilhas Educativas</h2>
 </div>
-<div class="space-y-2">
+<div id="cartilhasContainer" class="space-y-2">
 <!-- Booklet Accordion 1 -->
-<details class="group bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden transition-all">
-<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
-<div class="flex flex-col">
-<span class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">PDF • 1.2 MB</span>
-<h4 class="font-label-md text-on-surface">Guia Rápido: Primeiros Socorros Psicológicos</h4>
-</div>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
-</summary>
-<div class="p-4 pt-0 border-t border-outline-variant/30">
-<div class="flex items-center gap-4 mt-4">
-<div class="w-16 h-20 bg-primary-container rounded flex items-center justify-center text-on-primary-container shrink-0">
-<span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
-</div>
-<div class="flex-1">
-<p class="text-xs text-on-surface-variant font-body-md mb-3">Atualizado em Jan/2024. Guia essencial para suporte imediato em crises emocionais no ambiente clínico.</p>
-<button class="flex items-center gap-2 bg-secondary text-on-secondary px-4 py-2 rounded-lg text-sm font-label-md">
-<span class="material-symbols-outlined text-sm">download</span> Download PDF
-          </button>
-</div>
-</div>
-</div>
-</details>
+
 <!-- Booklet Accordion 2 -->
-<details class="group bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden transition-all">
-<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
-<div class="flex flex-col">
-<span class="text-[10px] text-secondary font-bold uppercase tracking-wider mb-1">PDF • 850 KB</span>
-<h4 class="font-label-md text-on-surface">Checklist de Descompressão de Equipe</h4>
-</div>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
-</summary>
-<div class="p-4 pt-0 border-t border-outline-variant/30">
-<div class="flex items-center gap-4 mt-4">
-<div class="w-16 h-20 bg-secondary-container rounded flex items-center justify-center text-on-secondary-container shrink-0">
-<span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
-</div>
-<div class="flex-1">
-<p class="text-xs text-on-surface-variant font-body-md mb-3">Essencial para Gestores. Ferramenta prática para debriefing após turnos críticos.</p>
-<button class="flex items-center gap-2 bg-secondary text-on-secondary px-4 py-2 rounded-lg text-sm font-label-md">
-<span class="material-symbols-outlined text-sm">download</span> Download PDF
-          </button>
-</div>
-</div>
-</div>
-</details>
+
 </div>
 </section>
 </main>
@@ -378,6 +271,17 @@
 </a>
 </nav>
 <script>
+    const supabaseUrl =
+    "https://xashpazesqmnqsmxtedk.supabase.co";
+
+const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhhc2hwYXplc3FtbnFzbXh0ZWRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTE5MjAsImV4cCI6MjA5NDY4NzkyMH0.7XUkPo3WmPGPMiBhs2i2pKPVuWBsQHH8hGoBne53cTg";
+
+const supabaseClient =
+    window.supabase.createClient(
+        supabaseUrl,
+        supabaseKey
+    );
         // Simple micro-interaction for category tabs
         const tabs = document.querySelectorAll('button.rounded-full');
         tabs.forEach(tab => {
@@ -427,5 +331,131 @@ document.getElementById("filter-saude")
 document.getElementById("filter-burnout")
     .addEventListener("click", () => filterContent("burnout"));
 
+async function carregarBiblioteca() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("conteudos")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+    if (error) {
+
+        console.error(error);
+
+        return;
+    }
+
+    const artigos =
+        document.getElementById(
+            "artigosContainer"
+        );
+
+    const cartilhas =
+        document.getElementById(
+            "cartilhasContainer"
+        );
+
+    artigos.innerHTML = "";
+    cartilhas.innerHTML = "";
+
+    data.forEach(item => {
+
+        const card = `
+        <details
+            class="content-item ${item.tipo.toLowerCase()} group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+
+                <div class="flex flex-col">
+
+                    <span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">
+
+                        #${item.categoria}
+
+                    </span>
+
+                    <h4 class="font-label-md text-on-surface">
+
+                        ${item.title}
+
+                    </h4>
+
+                </div>
+
+                <span class="material-symbols-outlined">
+
+                    expand_more
+
+                </span>
+
+            </summary>
+
+            <div class="p-4 pt-0 border-t border-outline-variant/30">
+
+                <div class="flex flex-col md:flex-row gap-4 mt-4">
+
+                    <img
+                        src="${item.thumbnail_url}"
+                        class="w-full md:w-32 h-32 object-cover rounded-lg">
+
+                    <div class="flex-1 flex flex-col">
+
+                        <p class="font-body-md text-sm text-on-surface-variant mb-4">
+
+                            ${item.resumo}
+
+                        </p>
+
+                        <div class="mt-auto flex items-center justify-between">
+
+                            <span class="text-xs text-outline">
+
+                                ${item.autores}
+
+                            </span>
+
+                            <a
+                                href="${item.pdf_url}"
+                                target="_blank"
+                                class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm">
+
+                                Ler Agora
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </details>
+        `;
+
+        if (
+            item.tipo
+                .toLowerCase()
+                .includes(
+                    "cartilha"
+                )
+        ) {
+
+            cartilhas.innerHTML += card;
+
+        } else {
+
+            artigos.innerHTML += card;
+        }
+    });
+}
+carregarBiblioteca();
 </script>
 </body></html>
