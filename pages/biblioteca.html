@@ -39,7 +39,7 @@
                         "primary": "#00236f",
                         "on-tertiary": "#ffffff",
                         "surface-tint": "#4059aa",
-                        "background": "#FAF6EF",
+                        "background": "#f7f9fb",
                         "primary-fixed": "#dce1ff",
                         "primary-fixed-dim": "#b6c4ff",
                         "outline": "#757682",
@@ -101,7 +101,81 @@
                 },
             },
         }
-    
+    const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const termo =
+            searchInput.value
+                .toLowerCase();
+
+        document
+            .querySelectorAll(
+                ".content-item"
+            )
+            .forEach(item => {
+
+                const texto =
+                    item.innerText
+                        .toLowerCase();
+
+                item.style.display =
+                    texto.includes(
+                        termo
+                    )
+                    ? ""
+                    : "none";
+            });
+    }
+
+);      
+document
+    .querySelectorAll(
+        "[data-filter]"
+    )
+    .forEach(btn => {
+
+        btn.addEventListener(
+            "click",
+            () => {
+
+                const filtro =
+                    btn.dataset.filter;
+
+                document
+                    .querySelectorAll(
+                        ".content-item"
+                    )
+                    .forEach(item => {
+
+                        if (
+                            filtro === "all"
+                        ) {
+
+                            item.style.display = "";
+
+                            return;
+                        }
+
+                        const texto =
+                            item.innerText
+                                .toLowerCase();
+
+                        item.style.display =
+                            texto.includes(
+                                filtro
+                            )
+                            ? ""
+                            : "none";
+                    });
+            }
+        );
+    });
     </script>
 <style>
         body {
@@ -135,7 +209,7 @@
 <h1 class="font-headline-md text-headline-md font-bold text-primary">Biblioteca</h1>
 </div>
 <button onclick="window.location.href='bibliotecaAdmin.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
-<p>Adicionar Conteúdo</p>
+<p>Gerenciar Conteúdo</p>
 <span class="material-symbols-outlined text-on-surface-variant">add_circle</span>
 </button>
 </header>
@@ -144,27 +218,27 @@
 <section class="mb-8">
 <div class="relative group">
 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full h-14 pl-12 pr-4 bg-surface-container-lowest border-2 border-transparent focus:border-primary-container focus:ring-0 rounded-xl font-body-md text-on-surface transition-all shadow-sm" placeholder="Buscar artigos, cartilhas e diretrizes..." type="text"/>
+<input id="searchInput" class="w-full h-14 pl-12 pr-4 bg-surface-container-lowest border-2 border-transparent focus:border-primary-container focus:ring-0 rounded-xl font-body-md text-on-surface transition-all shadow-sm" placeholder="Buscar artigos, cartilhas e diretrizes..." type="text"/>
 </div>
 </section>
 <!-- Categories/Tabs -->
 <section class="mb-10 overflow-x-auto hide-scrollbar -mx-margin-mobile px-margin-mobile">
 <div class="flex gap-3 whitespace-nowrap">
-<button id="filter-all">Tudo</button>
+<button id="filter-all"class="px-6 py-2.5 bg-primary text-on-primary rounded-full font-label-md transition-transform active:scale-95" >Tudo</button>
 
-<button id="filter-artigos">
+<button id="filter-artigos" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
     Artigos
 </button>
 
-<button id="filter-cartilhas">
+<button id="filter-cartilhas" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
     Cartilhas
 </button>
 
-<button id="filter-saude">
+<button id="filter-saude" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
     Saúde Mental
 </button>
 
-<button id="filter-burnout">
+<button id="filter-burnout" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
     Burnout
 </button>
 </div>
@@ -173,8 +247,7 @@
 <!-- List Section: Artigos Recentes -->
 <section class="mb-12">
 <div class="flex items-center justify-between mb-6">
-<h2 class="font-headline-md text-headline-md text-on-surface border-l-4 border-primary pl-4">Artigos Recentes</h2>
-<a class="text-primary font-label-md hover:underline" href="#">Ver todos</a>
+<h2 class="font-headline-md text-headline-md text-on-surface border-l-4 border-primary pl-4">Artigos</h2>
 </div>
 <div id="artigosContainer" class="space-y-2">
 <!-- Accordion Item 1 -->
@@ -268,11 +341,12 @@ const supabaseClient =
             });
         });
 
-        
-            const items =
-    document.querySelectorAll(".content-item");
+        function filterContent(category) {
 
-function filterContent(category) {
+    const items =
+        document.querySelectorAll(
+            ".content-item"
+        );
 
     items.forEach(item => {
 
@@ -280,11 +354,18 @@ function filterContent(category) {
 
         if (category === "all") {
 
-            item.style.display = "block";
+            item.style.display = "";
 
-        } else if (item.classList.contains(category)) {
+            return;
+        }
 
-            item.style.display = "block";
+        if (
+            item.classList.contains(
+                category
+            )
+        ) {
+
+            item.style.display = "";
         }
     });
 }
@@ -341,7 +422,21 @@ async function carregarBiblioteca() {
 
         const card = `
         <details
-            class="content-item ${item.tipo.toLowerCase()} group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+            class="
+                content-item
+                ${(item.tipo || "")
+                    .toLowerCase()}
+                ${(item.categoria || "")
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replaceAll(' ', '-')}
+                group
+                bg-surface-container-lowest
+                border
+                border-outline-variant
+                rounded-xl
+                overflow-hidden">
 
             <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
 
@@ -430,5 +525,34 @@ async function carregarBiblioteca() {
     });
 }
 carregarBiblioteca();
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        function () {
+
+            const termo =
+                this.value
+                    .toLowerCase();
+
+            document
+                .querySelectorAll(
+                    ".content-item"
+                )
+                .forEach(item => {
+
+                    const texto =
+                        item.innerText
+                            .toLowerCase();
+
+                    item.style.display =
+                        texto.includes(
+                            termo
+                        )
+                        ? ""
+                        : "none";
+                });
+        }
+    );
 </script>
 </body></html>
