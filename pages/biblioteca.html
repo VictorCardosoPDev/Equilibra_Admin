@@ -27,7 +27,7 @@
                         "on-secondary-container": "#006f66",
                         "secondary-container": "#86f2e4",
                         "primary-container": "#1e3a8a",
-                        "surface": "#f7f9fb",
+                        "surface": "#FAF6EF",
                         "inverse-primary": "#b6c4ff",
                         "surface-variant": "#e0e3e5",
                         "surface-container": "#eceef0",
@@ -39,7 +39,7 @@
                         "primary": "#00236f",
                         "on-tertiary": "#ffffff",
                         "surface-tint": "#4059aa",
-                        "background": "#f7f9fb",
+                        "background": "#FAF6EF",
                         "primary-fixed": "#dce1ff",
                         "primary-fixed-dim": "#b6c4ff",
                         "outline": "#757682",
@@ -58,7 +58,7 @@
                         "error": "#ba1a1a",
                         "on-primary-fixed": "#00164e",
                         "tertiary": "#1b2b3f",
-                        "surface-bright": "#f7f9fb",
+                        "surface-bright": "#FAF6EF",
                         "tertiary-container": "#314156",
                         "inverse-on-surface": "#eff1f3",
                         "surface-container-high": "#e6e8ea"
@@ -130,7 +130,7 @@
 <header class="fixed top-0 left-0 w-full z-50 bg-surface h-16 shadow-sm flex justify-between items-center px-margin-mobile md:px-margin-desktop">
 <div class="flex items-center gap-3">
 <div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
-<img alt="Perfil" class="w-full h-full object-cover" data-alt="A professional headshot of a female clinician in her 40s wearing a clean white medical coat. She has a warm, empathetic smile, conveying trustworthiness and clinical expertise. The background is a soft-focus clinical setting with muted blues and whites, maintaining a serene and professional atmosphere consistent with a modern minimalist healthcare design system." src="https://cdn.pixabay.com/photo/2022/08/14/21/41/heart-7386672_1280.png"/>
+<img alt="Perfil" class="w-full h-full object-cover" data-alt="A professional headshot of a female clinician in her 40s wearing a clean white medical coat. She has a warm, empathetic smile, conveying trustworthiness and clinical expertise. The background is a soft-focus clinical setting with muted blues and whites, maintaining a serene and professional atmosphere consistent with a modern minimalist healthcare design system." src="../assets/imagens/logo-resilia.png"/>
 </div>
 <h1 class="font-headline-md text-headline-md font-bold text-primary">Biblioteca</h1>
 </div>
@@ -200,50 +200,23 @@
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_12px_rgba(0,35,111,0.05)]">
-
-    <!-- Início -->
-    <a href="../index.html"
-       class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 active:scale-90">
-
-        <span class="material-symbols-outlined">
-            home
-        </span>
-
-        <span class="font-label-sm text-label-sm">
-            Início
-        </span>
-
-    </a>
-    <!-- Ajuda -->
-    <a href="ajuda.html"
-       class="flex flex-col items-center justify-center text-on-secondary-container ring-primary/10 active:scale-90 transition-all duration-300">
-
-        <span class="material-symbols-outlined"
-              style="font-variation-settings: 'FILL' 0;">
+<a href="../index.html" class="flex flex-col items-center justify-center " >
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-sm text-label-sm">Início</span>
+</a>
+<a href="ajuda.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" >
+<span class="material-symbols-outlined">
             volunteer_activism
-        </span>
-        <span class="font-label-sm text-label-sm">
-            Ajuda
-        </span>
+        </span><span class="font-label-sm text-label-sm"><span class="" style="letter-spacing: 0.48px; text-align: center;">Ajuda</span></span>
+</a>
 
-    </a>
-
-    <!-- Informativo -->
-    <a href="informativo.html"
-       class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 active:scale-90">
-
-        <span class="material-symbols-outlined">
-            menu
-        </span>
-
-        <span class="font-label-sm text-label-sm">
-            Informativo
-        </span>
-
-    </a>
-    <!-- Biblioteca -->
-    <a href="#"
-       class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 active:scale-90">
+<a href="informativo.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" >
+<span class="material-symbols-outlined" data-icon="menu_book">menu</span>
+<span class="font-label-sm text-label-sm">Informativo</span>
+</a>
+<!-- Biblioteca -->
+    <a href="biblioteca.html"
+       class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-150 dark:hover:text-primary-fixed transition-all duration-300 active:scale-90">
 
         <span class="material-symbols-outlined">
             menu_book
@@ -254,7 +227,7 @@
         </span>
 
     </a>
-    <!-- Admin -->
+<!-- Admin -->
     <a href="admin.html"
    class="flex flex-col items-center justify-center ring-primary/10 active:scale-90 transition-all duration-300">
 
