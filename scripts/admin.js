@@ -9,12 +9,71 @@ async function loadEmotionTimeline() {
             .from('page_access_logs')
             .select('*')
             .order('created_at', { ascending: false });
-
+        
     if (error) {
 
         console.error(error);
         return;
     }
+
+// =========================
+// TENDENCIA EMOCIONAL
+// =========================
+    const levels = {
+
+    baixo: 0,
+    leve: 0,
+    moderado: 0,
+    elevado: 0,
+    crítico: 0
+
+};
+
+data.forEach(log => {
+
+    const level =
+        log.stress_level
+            .toLowerCase();
+
+    if (
+        levels[level] !==
+        undefined
+    ) {
+
+        levels[level]++;
+    }
+});
+
+let tendencia =
+    "Baixo";
+
+let maior = 0;
+
+Object.entries(levels)
+    .forEach(([nivel, valor]) => {
+
+        if (valor > maior) {
+
+            maior = valor;
+            tendencia = nivel;
+        }
+    });
+
+document.getElementById(
+    "topPage"
+).textContent =
+    tendencia;
+// =========================
+// TOTAL DE ACESSOS
+// =========================
+
+document.getElementById(
+    "totalViews"
+).textContent = data.length;
+
+
+
+
 
     // =========================
     // CONTAINER

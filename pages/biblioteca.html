@@ -201,17 +201,35 @@ document
 </head>
 <body class="bg-surface text-on-surface">
 <!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 bg-surface h-16 shadow-sm flex justify-between items-center px-margin-mobile md:px-margin-desktop">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
-<img alt="Perfil" class="w-full h-full object-cover" data-alt="A professional headshot of a female clinician in her 40s wearing a clean white medical coat. She has a warm, empathetic smile, conveying trustworthiness and clinical expertise. The background is a soft-focus clinical setting with muted blues and whites, maintaining a serene and professional atmosphere consistent with a modern minimalist healthcare design system." src="../assets/imagens/logo-resilia.png"/>
-</div>
-<h1 class="font-headline-md text-headline-md font-bold text-primary">Biblioteca</h1>
-</div>
-<button onclick="window.location.href='bibliotecaAdmin.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
-<p>Gerenciar Conteúdo</p>
-<span class="material-symbols-outlined text-on-surface-variant">add_circle</span>
-</button>
+<header class="fixed top-0 left-0 w-full z-50 bg-[#114D57]">
+
+    <div class="flex justify-between items-center w-full max-w-6xl mx-auto px-margin-mobile md:px-margin-desktop py-4">
+
+        <div class="flex items-center gap-3">
+            
+            <img
+                src="../assets/imagens/logo-resilia.png"
+                alt="Logo Resilia"
+                class="w-10 h-10 object-contain">
+
+            <span class="font-headline-md text-headline-md font-bold text-[#6EAF8B]">
+                Resilia
+            </span>
+
+        </div>
+
+        <button
+            onclick="window.location.href='bibliotecaAdmin.html'"
+            class="w-10 h-10 flex items-center justify-center hover:bg-white/10 rounded-full transition-colors">
+
+            <span class="material-symbols-outlined text-[#FAF6EF]">
+                settings
+            </span>
+
+        </button>
+
+    </div>
+
 </header>
 <main class="pt-20 pb-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
 <!-- Search Bar -->
@@ -289,7 +307,7 @@ document
 </a>
 <!-- Biblioteca -->
     <a href="biblioteca.html"
-       class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-150 dark:hover:text-primary-fixed transition-all duration-300 active:scale-90">
+       class="bg-[#6FA8FF] rounded-full flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150">
 
         <span class="material-symbols-outlined">
             menu_book
