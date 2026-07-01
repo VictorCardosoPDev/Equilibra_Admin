@@ -256,7 +256,7 @@
 </div>
 </div>
 <div class="pt-4 flex justify-end">
-<button type="button" onclick="uploadPdf()" class="bg-primary text-white px-8 py-3 rounded-full font-label-md btn-hover-effect transition-all flex items-center gap-2" type="submit">
+<button id="btnPublicar" type="button" onclick="uploadPdf()" class="bg-primary text-white px-8 py-3 rounded-full font-label-md btn-hover-effect transition-all flex items-center gap-2" type="submit">
 <span class="material-symbols-outlined">publish</span>
                                     Publicar Conteúdo
                                 </button>
@@ -453,6 +453,163 @@ const supabaseClient =
         supabaseKey
     );
 
+let conteudoEditando = null;
+
+async function editarConteudo(id){
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("conteudos")
+            .select("*")
+            .eq("id", id)
+            .single();
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+    conteudoEditando = id;
+
+    document.getElementById("title").value =
+        data.title;
+
+    document.getElementById("autores").value =
+        data.autores;
+
+    document.getElementById("categoria").value =
+        data.categoria;
+
+    document.getElementById("resumo").value =
+        data.resumo;
+
+    document.querySelector(
+        `input[name="content_type"][value="${data.tipo}"]`
+    ).checked = true;
+
+    document.getElementById("cover-preview").src =
+        data.thumbnail_url;
+
+    document.getElementById("pdfFileName")
+        .textContent =
+        "PDF já cadastrado";
+
+    const botao =
+        document.getElementById("btnPublicar");
+
+    botao.innerHTML = `
+        <span class="material-symbols-outlined">
+            save
+        </span>
+
+        Salvar Alterações
+    `;
+
+    botao.onclick =
+        salvarEdicao;
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+async function salvarEdicao(){
+
+    const title =
+        document.getElementById("title").value;
+
+    const autores =
+        document.getElementById("autores").value;
+
+    const categoria =
+        document.getElementById("categoria").value;
+
+    const resumo =
+        document.getElementById("resumo").value;
+
+    const tipo =
+        document.querySelector(
+            'input[name="content_type"]:checked'
+        ).value;
+    console.log("ID:", conteudoEditando);
+
+console.log({
+    title,
+    autores,
+    categoria,
+    resumo,
+    tipo
+});
+    const { error } =
+        await supabaseClient
+            .from("conteudos")
+            .update({
+
+                title,
+
+                autores,
+
+                categoria,
+
+                resumo,
+
+                tipo
+
+            })
+            .eq(
+                "id",
+                conteudoEditando
+            );
+            
+    if(error){
+
+        console.error(error);
+
+        alert("Erro ao atualizar.");
+
+        return;
+
+    }
+
+    alert("Conteúdo atualizado!");
+
+    conteudoEditando = null;
+
+    document.querySelector("form")
+        .reset();
+
+    document.getElementById("cover-preview").src =
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuDinLs-8LKGokSdNic90_LOm6ARVuudOJQUAdfmsgIsvkXNXUlYmJu2dymPVd4yNImXHKzVrhBpKrwjGcGoxzB4kEz-6ywp4H8dxyQ3vRJEMlOXiQjwHumkiBghEeHDtw10qDMrajcr-2Xc_nMlbpWDnDSq8G3OlzSmaMFYAPkEPnNdaOpIA_-t1hXpxA1PC4Ixuks1Qooj7vu9ka25gEtq5f6pkEdIdFGn1a8wtOfNIvba0BMRQMGe5N6IPc-bpERB43Cth8WpcJj2";
+
+    document.getElementById("pdfFileName")
+        .textContent =
+        "Nenhum arquivo...";
+
+    const botao =
+        document.getElementById("btnPublicar");
+
+    botao.innerHTML = `
+        <span class="material-symbols-outlined">
+            publish
+        </span>
+
+        Publicar Conteúdo
+    `;
+
+    botao.onclick =
+        uploadPdf;
+
+    carregarConteudos();
+
+}
 async function uploadPdf() {
 
     const pdfInput =
@@ -737,6 +894,15 @@ async function carregarConteudos() {
 
                         <span class="material-symbols-outlined">
                             delete
+                        </span>
+
+                    </button>
+                    <button
+                        onclick="editarConteudo(${conteudo.id})"
+                        class="p-2 text-blue-600 hover:bg-blue-100 rounded-lg">
+
+                        <span class="material-symbols-outlined">
+                            edit
                         </span>
 
                     </button>
