@@ -452,7 +452,8 @@ const supabaseClient =
         supabaseUrl,
         supabaseKey
     );
-
+let pdfAtual = "";
+let thumbnailAtual = "";
 let conteudoEditando = null;
 
 async function editarConteudo(id){
@@ -474,6 +475,8 @@ async function editarConteudo(id){
     }
 
     conteudoEditando = id;
+    let pdfAtual = data.pdf_url;
+    let thumbnailAtual = data.thumbnail_url;
 
     document.getElementById("title").value =
         data.title;
@@ -548,6 +551,8 @@ console.log({
     resumo,
     tipo
 });
+let pdfUrl = pdfAtual;
+let thumbnailUrl = thumbnailAtual;
     const { error } =
         await supabaseClient
             .from("conteudos")
@@ -561,7 +566,11 @@ console.log({
 
                 resumo,
 
-                tipo
+                tipo,
+                
+                pdf_url: pdfUrl,
+
+                thumbnail_url: thumbnailUrl
 
             })
             .eq(
@@ -580,6 +589,54 @@ console.log({
     }
 
     alert("Conteúdo atualizado!");
+
+    const novoPdf =
+    document.getElementById("pdfInput").files[0];
+
+if (novoPdf) {
+
+    const extensao =
+        novoPdf.name.split(".").pop();
+
+    const nomeArquivo =
+        `${Date.now()}.${extensao}`;
+
+    const { error } =
+        await supabaseClient.storage
+            .from("biblioteca-pdfs")
+            .upload(
+                nomeArquivo,
+                novoPdf
+            );
+
+    if (error) {
+
+        console.error(error);
+
+        alert("Erro ao enviar PDF.");
+
+        return;
+
+    }
+
+    pdfUrl =
+        supabaseClient.storage
+            .from("biblioteca-pdfs")
+            .getPublicUrl(nomeArquivo)
+            .data.publicUrl;
+
+}
+const novaThumbnail =
+    document
+        .getElementById("thumbnailInput")
+        .files[0];
+
+if (novaThumbnail) {
+
+    thumbnailUrl =
+        await uploadThumbnail();
+
+}
 
     conteudoEditando = null;
 

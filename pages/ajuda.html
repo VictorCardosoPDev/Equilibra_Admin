@@ -655,7 +655,61 @@ function openSuggestedTechnique() {
         openMeditacaoModal();
 
     }
+const stars =
+    document.querySelectorAll(".star");
 
+const ratingText =
+    document.getElementById("ratingText");
+
+let rating = 0;
+
+const textos = {
+
+    1:"Muito ruim",
+
+    2:"Ruim",
+
+    3:"Regular",
+
+    4:"Bom",
+
+    5:"Excelente"
+
+};
+
+stars.forEach(star=>{
+
+    star.addEventListener("click",()=>{
+
+        rating =
+            Number(
+                star.dataset.rating
+            );
+
+        stars.forEach(s=>{
+
+            s.classList.remove("active");
+
+        });
+
+        stars.forEach(s=>{
+
+            if(
+                Number(s.dataset.rating)<=rating
+            ){
+
+                s.classList.add("active");
+
+            }
+
+        });
+
+        ratingText.innerHTML=
+            `Você avaliou este exercício com <strong>${rating}</strong> estrela(s): <strong>${textos[rating]}</strong>.`;
+
+    });
+
+});
 }
 </script>
 <style>
@@ -671,6 +725,29 @@ function openSuggestedTechnique() {
             backdrop-filter: blur(8px);
             border: 1px solid rgba(211, 228, 254, 0.5);
         }
+        .star{
+
+    font-size:38px;
+
+    cursor:pointer;
+
+    color:#d1d5db;
+
+    transition:.25s;
+
+}
+
+.star:hover{
+
+    transform:scale(1.15);
+
+}
+
+.star.active{
+
+    color:#fbbf24;
+
+}
     </style>
 <style>
     body {
@@ -994,9 +1071,80 @@ function openSuggestedTechnique() {
             </button>
 
         </div>
+        <div class="mt-8 p-6 bg-surface-container-low rounded-2xl border border-outline-variant">
+
+    <h3 class="font-semibold text-primary mb-2">
+        Como você avalia este exercício?
+    </h3>
+
+    <p class="text-sm text-on-surface-variant mb-5">
+        Sua avaliação nos ajuda a melhorar a experiência.
+    </p>
+
+    <div id="rating" class="flex gap-2">
+
+            <span class="star material-symbols-outlined"
+                data-rating="1">
+                star
+            </span>
+
+            <span class="star material-symbols-outlined"
+                data-rating="2">
+                star
+            </span>
+
+            <span class="star material-symbols-outlined"
+                data-rating="3">
+                star
+            </span>
+
+            <span class="star material-symbols-outlined"
+                data-rating="4">
+                star
+            </span>
+
+            <span class="star material-symbols-outlined"
+                data-rating="5">
+                star
+            </span>
+
+        </div>
+
+        <p id="ratingText"
+        class="mt-3 text-sm text-on-surface-variant">
+
+            Nenhuma avaliação ainda.
+
+        </p>
 
     </div>
+    
+        <div class="mt-8 p-5 bg-surface-container-low rounded-xl border border-outline-variant">
+            
+            <h4 class="font-semibold text-primary mb-2">
+                Como foi sua experiência?
+            </h4>
 
+            <p class="text-sm text-on-surface-variant mb-4">
+                Sua opinião é muito importante para aprimorarmos os exercícios do Resilia.
+            </p>
+
+            <a
+                href="https://forms.gle/SEU_LINK_AQUI"
+                target="_blank"
+                class="inline-flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-lg hover:opacity-90 transition">
+
+                <span class="material-symbols-outlined">
+                    rate_review
+                </span>
+
+                Avaliar este exercício
+
+            </a>
+
+        </div>
+    </div>
+    
 </div>
 <div
     id="feedbackResultModal"
@@ -1367,5 +1515,5 @@ function openSuggestedTechnique() {
     </span>
 </a>
 </nav>
-
+<script src="../scripts/global.js"></script>
 </body></html>
