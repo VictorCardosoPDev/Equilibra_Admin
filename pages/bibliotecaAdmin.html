@@ -3,7 +3,8 @@
 <html class="light" lang="pt-br"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Gestão da Biblioteca - MindCare</title>
+<title>equilibra - Gestão da Biblioteca</title>
+<link href="../styles/dark-mode.css" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lexend:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -127,14 +128,14 @@
     </style>
 </head>
 <body class="bg-background font-body-md text-on-background min-h-screen pb-12">
-<!-- Top Navigation Bar -->
-<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 shadow-sm border-b border-surface-container">
-<div class="flex items-center gap-4">
-<h1 class="font-headline-md text-headline-md font-bold text-primary">Resilia</h1>
-<nav class="hidden md:flex ml-8 gap-6">
-</nav>
+<!-- TopAppBar -->
+<header class=" bg-[#0B4D86] fixed top-0 left-0 right-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A close-up professional headshot of a friendly educator with a warm smile, set against a soft-focus classroom background. The lighting is bright and natural, reflecting a clean, light-mode aesthetic with soft blue and white tones that align with a serene educational environment." src="../assets/imagens/logo_Equilibra.png">
 </div>
-<div class="flex items-center gap-4">
+<h1 class="font-headline-md text-headline-md font-bold text-[#6EAF8B]">equilibra</h1>
 </div>
 </header>
 <main class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop mt-8 space-y-stack-lg">
@@ -1006,4 +1007,5 @@ async function excluirConteudo(id) {
     carregarConteudos();
 }
 </script>
+<script src="../scripts/theme.js"></script>
 </body></html>
