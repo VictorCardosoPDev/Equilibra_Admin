@@ -115,3 +115,75 @@ function responderAvaliacao(){
     );
 
 }
+
+// ===========================
+// TERMO DE USO
+// ===========================
+
+verificarTermo();
+
+function verificarTermo(){
+
+    const aceitou =
+        localStorage.getItem(
+            "termoAceito"
+        );
+
+    if(!aceitou){
+
+        const modal =
+            document.getElementById(
+                "modalTermo"
+            );
+
+        if(modal){
+
+            modal.classList.remove(
+                "hidden"
+            );
+
+        }
+
+    }
+
+}
+const checkbox =
+    document.getElementById(
+        "aceiteTermo"
+    );
+
+if(checkbox){
+
+    checkbox.addEventListener(
+        "change",
+        ()=>{
+
+            document
+                .getElementById(
+                    "btnEntrar"
+                )
+                .disabled =
+                !checkbox.checked;
+
+        }
+    );
+
+}
+function fecharTermo(){
+
+    localStorage.setItem(
+
+        "termoAceito",
+
+        true
+
+    );
+
+    document
+        .getElementById(
+            "modalTermo"
+        )
+        .classList
+        .add("hidden");
+
+}

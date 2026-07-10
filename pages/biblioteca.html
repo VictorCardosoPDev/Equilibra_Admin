@@ -3,8 +3,9 @@
 <html class="light" lang="pt-BR"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MindCare - Biblioteca</title>
+<title>equilibra - Biblioteca</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="../styles/dark-mode.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -201,19 +202,19 @@ document
 </head>
 <body class="bg-surface text-on-surface">
 <!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 bg-[#114D57]">
+<header class="fixed top-0 left-0 w-full z-50 bg-[#0B4D86]">
 
     <div class="flex justify-between items-center w-full max-w-6xl mx-auto px-margin-mobile md:px-margin-desktop py-4">
 
         <div class="flex items-center gap-3">
             
             <img
-                src="../assets/imagens/logo-resilia.png"
-                alt="Logo Resilia"
+                src="../assets/imagens/logo_Equilibra.png"
+                alt="Logo Equilibra"
                 class="w-10 h-10 object-contain">
 
             <span class="font-headline-md text-headline-md font-bold text-[#6EAF8B]">
-                Resilia
+                equilibra
             </span>
 
         </div>
@@ -582,5 +583,25 @@ document
     <!-- Conteúdo do modal -->
 
 </div>
+<button
+
+    id="themeButton"
+
+    onclick="alternarModoNoturno()"
+
+    class="fixed bottom-24 right-5 z-50 w-14 h-14 rounded-full bg-surface shadow-xl flex items-center justify-center transition-all duration-300">
+
+    <img
+
+        id="iconeTema"
+
+        src="assets/imagens/moon.png"
+
+        alt="Modo Escuro"
+
+        class="w-8 h-8 transition-all duration-300">
+
+</button>
+<script src="../scripts/theme.js"></script>
 <script src="../scripts/global.js"></script>
 </body></html>
