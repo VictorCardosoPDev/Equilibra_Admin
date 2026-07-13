@@ -110,7 +110,7 @@ function responderAvaliacao(){
         .add("hidden");
 
     window.open(
-        "LINK_DO_FORMS",
+        "https://docs.google.com/forms/d/e/1FAIpQLSc9_rVIgEVw_Vi1IbSI8rOZKTzotnDtUeFQ06w-VHtq1UCYPg/viewform?embedded=true",
         "_blank"
     );
 
