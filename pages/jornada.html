@@ -128,6 +128,10 @@
 </div>
 <h1 class="font-headline-md text-headline-md font-bold text-[#6EAF8B]">equilibra</h1>
 </div>
+<button onclick="logout()" class="flex items-center gap-2 text-on-primary">
+    <span class="material-symbols-outlined">logout</span>
+    Sair
+</button>
 </div>
 </header>
 <main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max-width mx-auto">
@@ -263,7 +267,7 @@
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_12px_rgba(0,35,111,0.05)]">
-<a href="../index.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 active:scale-90" href="#">
+<a href="home.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 active:scale-90" href="#">
 <span class="material-symbols-outlined" data-icon="home">home</span>
 <span class="font-label-sm text-label-sm">Início</span>
 </a>
@@ -338,4 +342,5 @@
 
 </button>
 <script src="../scripts/theme.js"></script>
+<script src="../scripts/auth.js"></script>
 </body></html>
