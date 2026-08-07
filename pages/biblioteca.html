@@ -257,6 +257,10 @@ document
     Cartilhas
 </button>
 
+<button id="filter-materias" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
+    Matérias
+</button>
+
 <button id="filter-saude" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
     Saúde Mental
 </button>
@@ -287,6 +291,18 @@ document
 <h2 class="font-headline-md text-headline-md text-on-surface border-l-4 border-secondary pl-4">Cartilhas Educativas</h2>
 </div>
 <div id="cartilhasContainer" class="space-y-2">
+<!-- Booklet Accordion 1 -->
+
+<!-- Booklet Accordion 2 -->
+
+</div>
+</section>
+<!-- List Section: Matérias (Horizontal Layout) -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface border-l-4 border-secondary pl-4">Matérias</h2>
+</div>
+<div id="materiasContainer" class="space-y-2">
 <!-- Booklet Accordion 1 -->
 
 <!-- Booklet Accordion 2 -->
@@ -402,6 +418,9 @@ document.getElementById("filter-artigos")
 document.getElementById("filter-cartilhas")
     .addEventListener("click", () => filterContent("cartilha"));
 
+document.getElementById("filter-materias")
+    .addEventListener("click", () => filterContent("materia"));
+
 document.getElementById("filter-saude")
     .addEventListener("click", () => filterContent("saude-mental"));
 
@@ -438,8 +457,14 @@ async function carregarBiblioteca() {
             "cartilhasContainer"
         );
 
+    const materias =
+        document.getElementById(
+            "materiasContainer"
+        );
+
     artigos.innerHTML = "";
     cartilhas.innerHTML = "";
+    materias.innerHTML = "";
 
     data.forEach(item => {
 
@@ -541,10 +566,24 @@ async function carregarBiblioteca() {
 
             cartilhas.innerHTML += card;
 
-        } else {
+        }else if (
+            item.tipo
+                .toLowerCase()
+                .includes("matéria") ||
+            item.tipo
+                .toLowerCase()
+                .includes("materia")
+        ) {
+
+            materias.innerHTML += card;
+
+        }
+         else {
 
             artigos.innerHTML += card;
+            
         }
+        
     });
 }
 carregarBiblioteca();
