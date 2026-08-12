@@ -287,30 +287,33 @@
 
     function changeWarningCard(direction) {
 
-        currentWarningIndex += direction;
+    currentWarningIndex += direction;
 
-        if (currentWarningIndex < 0) {
-            currentWarningIndex = warningCards.length - 1;
-        }
-
-        if (currentWarningIndex >= warningCards.length) {
-            currentWarningIndex = 0;
-        }
-
-        updateWarningCard();
+    if (currentWarningIndex < 0) {
+        currentWarningIndex = warningCards.length - 1;
     }
 
-    function openWarningPage() {
-
-        window.location.href = warningCards[currentWarningIndex].page;
+    if (currentWarningIndex >= warningCards.length) {
+        currentWarningIndex = 0;
     }
 
-    // Troca automática
-    setInterval(() => {
+    updateWarningCard();
+}
 
-        changeWarningCard(1);
+function openWarningPage() {
 
-    }, 6000);
+    window.location.href = warningCards[currentWarningIndex].page;
+}
+
+// Carrega o primeiro card imediatamente
+updateWarningCard();
+
+// Troca automática
+setInterval(() => {
+
+    changeWarningCard(1);
+
+}, 6000);
 
     const careCards = [
 
@@ -361,7 +364,7 @@
             bg: "bg-green-50",
             page: "./pages/dicas.html#alongamento"
         }
-
+        
     ];
 
     let currentCareIndex = 0;
@@ -579,23 +582,7 @@ body{
                 shadow-sm">
 
 
-        <!-- ========================================= -->
-        <!-- IMAGEM ABSTRATA -->
-        <!-- ========================================= -->
-
-        <div class="absolute right-0 top-0
-                    w-[70%] h-[400px]
-                    pointer-events-none
-                    z-0">
-
-            <img
-                src="../assets/imagens/card_sentimento.png"
-                alt=""
-                class="w-full h-full
-                       object-cover
-                       object-right">
-
-        </div>
+        
 
 
         <!-- ========================================= -->
@@ -766,9 +753,6 @@ body{
     <div class="relative">
 
 
-    
-
-
         <!-- CARD -->
         <div
             id="warningCard"
@@ -844,7 +828,6 @@ body{
                            mb-3">
 
                     Alterações no Sono
-
                 </h3>
 
 
