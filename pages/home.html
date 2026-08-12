@@ -110,36 +110,36 @@
     const stressLevels = [
         {
             left: "10%",
-            title: "Baixo",
-            description: "Estado emocional estável no momento. Alongamentos leves podem ajudar a manter o equilíbrio.",
+            title: "Estou bem",
+            description: "Sinto-me estável e com energia para seguir o dia. Consigo me concentrar, realizar minhas atividades e lidar com as demandas sem desgaste significativo.",
             page: "./pages/ajuda.html#bem-estar"
         },
 
         {
             left: "30%",
-            title: "Leve",
-            description: "Pequenos sinais de desgaste emocional. Considere dar uma pausa e alongar-se.",
+            title: "Um pouco cansado(a)",
+            description: "Percebo algum cansaço ou tensão, mas ainda consigo lidar bem com as demandas. Posso notar menor disposição, necessidade de descanso ou irritação ocasional.",
             page: "./pages/ajuda.html#prevencao"
         },
 
         {
             left: "50%",
-            title: "Moderado",
-            description: "Atenção aos sinais de sobrecarga. Exercícios de respiração podem ser benéficos ou alongamento rápido podem ajudar.",
+            title: "Sobrecarregado(a)",
+            description: "Percebo sinais de desgaste e sinto que as demandas estão exigindo mais de mim. Posso apresentar cansaço mais intenso, tensão, irritabilidade, dificuldade de concentração ou sensação de ter coisas demais para dar conta.",
             page: "./pages/ajuda.html#respiracao"
         },
 
         {
             left: "70%",
-            title: "Elevado",
-            description: "Recomenda-se realizar uma pausa breve. Fique atento aos sintomas do stress atravess do Informativo por aqui.",
+            title: "Está difícil",
+            description: "O desconforto emocional está mais presente e começa a interferir no meu dia. Posso perceber alterações no sono, dificuldade de concentração, irritabilidade, preocupação ou tristeza mais frequentes, além de dificuldade para realizar algumas atividades habituais.",
             page: "./pages/informativo.html#atencao"
         },
 
         {
             left: "90%",
-            title: "Crítico",
-            description: "Considere buscar apoio e reduzir estímulos. Entre em contato pelo CVV por aqui",
+            title: "Preciso de apoio",
+            description: "Sinto que está difícil lidar com este momento sozinho(a). O sofrimento pode estar intenso, persistente ou interferindo de forma importante no meu dia, e conversar com alguém ou buscar apoio profissional pode ser importante.",
             page: "./pages/informativo.html#cvv"
         }
     ];
@@ -195,9 +195,9 @@
     const warningCards = [
 
         {
-            title: "Alterações no Sono",
-            description: "Dificuldade persistente para dormir ou descansar adequadamente.",
-            image: "assets/images/sono.png",
+            title: "Ansiedade",
+            description: "Pode surgir diante de incertezas, preocupações ou da percepção de que algo exige nossa atenção.",
+            image: "../assets/imagens/ansiedade.png",
             icon: "bed",
             iconColor: "text-red-500",
             overlay: "from-red-100/95",
@@ -207,9 +207,9 @@
         },
 
         {
-            title: "Irritabilidade",
-            description: "Reações emocionais intensificadas e tensão frequente.",
-            image: "assets/images/irritabilidade.jpg",
+            title: "Irritação",
+            description: "Pode aparecer quando encontramos obstáculos, frustrações ou sentimos que nossas demandas excedem nossos recursos.",
+            image: "../assets/imagens/irritacao.png",
             icon: "mood_bad",
             iconColor: "text-orange-500",
             overlay: "from-orange-100/95",
@@ -219,25 +219,37 @@
         },
 
         {
-            title: "Dificuldade de Concentração",
-            description: "Lapsos de atenção e dificuldade de foco durante a rotina.",
-            image: "assets/images/concentracao.jpg",
+            title: "Tristeza",
+            description: " Pode estar relacionada a perdas, frustrações ou situações importantes que não aconteceram como esperávamos.",
+            image: "../assets/imagens/tristeza.png",
             icon: "psychology",
-            iconColor: "text-yellow-600",
-            overlay: "from-yellow-100/95",
-            border: "border-yellow-100",
+            iconColor: "text-blue-600",
+            overlay: "from-blue-100/95",
+            border: "border-blue-100",
             bg: "bg-yellow-50",
             page: "./pages/ajuda.html#concentracao"
         },
 
         {
-            title: "Pensamentos Intrusivos",
-            description: "Pensamentos recorrentes associados ao desgaste emocional.",
-            image: "assets/images/pensamentos.jpg",
+            title: "Sobrecarga",
+            description: "Pode surgir quando percebemos que há mais demandas do que conseguimos administrar naquele momento.",
+            image: "../assets/imagens/sobrecarga.png",
             icon: "neurology",
             iconColor: "text-pink-500",
             overlay: "from-pink-100/95",
             border: "border-pink-100",
+            bg: "bg-pink-50",
+            page: "./pages/ajuda.html#pensamentos"
+        },
+
+        {
+            title: "Cansaço emocional",
+            description: "É uma sensação de redução dos recursos emocionais, frequentemente associada a períodos prolongados de exigência ou tensão.",
+            image: "../assets/imagens/cansaco_emocional.png",
+            icon: "neurology",
+            iconColor: "text-purple-500",
+            overlay: "from-purple-100/95",
+            border: "border-purple-100",
             bg: "bg-pink-50",
             page: "./pages/ajuda.html#pensamentos"
         }
@@ -305,7 +317,7 @@
         {
             title: "Pausas Regulares",
             description: "Realize pausas breves durante a rotina profissional.",
-            image: "assets/images/pausa.jpg",
+            image: "../assets/imagens/pausa.png",
             icon: "self_improvement",
             iconColor: "text-blue-500",
             overlay: "from-blue-100/95",
@@ -317,7 +329,7 @@
         {
             title: "Hidratação",
             description: "Mantenha uma rotina adequada de hidratação.",
-            image: "assets/images/hidratacao.jpg",
+            image: "../assets/imagens/hidratacao.png",
             icon: "water_drop",
             iconColor: "text-cyan-500",
             overlay: "from-cyan-100/95",
@@ -329,7 +341,7 @@
         {
             title: "Respiração Guiada",
             description: "Exercícios respiratórios podem auxiliar na redução da tensão.",
-            image: "assets/images/respiracao.jpg",
+            image: "../assets/imagens/respiracao.png",
             icon: "air",
             iconColor: "text-indigo-500",
             overlay: "from-indigo-100/95",
@@ -341,7 +353,7 @@
         {
             title: "Alongamento Breve",
             description: "Movimentos leves auxiliam no relaxamento corporal.",
-            image: "assets/images/alongamento.jpg",
+            image: "../assets/imagens/alongamento.png",
             icon: "accessibility_new",
             iconColor: "text-green-500",
             overlay: "from-green-100/95",
@@ -470,89 +482,262 @@ body{
 </header>
 <main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max-width mx-auto">
     
-<!-- Greeting Section -->
-<section class="mb-stack-lg">
-<h1 class="font-headline-xl text-headline-xl text-primary mb-2">Olá  Administrador(a)</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant">Como você está se sentindo agora?</p>
+<!-- ================================================= -->
+<!-- BLOCO DE BOAS-VINDAS -->
+<!-- ================================================= -->
+
+<section class="mb-5">
+
+    <div class="relative overflow-hidden rounded-xl
+                bg-[#EEF7F7]
+                border border-[#DDE9E9]
+                min-h-[180px]
+                p-7">
+
+
+        <!-- Ilustração decorativa -->
+        <div class="absolute right-0 bottom-0
+                    w-[40%] h-full
+                    pointer-events-none">
+
+            <img
+                src="../assets/imagens/card_inicio.png"
+                alt=""
+                class="w-full h-full
+                       object-cover
+                       object-right">
+
+        </div>
+
+
+        <!-- Conteúdo -->
+        <div class="relative z-10 max-w-[60%]">
+
+            <h2 class="text-[#245B65] font-bold text-[25px] leading-tight mb-3">
+                Que bom ter você aqui.
+            </h2>
+
+
+            <p class="text-[#37474F] leading-[1.4] mb-10">
+                Este é o seu espaço de cuidado. O Equilibra reúne
+                conteúdos psicoeducativos, práticas de cuidado e
+                recursos desenvolvidos para apoiar seu bem-estar
+                emocional e ajudar você a cuidar de si no dia a dia.
+            </p>
+
+
+            <div class="flex items-center gap-2">
+
+                <span class="material-symbols-outlined
+                             text-[#0B4D86] text-[30px]">
+                    verified_user
+                </span>
+
+                <span class="text-[#455A64] text-[20px] leading-tight">
+                    Conteúdo desenvolvido por profissionais da saúde
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
+
+
+<!-- ================================================= -->
+<!-- AVISO -->
+<!-- ================================================= -->
+
+<section class="mb-12">
+
+    <div class="flex items-start gap-2 px-5">
+
+        <span class="material-symbols-outlined
+                     text-[#6B7280] text-[20px] mt-[1px]">
+            info
+        </span>
+
+        <p class="text-[#6B7280] text-[20px] leading-[1.35]">
+            As informações têm caráter educativo e preventivo e
+            não substituem acompanhamento profissional.
+        </p>
+
+    </div>
+
+</section>
+
 <!-- Daily Emotional Check-in -->
 <section class="mb-stack-lg">
 
-    <div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl shadow-sm">
+    <div class="relative overflow-hidden
+                bg-surface-container-lowest
+                border border-outline-variant
+                p-stack-md
+                rounded-xl
+                shadow-sm">
 
-        <div class="mb-6">
+
+        <!-- ========================================= -->
+        <!-- IMAGEM ABSTRATA -->
+        <!-- ========================================= -->
+
+        <div class="absolute right-0 top-0
+                    w-[70%] h-[400px]
+                    pointer-events-none
+                    z-0">
+
+            <img
+                src="../assets/imagens/card_sentimento.png"
+                alt=""
+                class="w-full h-full
+                       object-cover
+                       object-right">
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- CONTEÚDO SUPERIOR -->
+        <!-- ========================================= -->
+
+        <div class="relative z-10 mb-8 max-w-[68%]">
 
             <h2 class="font-headline-md text-headline-md text-on-surface mb-2">
-                Nível atual de sobrecarga
+                Como você está se sentindo agora?
             </h2>
 
-            <p class="text-body-md text-on-surface-variant">
-                Ajuste o indicador conforme sua percepção atual de estresse e desgaste emocional.
+
+            <p class="text-body-md text-on-surface-variant text-[15px]">
+                Reserve um momento para perceber como você está. Não existe
+                resposta certa ou errada, escolha a opção que mais se aproxima
+                do seu momento.
+
+                <strong>
+                    Um sinal isolado não significa necessariamente que exista
+                    um problema de saúde. O mais importante é observar mudanças
+                    persistentes, intensas ou que estejam interferindo no seu
+                    bem-estar e na sua rotina.
+                </strong>
             </p>
 
         </div>
 
-        <!-- Barra -->
-        <div class="relative mb-6">
+
+        <!-- ========================================= -->
+        <!-- BARRA -->
+        <!-- ========================================= -->
+
+        <div class="relative z-10 mb-6">
+
 
             <!-- Indicador -->
-            <div 
+            <div
                 id="stressIndicator"
-                class="absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-4 border-white shadow-lg bg-primary transition-all duration-300"
+                class="absolute top-1/2 -translate-y-1/2
+                       w-6 h-6
+                       rounded-full
+                       border-4 border-white
+                       shadow-lg
+                       bg-primary
+                       transition-all duration-300"
                 style="left: 10%;">
             </div>
+
 
             <!-- Barra -->
             <div class="flex h-4 rounded-full overflow-hidden">
 
-                <button onclick="setStressLevel(0)"
-                    class="flex-1 bg-blue-500 hover:brightness-110 transition-all duration-300">
+                <button
+                    onclick="setStressLevel(0)"
+                    class="flex-1 bg-blue-500 hover:brightness-110
+                           transition-all duration-300">
                 </button>
 
-                <button onclick="setStressLevel(1)"
-                    class="flex-1 bg-green-500 hover:brightness-110 transition-all duration-300">
+
+                <button
+                    onclick="setStressLevel(1)"
+                    class="flex-1 bg-green-500 hover:brightness-110
+                           transition-all duration-300">
                 </button>
 
-                <button onclick="setStressLevel(2)"
-                    class="flex-1 bg-yellow-400 hover:brightness-110 transition-all duration-300">
+
+                <button
+                    onclick="setStressLevel(2)"
+                    class="flex-1 bg-yellow-400 hover:brightness-110
+                           transition-all duration-300">
                 </button>
 
-                <button onclick="setStressLevel(3)"
-                    class="flex-1 bg-orange-500 hover:brightness-110 transition-all duration-300">
+
+                <button
+                    onclick="setStressLevel(3)"
+                    class="flex-1 bg-orange-500 hover:brightness-110
+                           transition-all duration-300">
                 </button>
 
-                <button onclick="setStressLevel(4)"
-                    class="flex-1 bg-red-500 hover:brightness-110 transition-all duration-300">
+
+                <button
+                    onclick="setStressLevel(4)"
+                    class="flex-1 bg-red-500 hover:brightness-110
+                           transition-all duration-300">
                 </button>
 
             </div>
 
         </div>
 
-        <!-- Texto Dinâmico -->
-        <div class="flex items-center justify-between flex-wrap gap-4">
+
+        <!-- ========================================= -->
+        <!-- TEXTO DINÂMICO -->
+        <!-- ========================================= -->
+
+        <div class="relative z-10
+                    flex items-center
+                    justify-between
+                    flex-wrap
+                    gap-4">
+
 
             <div>
-                <p id="stressTitle"
+
+                <p
+                    id="stressTitle"
                     class="font-headline-md text-on-surface">
-                    Baixo
+
+                    Estou bem
+
                 </p>
 
-                <p id="stressDescription"
+
+                <p
+                    id="stressDescription"
                     class="text-body-md text-on-surface-variant">
-                    Estado emocional estável no momento. Alongamentos leves podem ajudar a manter o equilíbrio.
+
+                    Sinto-me estável e com energia para seguir o dia. Consigo me concentrar, realizar minhas atividades e lidar com as demandas sem desgaste significativo.
+
                 </p>
+
             </div>
 
-            <button id="stressAction"
+
+            <button
+                id="stressAction"
                 onclick="redirectStressPage()"
-                class="px-6 py-3 rounded-xl bg-primary text-on-primary hover:opacity-90 transition-all duration-300">
+                class="px-6 py-3
+                       rounded-xl
+                       bg-primary
+                       text-on-primary
+                       hover:opacity-90
+                       transition-all duration-300">
 
                 Continuar
 
             </button>
 
+
         </div>
+
 
     </div>
 
@@ -566,52 +751,83 @@ body{
     <div class="mb-4">
 
         <h2 class="font-headline-md text-headline-md text-on-surface">
-            Sinais de Atenção
+            Entendendo o que você sente
         </h2>
 
         <p class="text-body-md text-on-surface-variant">
-            Observe manifestações persistentes de desgaste emocional.
+            Reconhecer e compreender o que sentimos é uma parte importante
+            do cuidado com o bem-estar emocional. Conheça algumas emoções
+            e estados que podem fazer parte do dia a dia.
         </p>
 
     </div>
 
+
     <div class="relative">
 
-        <!-- Botão esquerda -->
-        <button
-            onclick="changeWarningCard(-1)"
-            class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
 
-            <span class="material-symbols-outlined">
-                chevron_left
-            </span>
+    
 
-        </button>
 
         <!-- CARD -->
-        <button
+        <div
             id="warningCard"
-            onclick="openWarningPage()"
-            class="w-full h-[280px] relative overflow-hidden rounded-3xl border border-red-100 bg-red-50 text-left transition-all duration-500">
+            class="w-full h-[280px]
+                   relative overflow-hidden
+                   rounded-3xl
+                   border border-red-100
+                   bg-red-50
+                   text-left
+                   transition-all duration-500">
 
-            <!-- Imagem -->
-            <img id="warningImage"
+
+            <!-- Imagem abstrata -->
+            <img
+                id="warningImage"
                 src="assets/images/sono.png"
-                class="absolute inset-0 w-full h-full object-cover opacity-20">
+                alt=""
+                class="absolute right-0 top-0
+                       w-[80%] h-full
+                       object-cover
+                       opacity-100">
+
 
             <!-- Overlay -->
-            <div id="warningOverlay"
-                class="absolute inset-0 bg-gradient-to-t from-red-100/95 to-transparent">
+            <div
+                id="warningOverlay"
+                class="absolute inset-0
+                       bg-gradient-to-r
+                       from-red-50
+                       via-red-50/95
+                       to-transparent">
             </div>
 
+
             <!-- Conteúdo -->
-            <div class="relative z-10 h-full flex flex-col justify-end p-8">
+            <div
+                class="relative z-10
+                       h-full
+                       flex flex-col
+                       justify-center
+                       p-8
+                       pr-[45%]">
 
-                <div id="warningIconContainer"
-                    class="w-16 h-16 rounded-2xl bg-white/80 backdrop-blur-sm flex items-center justify-center mb-5">
 
-                    <span id="warningIcon"
-                        class="material-symbols-outlined text-red-500 text-[32px]">
+                <!-- Ícone -->
+                <div
+                    id="warningIconContainer"
+                    class="w-16 h-16
+                           rounded-2xl
+                           bg-white/90
+                           backdrop-blur-sm
+                           flex items-center justify-center
+                           mb-5">
+
+                    <span
+                        id="warningIcon"
+                        class="material-symbols-outlined
+                               text-red-500
+                               text-[32px]">
 
                         bed
 
@@ -619,39 +835,58 @@ body{
 
                 </div>
 
-                <h3 id="warningTitle"
-                    class="font-headline-lg text-on-surface mb-3">
+
+                <!-- Título -->
+                <h3
+                    id="warningTitle"
+                    class="font-headline-lg
+                           text-on-surface
+                           mb-3">
 
                     Alterações no Sono
 
                 </h3>
 
-                <p id="warningDescription"
-                    class="text-body-lg text-on-surface-variant max-w-[700px]">
+
+                <!-- Descrição -->
+                <p
+                    id="warningDescription"
+                    class="text-body-lg
+                           text-on-surface-variant
+                           max-w-[600px]
+                           mb-5">
 
                     Dificuldade persistente para dormir ou descansar adequadamente.
 
                 </p>
 
+
+                <!-- Entenda melhor -->
+                <button
+                    onclick="openWarningPage()"
+                    class="self-start
+                           text-primary
+                           font-label-md
+                           text-sm
+                           font-semibold
+                           hover:underline
+                           transition-all">
+
+                    Entenda melhor →
+
+                </button>
+
+
             </div>
 
-        </button>
+        </div>
 
-        <!-- Botão direita -->
-        <button
-            onclick="changeWarningCard(1)"
-            class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
 
-            <span class="material-symbols-outlined">
-                chevron_right
-            </span>
 
-        </button>
 
     </div>
 
 </section>
-
 
 <!-- ================================================= -->
 <!-- CARROSSEL - CUIDADOS RECOMENDADOS -->
@@ -673,16 +908,6 @@ body{
 
     <div class="relative">
 
-        <!-- Botão esquerda -->
-        <button
-            onclick="changeCareCard(-1)"
-            class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
-
-            <span class="material-symbols-outlined">
-                chevron_left
-            </span>
-
-        </button>
 
         <!-- CARD -->
         <button
@@ -692,7 +917,7 @@ body{
 
             <!-- Imagem -->
             <img id="careImage"
-                src="assets/images/pausa.jpg"
+                src="../assets/images/pausa.png"
                 class="absolute inset-0 w-full h-full object-cover opacity-20">
 
             <!-- Overlay -->
@@ -733,16 +958,6 @@ body{
 
         </button>
 
-        <!-- Botão direita -->
-        <button
-            onclick="changeCareCard(1)"
-            class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-outline-variant flex items-center justify-center hover:scale-105 transition-all duration-300">
-
-            <span class="material-symbols-outlined">
-                chevron_right
-            </span>
-
-        </button>
 
     </div>
 

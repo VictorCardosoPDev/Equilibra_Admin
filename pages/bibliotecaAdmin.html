@@ -187,7 +187,7 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="space-y-2">
-<label  class="block text-label-md font-label-md text-on-surface-variant">Categoria</label>
+<label  class="block text-label-md font-label-md text-on-surface-variant">Palavras Chave</label>
 <select id="categoria" class="w-full rounded-lg border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary py-3 px-4 text-body-md appearance-none">
 <option>Saúde Mental</option>
 <option>Autocuidado</option>
@@ -488,8 +488,8 @@ async function editarConteudo(id){
     }
 
     conteudoEditando = id;
-    let pdfAtual = data.pdf_url;
-    let thumbnailAtual = data.thumbnail_url;
+     pdfAtual = data.pdf_url;
+     thumbnailAtual = data.thumbnail_url;
 
     document.getElementById("title").value =
         data.title;
@@ -537,7 +537,7 @@ async function editarConteudo(id){
     });
 
 }
-async function salvarEdicao(){
+async function salvarEdicao() {
 
     const title =
         document.getElementById("title").value;
@@ -555,32 +555,106 @@ async function salvarEdicao(){
         document.querySelector(
             'input[name="content_type"]:checked'
         ).value;
-    console.log("ID:", conteudoEditando);
 
-console.log({
-    title,
-    autores,
-    categoria,
-    resumo,
-    tipo
-});
-let pdfUrl = pdfAtual;
-let thumbnailUrl = thumbnailAtual;
+
+    // Mantém os arquivos atuais
+    let pdfUrl = pdfAtual;
+    let thumbnailUrl = thumbnailAtual;
+
+
+    // =========================================
+    // NOVO PDF
+    // =========================================
+
+    const novoPdf =
+        document.getElementById("pdfInput").files[0];
+
+
+    if (novoPdf) {
+
+        const extensao =
+            novoPdf.name.split(".").pop();
+
+        const nomeArquivo =
+            `${Date.now()}.${extensao}`;
+
+
+        const { error } =
+            await supabaseClient.storage
+                .from("biblioteca-pdfs")
+                .upload(
+                    nomeArquivo,
+                    novoPdf
+                );
+
+
+        if (error) {
+
+            console.error(error);
+
+            alert("Erro ao enviar PDF.");
+
+            return;
+
+        }
+
+
+        pdfUrl =
+            supabaseClient.storage
+                .from("biblioteca-pdfs")
+                .getPublicUrl(nomeArquivo)
+                .data.publicUrl;
+
+    }
+
+
+    // =========================================
+    // NOVA THUMBNAIL
+    // =========================================
+
+    const novaThumbnail =
+        document.getElementById("thumbnailInput").files[0];
+
+
+    if (novaThumbnail) {
+
+        const novaUrl =
+            await uploadThumbnail();
+
+
+        if (!novaUrl) {
+
+            alert("Erro ao enviar a nova imagem.");
+
+            return;
+
+        }
+
+
+        thumbnailUrl = novaUrl;
+
+    }
+
+
+    // =========================================
+    // ATUALIZA O BANCO
+    // =========================================
+
     const { error } =
         await supabaseClient
             .from("conteudos")
             .update({
 
-                title,
+                title: title,
 
-                autores,
+                autores: autores,
 
-                categoria,
+                categoria: categoria,
 
-                resumo,
+                resumo: resumo,
 
-                tipo,
-                
+                tipo: tipo,
+
                 pdf_url: pdfUrl,
 
                 thumbnail_url: thumbnailUrl
@@ -590,8 +664,9 @@ let thumbnailUrl = thumbnailAtual;
                 "id",
                 conteudoEditando
             );
-            
-    if(error){
+
+
+    if (error) {
 
         console.error(error);
 
@@ -601,70 +676,28 @@ let thumbnailUrl = thumbnailAtual;
 
     }
 
+
     alert("Conteúdo atualizado!");
 
-    const novoPdf =
-    document.getElementById("pdfInput").files[0];
-
-if (novoPdf) {
-
-    const extensao =
-        novoPdf.name.split(".").pop();
-
-    const nomeArquivo =
-        `${Date.now()}.${extensao}`;
-
-    const { error } =
-        await supabaseClient.storage
-            .from("biblioteca-pdfs")
-            .upload(
-                nomeArquivo,
-                novoPdf
-            );
-
-    if (error) {
-
-        console.error(error);
-
-        alert("Erro ao enviar PDF.");
-
-        return;
-
-    }
-
-    pdfUrl =
-        supabaseClient.storage
-            .from("biblioteca-pdfs")
-            .getPublicUrl(nomeArquivo)
-            .data.publicUrl;
-
-}
-const novaThumbnail =
-    document
-        .getElementById("thumbnailInput")
-        .files[0];
-
-if (novaThumbnail) {
-
-    thumbnailUrl =
-        await uploadThumbnail();
-
-}
 
     conteudoEditando = null;
 
-    document.querySelector("form")
-        .reset();
+
+    document.querySelector("form").reset();
+
 
     document.getElementById("cover-preview").src =
         "https://lh3.googleusercontent.com/aida-public/AB6AXuDinLs-8LKGokSdNic90_LOm6ARVuudOJQUAdfmsgIsvkXNXUlYmJu2dymPVd4yNImXHKzVrhBpKrwjGcGoxzB4kEz-6ywp4H8dxyQ3vRJEMlOXiQjwHumkiBghEeHDtw10qDMrajcr-2Xc_nMlbpWDnDSq8G3OlzSmaMFYAPkEPnNdaOpIA_-t1hXpxA1PC4Ixuks1Qooj7vu9ka25gEtq5f6pkEdIdFGn1a8wtOfNIvba0BMRQMGe5N6IPc-bpERB43Cth8WpcJj2";
+
 
     document.getElementById("pdfFileName")
         .textContent =
         "Nenhum arquivo...";
 
+
     const botao =
         document.getElementById("btnPublicar");
+
 
     botao.innerHTML = `
         <span class="material-symbols-outlined">
@@ -674,8 +707,10 @@ if (novaThumbnail) {
         Publicar Conteúdo
     `;
 
+
     botao.onclick =
         uploadPdf;
+
 
     carregarConteudos();
 
