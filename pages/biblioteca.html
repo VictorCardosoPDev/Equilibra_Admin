@@ -1017,86 +1017,164 @@ async function carregarBiblioteca() {
     data.forEach(item => {
 
         const card = `
-        <details
+<article
+    class="
+        content-item
+        group
+        bg-surface-container-lowest
+        border
+        border-outline-variant
+        rounded-2xl
+        overflow-hidden
+        shadow-sm
+        hover:shadow-md
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        flex
+        flex-col
+    "
+    data-tipo="${item.tipo || ""}"
+    data-categoria="${item.categoria || ""}"
+>
+
+    <!-- CAPA -->
+    <div class="relative w-full h-30 overflow-hidden">
+
+        <img
+            src="${item.thumbnail_url || ''}"
+            alt="${item.title || 'Imagem do conteúdo'}"
             class="
-                content-item
-                group
-                bg-surface-container-lowest
-                border
-                border-outline-variant
-                rounded-xl
-                overflow-hidden
-                "   data-tipo="${item.tipo || ""}"
-                    data-categoria="${item.categoria || ""}">
+                w-full
+                h-full
+                object-cover
+                transition-transform
+                duration-500
+                group-hover:scale-105
+            "
+        >
 
-            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+        <!-- Tipo do conteúdo -->
+        <span
+            class="
+                absolute
+                top-3
+                left-3
+                px-3
+                py-1
+                rounded-full
+                bg-white/90
+                backdrop-blur-sm
+                text-[#245B65]
+                text-xs
+                font-bold
+                uppercase
+                tracking-wide
+                shadow-sm
+            "
+        >
+            ${item.tipo || "Conteúdo"}
+        </span>
 
-                <div class="flex flex-col">
+    </div>
 
-                    <span class="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">
 
-                        #${item.categoria}
+    <!-- CONTEÚDO DO CARD -->
+    <div class="p-5 flex flex-col flex-1">
 
-                    </span>
+        <!-- Categoria -->
+        <span
+            class="
+                text-[11px]
+                text-primary
+                font-bold
+                uppercase
+                tracking-wider
+                mb-2
+            "
+        >
+            #${item.categoria || "Geral"}
+        </span>
 
-                    <h4 class="font-label-md text-on-surface">
 
-                        ${item.title}
+        <!-- Título -->
+        <h3
+            class="
+                font-headline-md
+                text-on-surface
+                text-lg
+                font-semibold
+                leading-snug
+                mb-3
+            "
+        >
+            ${item.title}
+        </h3>
 
-                    </h4>
 
-                </div>
+        <!-- Resumo -->
+        <p
+            class="
+                text-on-surface-variant
+                text-sm
+                leading-relaxed
+                mb-5
+            "
+        >
+            ${item.resumo || ""}
+        </p>
 
-                <span class="material-symbols-outlined">
 
-                    expand_more
+        <!-- Rodapé -->
+        <div
+            class="
+                mt-auto
+                flex
+                items-center
+                justify-between
+                gap-3
+            "
+        >
 
-                </span>
+            <!-- Autor -->
+            <span
+                class="
+                    text-xs
+                    text-outline
+                    truncate
+                "
+            >
+                ${item.autores || "Equipe Equilibra"}
+            </span>
 
-            </summary>
 
-            <div class="p-4 pt-0 border-t border-outline-variant/30">
+            <!-- Botão -->
+            <a
+                href="${item.pdf_url || '#'}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="
+                    bg-primary
+                    text-on-primary
+                    px-4
+                    py-2
+                    rounded-lg
+                    text-sm
+                    font-medium
+                    whitespace-nowrap
+                    hover:opacity-90
+                    transition-all
+                "
+            >
+                Ler Agora
+            </a>
 
-                <div class="flex flex-col md:flex-row gap-4 mt-4">
+        </div>
 
-                    <img
-                        src="${item.thumbnail_url}"
-                        class="w-full md:w-32 h-32 object-cover rounded-lg">
+    </div>
 
-                    <div class="flex-1 flex flex-col">
+</article>
 
-                        <p class="font-body-md text-sm text-on-surface-variant mb-4">
-
-                            ${item.resumo}
-
-                        </p>
-
-                        <div class="mt-auto flex items-center justify-between">
-
-                            <span class="text-xs text-outline">
-
-                                ${item.autores}
-
-                            </span>
-
-                            <a
-                                href="${item.pdf_url}"
-                                target="_blank"
-                                class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm">
-
-                                Ler Agora
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </details>
         `;
 
         if (
@@ -1130,6 +1208,21 @@ async function carregarBiblioteca() {
     });
 }
 carregarBiblioteca();
+document
+    .querySelectorAll(
+        "#artigosContainer, #cartilhasContainer, #materiasContainer"
+    )
+    .forEach(container => {
+
+        container.classList.add(
+            "grid",
+            "grid-cols-1",
+            "md:grid-cols-2",
+            "xl:grid-cols-3",
+            "gap-5"
+        );
+
+    });
 </script>
 <!-- Modal de Avaliação -->
 
