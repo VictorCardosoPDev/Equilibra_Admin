@@ -203,6 +203,7 @@
             overlay: "from-red-100/95",
             border: "border-red-100",
             bg: "bg-red-50",
+            categoria: "Ansiedade",
             page: "../pages/biblioteca.html"
         },
 
@@ -215,6 +216,7 @@
             overlay: "from-orange-100/95",
             border: "border-orange-100",
             bg: "bg-orange-50",
+            categoria: "Irritação",
             page: "../pages/biblioteca.html"
         },
 
@@ -227,6 +229,7 @@
             overlay: "from-blue-100/95",
             border: "border-blue-100",
             bg: "bg-yellow-50",
+            categoria: "Tristeza",
             page: "../pages/biblioteca.html"
         },
 
@@ -239,6 +242,7 @@
             overlay: "from-pink-100/95",
             border: "border-pink-100",
             bg: "bg-pink-50",
+            categoria: "Sobrecarga",
             page: "../pages/biblioteca.html"
         },
 
@@ -251,6 +255,7 @@
             overlay: "from-purple-100/95",
             border: "border-purple-100",
             bg: "bg-pink-50",
+            categoria: "Cansaço emocional",
             page: "../pages/biblioteca.html"
         }
 
@@ -302,7 +307,10 @@
 
 function openWarningPage() {
 
-    window.location.href = warningCards[currentWarningIndex].page;
+    const card = warningCards[currentWarningIndex];
+
+    window.location.href =
+        `${card.page}?categoria=${encodeURIComponent(card.categoria)}`;
 }
 
 // Carrega o primeiro card imediatamente
