@@ -300,46 +300,282 @@ document
 </div>
 </section>
 <!-- Categories/Tabs -->
-<section class="mb-10 overflow-x-auto hide-scrollbar -mx-margin-mobile px-margin-mobile">
-<div class="flex gap-3 whitespace-nowrap">
-<button id="filter-all"class="px-6 py-2.5 bg-primary text-on-primary rounded-full font-label-md transition-transform active:scale-95" >Tudo</button>
+<!-- ================================================= -->
+<!-- FILTROS DA BIBLIOTECA -->
+<!-- ================================================= -->
 
-<button id="filter-artigos" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
-    Artigos
-</button>
+<section class="mb-6">
 
-<button id="filter-cartilhas" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
-    Cartilhas
-</button>
+    <!-- Filtros principais -->
+    <div class="flex items-center gap-3 flex-wrap">
 
-<button id="filter-materias" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
-    Matérias
-</button>
+        <!-- Tudo -->
+        <button
+            onclick="selecionarTipo('todos')"
+            id="filtroTodos"
+            class="filtro-principal px-6 py-2.5 rounded-full
+                   bg-[#062F80] text-white
+                   border border-[#062F80]
+                   transition-all duration-200
+                   hover:opacity-90">
 
-<button id="filter-ansiedade" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
-    Ansiedade
-</button>
+            Tudo
 
-<button id="filter-irritacao" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
-    Irritação
-</button>
+        </button>
 
-<button id="filter-tristeza" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
-    Tristeza
-</button>
 
-<button id="filter-sobrecarga" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
-    Sobrecarga
-</button>
+        <!-- Artigos -->
+        <button
+            onclick="selecionarTipo('Artigo')"
+            id="filtroArtigos"
+            class="filtro-principal px-6 py-2.5 rounded-full
+                   bg-white text-[#52637A]
+                   border border-[#C7D0DE]
+                   transition-all duration-200
+                   hover:border-[#062F80]
+                   hover:text-[#062F80]">
 
-<button id="filter-cansaco" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
-    Cansaço emocional
-</button>
+            Artigos
 
-<button id="filter-burnout" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
-    Burnout
-</button>
-</div>
+        </button>
+
+
+        <!-- Matérias -->
+        <button
+            onclick="selecionarTipo('Matéria')"
+            id="filtroMaterias"
+            class="filtro-principal px-6 py-2.5 rounded-full
+                   bg-white text-[#52637A]
+                   border border-[#C7D0DE]
+                   transition-all duration-200
+                   hover:border-[#062F80]
+                   hover:text-[#062F80]">
+
+            Matérias
+
+        </button>
+
+
+        <!-- Cartilhas -->
+        <button
+            onclick="selecionarTipo('Cartilha')"
+            id="filtroCartilhas"
+            class="filtro-principal px-6 py-2.5 rounded-full
+                   bg-white text-[#52637A]
+                   border border-[#C7D0DE]
+                   transition-all duration-200
+                   hover:border-[#062F80]
+                   hover:text-[#062F80]">
+
+            Cartilhas
+
+        </button>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- PAINEL DE CATEGORIAS -->
+    <!-- ================================================= -->
+
+    <div
+        id="painelCategorias"
+        class="hidden mt-4 p-5
+               bg-white
+               border border-[#D8DEE8]
+               rounded-2xl
+               shadow-sm
+               transition-all duration-300">
+
+
+        <div class="flex items-center justify-between mb-4">
+
+            <div>
+
+                <h3 class="font-semibold text-[#172B4D]">
+                    Filtrar por tema
+                </h3>
+
+                <p class="text-sm text-[#718096] mt-1">
+                    Escolha um tema para refinar os conteúdos.
+                </p>
+
+            </div>
+
+
+            <!-- Fechar -->
+            <button
+                onclick="fecharCategorias()"
+                class="w-8 h-8 rounded-full
+                       flex items-center justify-center
+                       text-[#718096]
+                       hover:bg-[#F1F4F8]
+                       transition">
+
+                <span class="material-symbols-outlined text-[20px]">
+                    close
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- Categorias -->
+        <div
+            id="listaCategorias"
+            class="flex flex-wrap gap-2">
+
+
+            <button
+                onclick="selecionarCategoria('todos')"
+                class="categoria-filtro ativo
+                       px-4 py-2 rounded-full
+                       bg-[#EAF0FF]
+                       text-[#062F80]
+                       border border-[#BFD0F5]
+                       text-sm
+                       transition">
+
+                Todos
+
+            </button>
+
+
+            <button
+                onclick="selecionarCategoria('Ansiedade')"
+                class="categoria-filtro
+                       px-4 py-2 rounded-full
+                       bg-white
+                       text-[#52637A]
+                       border border-[#D0D7E2]
+                       text-sm
+                       hover:border-[#062F80]
+                       hover:text-[#062F80]
+                       transition">
+
+                Ansiedade
+
+            </button>
+
+
+            <button
+                onclick="selecionarCategoria('Irritação')"
+                class="categoria-filtro
+                       px-4 py-2 rounded-full
+                       bg-white
+                       text-[#52637A]
+                       border border-[#D0D7E2]
+                       text-sm
+                       hover:border-[#062F80]
+                       hover:text-[#062F80]
+                       transition">
+
+                Irritação
+
+            </button>
+
+
+            <button
+                onclick="selecionarCategoria('Tristeza')"
+                class="categoria-filtro
+                       px-4 py-2 rounded-full
+                       bg-white
+                       text-[#52637A]
+                       border border-[#D0D7E2]
+                       text-sm
+                       hover:border-[#062F80]
+                       hover:text-[#062F80]
+                       transition">
+
+                Tristeza
+
+            </button>
+
+
+            <button
+                onclick="selecionarCategoria('Sobrecarga')"
+                class="categoria-filtro
+                       px-4 py-2 rounded-full
+                       bg-white
+                       text-[#52637A]
+                       border border-[#D0D7E2]
+                       text-sm
+                       hover:border-[#062F80]
+                       hover:text-[#062F80]
+                       transition">
+
+                Sobrecarga
+
+            </button>
+
+
+            <button
+                onclick="selecionarCategoria('Cansaço Emocional')"
+                class="categoria-filtro
+                       px-4 py-2 rounded-full
+                       bg-white
+                       text-[#52637A]
+                       border border-[#D0D7E2]
+                       text-sm
+                       hover:border-[#062F80]
+                       hover:text-[#062F80]
+                       transition">
+
+                Cansaço Emocional
+
+            </button>
+
+
+            <button
+                onclick="selecionarCategoria('Autocuidado')"
+                class="categoria-filtro
+                       px-4 py-2 rounded-full
+                       bg-white
+                       text-[#52637A]
+                       border border-[#D0D7E2]
+                       text-sm
+                       hover:border-[#062F80]
+                       hover:text-[#062F80]
+                       transition">
+
+                Autocuidado
+
+            </button>
+
+
+            <button
+                onclick="selecionarCategoria('Burnout')"
+                class="categoria-filtro
+                       px-4 py-2 rounded-full
+                       bg-white
+                       text-[#52637A]
+                       border border-[#D0D7E2]
+                       text-sm
+                       hover:border-[#062F80]
+                       hover:text-[#062F80]
+                       transition">
+
+                Burnout
+
+            </button>
+
+        </div>
+
+
+        <!-- Resumo do filtro -->
+        <div
+            id="filtroSelecionado"
+            class="mt-5 pt-4
+                   border-t border-[#E8ECF2]
+                   text-sm text-[#718096]">
+
+            Mostrando todos os conteúdos.
+
+        </div>
+
+    </div>
+
 </section>
 
 <!-- List Section: Artigos Recentes -->
@@ -451,65 +687,294 @@ const supabaseClient =
             });
         });
 
-        function filterContent(category) {
+        // =================================================
+// FILTROS DA BIBLIOTECA
+// =================================================
 
-    const items =
-        document.querySelectorAll(
-            ".content-item"
-        );
+let tipoSelecionado = "todos";
+let categoriaSelecionada = "todos";
 
-    items.forEach(item => {
 
-        item.style.display = "none";
+// Normaliza textos para comparação
+function normalizarTexto(texto) {
 
-        if (category === "all") {
+    return (texto || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 
-            item.style.display = "";
-
-            return;
-        }
-
-        if (
-            item.classList.contains(
-                category
-            )
-        ) {
-
-            item.style.display = "";
-        }
-    });
 }
 
-document.getElementById("filter-all")
-    .addEventListener("click", () => filterContent("all"));
 
-document.getElementById("filter-artigos")
-    .addEventListener("click", () => filterContent("artigo"));
+// Seleciona o tipo principal
+function selecionarTipo(tipo) {
 
-document.getElementById("filter-cartilhas")
-    .addEventListener("click", () => filterContent("cartilha"));
+    tipoSelecionado = tipo;
 
-document.getElementById("filter-materias")
-    .addEventListener("click", () => filterContent("materia"));
+    // Se clicar em Tudo, limpa a categoria
+    if (tipo === "todos") {
+        categoriaSelecionada = "todos";
 
-document.getElementById("filter-ansiedade")
-    .addEventListener("click", () => filterContent("ansiedade"));
+        document
+            .getElementById("painelCategorias")
+            .classList.add("hidden");
+    }
 
-document.getElementById("filter-irritacao")
-    .addEventListener("click", () => filterContent("irritacao"));
+    else {
 
-document.getElementById("filter-tristeza")
-    .addEventListener("click", () => filterContent("tristeza"));
+        document
+            .getElementById("painelCategorias")
+            .classList.remove("hidden");
+    }
 
-document.getElementById("filter-sobrecarga")
-    .addEventListener("click", () => filterContent("sobrecarga"));
 
-document.getElementById("filter-cansaco")
-    .addEventListener("click", () => filterContent("cansaco"));
+    // Atualiza aparência dos botões principais
+    document
+        .querySelectorAll(".filtro-principal")
+        .forEach(botao => {
 
-document.getElementById("filter-burnout")
-    .addEventListener("click", () => filterContent("burnout"));
+            botao.classList.remove(
+                "bg-[#062F80]",
+                "text-white",
+                "border-[#062F80]"
+            );
 
+            botao.classList.add(
+                "bg-white",
+                "text-[#52637A]",
+                "border-[#C7D0DE]"
+            );
+
+        });
+
+
+    let botaoAtivo = null;
+
+
+    if (tipo === "todos") {
+        botaoAtivo =
+            document.getElementById("filtroTodos");
+    }
+
+    else if (tipo === "Artigo") {
+        botaoAtivo =
+            document.getElementById("filtroArtigos");
+    }
+
+    else if (tipo === "Matéria") {
+        botaoAtivo =
+            document.getElementById("filtroMaterias");
+    }
+
+    else if (tipo === "Cartilha") {
+        botaoAtivo =
+            document.getElementById("filtroCartilhas");
+    }
+
+
+    if (botaoAtivo) {
+
+        botaoAtivo.classList.remove(
+            "bg-white",
+            "text-[#52637A]",
+            "border-[#C7D0DE]"
+        );
+
+        botaoAtivo.classList.add(
+            "bg-[#062F80]",
+            "text-white",
+            "border-[#062F80]"
+        );
+
+    }
+
+
+    atualizarTextoFiltro();
+
+    aplicarFiltrosBiblioteca();
+
+}
+
+
+// Seleciona uma categoria
+function selecionarCategoria(categoria) {
+
+    categoriaSelecionada = categoria;
+
+
+    // Atualiza aparência dos botões de categoria
+    document
+        .querySelectorAll(".categoria-filtro")
+        .forEach(botao => {
+
+            botao.classList.remove(
+                "bg-[#EAF0FF]",
+                "text-[#062F80]",
+                "border-[#BFD0F5]"
+            );
+
+            botao.classList.add(
+                "bg-white",
+                "text-[#52637A]",
+                "border-[#D0D7E2]"
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(".categoria-filtro")
+        .forEach(botao => {
+
+            if (
+                normalizarTexto(
+                    botao.textContent.trim()
+                ) ===
+                normalizarTexto(categoria)
+            ) {
+
+                botao.classList.remove(
+                    "bg-white",
+                    "text-[#52637A]",
+                    "border-[#D0D7E2]"
+                );
+
+                botao.classList.add(
+                    "bg-[#EAF0FF]",
+                    "text-[#062F80]",
+                    "border-[#BFD0F5]"
+                );
+
+            }
+
+        });
+
+
+    atualizarTextoFiltro();
+
+    aplicarFiltrosBiblioteca();
+
+}
+
+
+// Fecha o painel
+function fecharCategorias() {
+
+    document
+        .getElementById("painelCategorias")
+        .classList.add("hidden");
+
+}
+
+
+// Texto que aparece no rodapé do painel
+function atualizarTextoFiltro() {
+
+    const texto =
+        document.getElementById(
+            "filtroSelecionado"
+        );
+
+
+    if (
+        tipoSelecionado === "todos" &&
+        categoriaSelecionada === "todos"
+    ) {
+
+        texto.textContent =
+            "Mostrando todos os conteúdos.";
+
+        return;
+    }
+
+
+    const filtros = [];
+
+
+    if (tipoSelecionado !== "todos") {
+        filtros.push(tipoSelecionado);
+    }
+
+
+    if (categoriaSelecionada !== "todos") {
+        filtros.push(categoriaSelecionada);
+    }
+
+
+    texto.textContent =
+        "Filtros ativos: " +
+        filtros.join(" + ");
+
+}
+
+
+// Aplica Tipo + Categoria + Busca
+function aplicarFiltrosBiblioteca() {
+
+    const termo =
+        normalizarTexto(
+            document.getElementById(
+                "searchInput"
+            )?.value
+        );
+
+
+    document
+        .querySelectorAll(".content-item")
+        .forEach(item => {
+
+            const tipo =
+                normalizarTexto(
+                    item.dataset.tipo
+                );
+
+            const categoria =
+                normalizarTexto(
+                    item.dataset.categoria
+                );
+
+            const texto =
+                normalizarTexto(
+                    item.innerText
+                );
+
+
+            // Verifica o tipo
+            const correspondeTipo =
+                tipoSelecionado === "todos" ||
+                tipo ===
+                    normalizarTexto(
+                        tipoSelecionado
+                    );
+
+
+            // Verifica categoria
+            const correspondeCategoria =
+                categoriaSelecionada === "todos" ||
+                categoria ===
+                    normalizarTexto(
+                        categoriaSelecionada
+                    );
+
+
+            // Verifica busca
+            const correspondeBusca =
+                !termo ||
+                texto.includes(termo);
+
+
+            // Só aparece se passar pelos 3 filtros
+            item.style.display =
+                correspondeTipo &&
+                correspondeCategoria &&
+                correspondeBusca
+                    ? ""
+                    : "none";
+
+        });
+
+}
+    
 async function carregarBiblioteca() {
 
     const { data, error } =
@@ -555,19 +1020,14 @@ async function carregarBiblioteca() {
         <details
             class="
                 content-item
-                ${(item.tipo || "")
-                    .toLowerCase()}
-                ${(item.categoria || "")
-                    .toLowerCase()
-                    .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '')
-                    .replaceAll(' ', '-')}
                 group
                 bg-surface-container-lowest
                 border
                 border-outline-variant
                 rounded-xl
-                overflow-hidden">
+                overflow-hidden
+                "   data-tipo="${item.tipo || ""}"
+                    data-categoria="${item.categoria || ""}">
 
             <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
 
@@ -670,35 +1130,6 @@ async function carregarBiblioteca() {
     });
 }
 carregarBiblioteca();
-document
-    .getElementById("searchInput")
-    .addEventListener(
-        "input",
-        function () {
-
-            const termo =
-                this.value
-                    .toLowerCase();
-
-            document
-                .querySelectorAll(
-                    ".content-item"
-                )
-                .forEach(item => {
-
-                    const texto =
-                        item.innerText
-                            .toLowerCase();
-
-                    item.style.display =
-                        texto.includes(
-                            termo
-                        )
-                        ? ""
-                        : "none";
-                });
-        }
-    );
 </script>
 <!-- Modal de Avaliação -->
 
