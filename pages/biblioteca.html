@@ -381,7 +381,7 @@ document
     <div
         id="painelCategorias"
         class="hidden mt-4 p-5
-               bg-white
+               bg-white dark:bg-[#1E293B]
                border border-[#D8DEE8]
                rounded-2xl
                shadow-sm
@@ -1223,6 +1223,30 @@ document
             "gap-5"
         );
 
+    });
+
+    document
+    .getElementById("searchInput")
+    .addEventListener("input", function () {
+
+        const termo = this.value
+            .toLowerCase()
+            .trim();
+
+        document
+            .querySelectorAll(".content-item")
+            .forEach(item => {
+
+                const texto = item.innerText
+                    .toLowerCase();
+
+                if (texto.includes(termo)) {
+                    item.style.display = "";
+                } else {
+                    item.style.display = "none";
+                }
+
+            });
     });
 </script>
 <!-- Modal de Avaliação -->
