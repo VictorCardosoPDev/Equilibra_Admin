@@ -417,7 +417,13 @@ setInterval(() => {
 
         updateCareCard();
     }
+    // Carrega o primeiro card imediatamente
+    // Aguarda o HTML inteiro carregar antes de inicializar o card
+    document.addEventListener("DOMContentLoaded", () => {
 
+        updateCareCard();
+
+    });
     function openCarePage() {
 
         window.location.href = careCards[currentCareIndex].page;

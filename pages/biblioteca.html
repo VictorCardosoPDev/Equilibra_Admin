@@ -316,8 +316,24 @@ document
     Matérias
 </button>
 
-<button id="filter-saude" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
+<button id="filter-ansiedade" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
     Ansiedade
+</button>
+
+<button id="filter-irritacao" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
+    Irritação
+</button>
+
+<button id="filter-tristeza" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
+    Tristeza
+</button>
+
+<button id="filter-sobrecarga" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
+    Sobrecarga
+</button>
+
+<button id="filter-cansaco" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
+    Cansaço emocional
 </button>
 
 <button id="filter-burnout" class="px-6 py-2.5 bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-md hover:bg-surface-container-high transition-all">
@@ -476,8 +492,20 @@ document.getElementById("filter-cartilhas")
 document.getElementById("filter-materias")
     .addEventListener("click", () => filterContent("materia"));
 
-document.getElementById("filter-saude")
-    .addEventListener("click", () => filterContent("saude-mental"));
+document.getElementById("filter-ansiedade")
+    .addEventListener("click", () => filterContent("ansiedade"));
+
+document.getElementById("filter-irritacao")
+    .addEventListener("click", () => filterContent("irritacao"));
+
+document.getElementById("filter-tristeza")
+    .addEventListener("click", () => filterContent("tristeza"));
+
+document.getElementById("filter-sobrecarga")
+    .addEventListener("click", () => filterContent("sobrecarga"));
+
+document.getElementById("filter-cansaco")
+    .addEventListener("click", () => filterContent("cansaco"));
 
 document.getElementById("filter-burnout")
     .addEventListener("click", () => filterContent("burnout"));
