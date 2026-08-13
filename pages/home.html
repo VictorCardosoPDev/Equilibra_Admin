@@ -203,7 +203,7 @@
             overlay: "from-red-100/95",
             border: "border-red-100",
             bg: "bg-red-50",
-            page: "./pages/ajuda.html#sono"
+            page: "../pages/biblioteca.html"
         },
 
         {
@@ -215,7 +215,7 @@
             overlay: "from-orange-100/95",
             border: "border-orange-100",
             bg: "bg-orange-50",
-            page: "./pages/ajuda.html#irritabilidade"
+            page: "../pages/biblioteca.html"
         },
 
         {
@@ -227,7 +227,7 @@
             overlay: "from-blue-100/95",
             border: "border-blue-100",
             bg: "bg-yellow-50",
-            page: "./pages/ajuda.html#concentracao"
+            page: "../pages/biblioteca.html"
         },
 
         {
@@ -239,7 +239,7 @@
             overlay: "from-pink-100/95",
             border: "border-pink-100",
             bg: "bg-pink-50",
-            page: "./pages/ajuda.html#pensamentos"
+            page: "../pages/biblioteca.html"
         },
 
         {
@@ -251,7 +251,7 @@
             overlay: "from-purple-100/95",
             border: "border-purple-100",
             bg: "bg-pink-50",
-            page: "./pages/ajuda.html#pensamentos"
+            page: "../pages/biblioteca.html"
         }
 
     ];
@@ -306,7 +306,13 @@ function openWarningPage() {
 }
 
 // Carrega o primeiro card imediatamente
-updateWarningCard();
+// Aguarda o HTML inteiro carregar antes de inicializar o card
+document.addEventListener("DOMContentLoaded", () => {
+
+    updateWarningCard();
+
+});
+
 
 // Troca automática
 setInterval(() => {
@@ -314,6 +320,7 @@ setInterval(() => {
     changeWarningCard(1);
 
 }, 6000);
+
 
     const careCards = [
 
