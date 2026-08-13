@@ -1039,7 +1039,7 @@ async function carregarBiblioteca() {
 >
 
     <!-- CAPA -->
-    <div class="relative w-full h-30 overflow-hidden">
+    <div class="relative w-full h-40 overflow-hidden">
 
         <img
             src="${item.thumbnail_url || ''}"
@@ -1119,6 +1119,7 @@ async function carregarBiblioteca() {
                 text-sm
                 leading-relaxed
                 mb-5
+                line-clamp-3
             "
         >
             ${item.resumo || ""}
