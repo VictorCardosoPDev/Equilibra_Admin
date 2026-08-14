@@ -515,14 +515,19 @@ body{
     <div class="relative overflow-hidden rounded-xl
                 bg-[#EEF7F7]
                 border border-[#DDE9E9]
-                min-h-[180px]
-                p-7">
+                min-h-[300px] sm:min-h-[180px]
+                p-5 sm:p-7">
 
 
-        <!-- Ilustração decorativa -->
+        <!-- ================================================= -->
+        <!-- ILUSTRAÇÃO DECORATIVA -->
+        <!-- ================================================= -->
+
         <div class="absolute right-0 bottom-0
-                    w-[40%] h-full
-                    pointer-events-none">
+                    w-[32%] sm:w-[40%]
+                    h-[75%] sm:h-full
+                    pointer-events-none
+                    z-0">
 
             <img
                 src="../assets/imagens/card_inicio.png"
@@ -534,31 +539,61 @@ body{
         </div>
 
 
-        <!-- Conteúdo -->
-        <div class="relative z-10 max-w-[60%]">
+        <!-- ================================================= -->
+        <!-- CONTEÚDO -->
+        <!-- ================================================= -->
 
-            <h2 class="text-[#245B65] font-bold text-[25px] leading-tight mb-3">
+        <div class="relative z-10
+                    w-[68%]
+                    sm:max-w-[60%]
+                    text-[#37474F]">
+
+            <h2 class="text-[#245B65]
+                       font-bold
+                       text-[22px] sm:text-[25px]
+                       leading-tight
+                       mb-3">
+
                 Que bom ter você aqui.
+
             </h2>
 
 
-            <p class="text-[#37474F] leading-[1.4] mb-10">
+            <p class="text-[#37474F]
+                      text-[15px] sm:text-[18px]
+                      leading-[1.5]
+                      mb-7 sm:mb-10">
+
                 Este é o seu espaço de cuidado. O Equilibra reúne
                 conteúdos psicoeducativos, práticas de cuidado e
                 recursos desenvolvidos para apoiar seu bem-estar
                 emocional e ajudar você a cuidar de si no dia a dia.
+
             </p>
 
+
+            <!-- ================================================= -->
+            <!-- PROFISSIONAIS DA SAÚDE -->
+            <!-- ================================================= -->
 
             <div class="flex items-center gap-2">
 
                 <span class="material-symbols-outlined
-                             text-[#0B4D86] text-[30px]">
+                             text-[#0B4D86]
+                             text-[26px] sm:text-[30px]
+                             shrink-0">
+
                     verified_user
+
                 </span>
 
-                <span class="text-[#455A64] text-[20px] leading-tight">
+
+                <span class="text-[#455A64]
+                             text-[15px] sm:text-[20px]
+                             leading-tight">
+
                     Conteúdo desenvolvido por profissionais da saúde
+
                 </span>
 
             </div>
@@ -602,8 +637,6 @@ body{
                 rounded-xl
                 shadow-sm">
 
-
-        
 
 
         <!-- ========================================= -->
