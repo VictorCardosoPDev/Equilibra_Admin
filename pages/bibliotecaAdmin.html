@@ -308,14 +308,16 @@
             </span>
 
             <input
+                id="buscaConteudo"
                 class="pl-10 pr-4 py-2
-                       rounded-full
-                       border border-outline-variant
-                       focus:border-secondary
-                       focus:ring-1
-                       focus:ring-secondary
-                       text-body-sm
-                       w-full sm:w-64"
+                    rounded-full
+                    border-outline-variant
+                    focus:border-secondary
+                    focus:ring-1
+                    focus:ring-secondary
+                    text-body-sm
+                    w-64
+                    max-w-full"
                 placeholder="Buscar na biblioteca..."
                 type="text"
             />
@@ -342,91 +344,64 @@
                        table-fixed">
 
                 <thead>
+    <tr class="bg-surface-container-low border-b border-surface-container">
 
-                    <tr
-                        class="bg-surface-container-low
-                               border-b
-                               border-surface-container">
+        <!-- CAPA -->
+        <th
+            class="px-2 sm:px-6 py-4
+                   font-label-md
+                   text-on-surface-variant
+                   w-[55px] sm:w-24">
+            Capa
+        </th>
 
-                        <!-- CAPA -->
-                        <th
-                            class="px-3 sm:px-6
-                                   py-4
-                                   font-label-md
-                                   text-on-surface-variant
-                                   w-[65px] sm:w-24">
+        <!-- TÍTULO -->
+        <th
+            class="px-2 sm:px-6 py-4
+                   font-label-md
+                   text-on-surface-variant">
+            Título / Autor
+        </th>
 
-                            Capa
+        <!-- TIPO -->
+        <th
+            class="px-2 sm:px-6 py-4
+                   font-label-md
+                   text-on-surface-variant
+                   w-[65px] sm:w-auto">
+            Tipo
+        </th>
 
-                        </th>
+        <!-- CATEGORIA -->
+        <th
+            class="hidden md:table-cell
+                   px-6 py-4
+                   font-label-md
+                   text-on-surface-variant">
+            Categoria
+        </th>
 
+        <!-- PUBLICAÇÃO -->
+        <th
+            class="hidden md:table-cell
+                   px-6 py-4
+                   font-label-md
+                   text-on-surface-variant">
+            Publicação
+        </th>
 
-                        <!-- TÍTULO -->
-                        <th
-                            class="px-3 sm:px-6
-                                   py-4
-                                   font-label-md
-                                   text-on-surface-variant
-                                   w-[42%] sm:w-auto">
+        <!-- AÇÕES -->
+        <th
+            class="px-1 sm:px-6 py-4
+                   font-label-md
+                   text-on-surface-variant
+                   text-center
+                   w-[42px] sm:w-auto">
+            Ações
+        </th>
 
-                            Título / Autor
-
-                        </th>
-
-
-                        <!-- TIPO -->
-                        <th
-                            class="px-2 sm:px-6
-                                   py-4
-                                   font-label-md
-                                   text-on-surface-variant
-                                   w-[90px] sm:w-auto">
-
-                            Tipo
-
-                        </th>
-
-
-                        <!-- CATEGORIA -->
-                        <th
-                            class="hidden md:table-cell
-                                   px-6 py-4
-                                   font-label-md
-                                   text-on-surface-variant">
-
-                            Categoria
-
-                        </th>
-
-
-                        <!-- PUBLICAÇÃO -->
-                        <th
-                            class="hidden md:table-cell
-                                   px-6 py-4
-                                   font-label-md
-                                   text-on-surface-variant">
-
-                            Publicação
-
-                        </th>
-
-
-                        <!-- AÇÕES -->
-                        <th
-                            class="px-2 sm:px-6
-                                   py-4
-                                   font-label-md
-                                   text-on-surface-variant
-                                   text-center
-                                   w-[125px] sm:w-auto">
-
-                            Ações
-
-                        </th>
-
-                    </tr>
-
-                </thead>
+    </tr>
+</thead>
 
 
                 <tbody
@@ -862,8 +837,46 @@ async function salvarEdicao() {
 
 
     carregarConteudos();
-
 }
+const buscaConteudo = document.getElementById("buscaConteudo");
+
+buscaConteudo.addEventListener("input", function () {
+
+    const busca = this.value
+        .toLowerCase()
+        .trim();
+
+    const linhas =
+        document.querySelectorAll(
+            "#conteudosTable tr"
+        );
+
+    let resultados = 0;
+
+    linhas.forEach(linha => {
+
+        const texto =
+            linha.textContent
+                .toLowerCase();
+
+        const corresponde =
+            texto.includes(busca);
+
+        linha.style.display =
+            corresponde ? "" : "none";
+
+        if (corresponde) {
+            resultados++;
+        }
+
+    });
+
+    document.getElementById(
+        "totalConteudos"
+    ).textContent =
+        `Mostrando ${resultados} resultado(s)`;
+
+});
 async function uploadPdf() {
 
     const pdfInput =
@@ -1213,94 +1226,78 @@ async function carregarConteudos() {
             <!-- ================================= -->
 
             <td
-                class="px-2 sm:px-6
-                       py-4
-                       align-middle">
+    class="px-1 sm:px-6
+           py-4
+           align-middle">
 
-                <div
-                    class="flex
-                           items-center
-                           justify-center
-                           gap-1 sm:gap-2
-                           flex-nowrap">
+    <div
+        class="flex
+               flex-col
+               md:flex-row
+               items-center
+               justify-center
+               gap-1 md:gap-2">
 
+        <!-- VISUALIZAR -->
+        <a
+            href="${conteudo.pdf_url}"
+            target="_blank"
+            title="Visualizar"
+            class="w-8 h-8
+                   flex items-center justify-center
+                   text-primary
+                   hover:bg-primary-fixed
+                   rounded-lg
+                   transition-colors
+                   shrink-0">
 
-                    <!-- VISUALIZAR -->
+            <span class="material-symbols-outlined text-[19px]">
+                visibility
+            </span>
 
-                    <a
-                        href="${conteudo.pdf_url}"
-                        target="_blank"
-                        title="Visualizar"
-                        class="w-9 h-9
-                               flex items-center justify-center
-                               text-primary
-                               hover:bg-primary-fixed
-                               rounded-lg
-                               transition-colors
-                               shrink-0">
-
-                        <span
-                            class="material-symbols-outlined
-                                   text-[20px]">
-
-                            visibility
-
-                        </span>
-
-                    </a>
+        </a>
 
 
-                    <!-- EXCLUIR -->
+        <!-- EXCLUIR -->
+        <button
+            onclick="excluirConteudo(${conteudo.id})"
+            title="Excluir"
+            class="w-8 h-8
+                   flex items-center justify-center
+                   text-red-600
+                   hover:bg-red-50
+                   rounded-lg
+                   transition-colors
+                   shrink-0">
 
-                    <button
-                        onclick="excluirConteudo(${conteudo.id})"
-                        title="Excluir"
-                        class="w-9 h-9
-                               flex items-center justify-center
-                               text-red-600
-                               hover:bg-red-50
-                               rounded-lg
-                               transition-colors
-                               shrink-0">
+            <span class="material-symbols-outlined text-[19px]">
+                delete
+            </span>
 
-                        <span
-                            class="material-symbols-outlined
-                                   text-[20px]">
-
-                            delete
-
-                        </span>
-
-                    </button>
+        </button>
 
 
-                    <!-- EDITAR -->
+        <!-- EDITAR -->
+        <button
+            onclick="editarConteudo(${conteudo.id})"
+            title="Editar"
+            class="w-8 h-8
+                   flex items-center justify-center
+                   text-blue-600
+                   hover:bg-blue-100
+                   rounded-lg
+                   transition-colors
+                   shrink-0">
 
-                    <button
-                        onclick="editarConteudo(${conteudo.id})"
-                        title="Editar"
-                        class="w-9 h-9
-                               flex items-center justify-center
-                               text-blue-600
-                               hover:bg-blue-100
-                               rounded-lg
-                               transition-colors
-                               shrink-0">
+            <span class="material-symbols-outlined text-[19px]">
+                edit
+            </span>
 
-                        <span
-                            class="material-symbols-outlined
-                                   text-[20px]">
+        </button>
 
-                            edit
+    </div>
 
-                        </span>
-
-                    </button>
-
-
-                </div>
-
-            </td>
+</td>
 
         </tr>
 

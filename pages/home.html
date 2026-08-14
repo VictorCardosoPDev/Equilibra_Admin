@@ -1157,26 +1157,100 @@ body{
 
 </button>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_12px_rgba(0,35,111,0.05)]">
-<!-- Home -->
-<a href="#" class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-150" >
-<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
-<span class="font-label-sm text-label-sm">Início</span>
-</a>
-<!-- Ajuda -->
-<a href="ajuda.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" >
-<span class="material-symbols-outlined">
+<nav class="fixed bottom-0 left-0 w-full z-50
+            grid grid-cols-5
+            items-center
+            bg-surface-container-lowest
+            dark:bg-inverse-surface
+            rounded-t-xl
+            shadow-[0_-4px_12px_rgba(0,35,111,0.05)]">
+
+    <!-- Home -->
+    <a href="#"
+       class="flex flex-col items-center justify-center
+              min-w-0 w-full
+              bg-secondary-container
+              dark:bg-primary-container
+              text-on-secondary-container
+              dark:text-on-primary-container
+              rounded-full
+              py-1
+              active:scale-90
+              transition-all duration-150">
+
+        <span class="material-symbols-outlined"
+              data-icon="home"
+              style="font-variation-settings: 'FILL' 1;">
+            home
+        </span>
+
+        <span class="font-label-sm text-label-sm">
+            Início
+        </span>
+
+    </a>
+
+
+    <!-- Ajuda -->
+    <a href="ajuda.html"
+       class="flex flex-col items-center justify-center
+              min-w-0 w-full
+              text-on-surface-variant
+              dark:text-on-tertiary-container
+              py-1
+              hover:text-primary
+              dark:hover:text-primary-fixed
+              transition-colors
+              active:scale-90
+              duration-150">
+
+        <span class="material-symbols-outlined">
             volunteer_activism
-        </span><span class="font-label-sm text-label-sm"><span class="" style="letter-spacing: 0.48px; text-align: center;">Ajuda</span></span>
-</a>
-<!-- Informativo -->
-<a href="informativo.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-90 duration-150" >
-<span class="material-symbols-outlined" data-icon="menu_book">menu</span>
-<span class="font-label-sm text-label-sm">Informativo</span>
-</a>
-<!-- Biblioteca -->
+        </span>
+
+        <span class="font-label-sm text-label-sm">
+            Ajuda
+        </span>
+
+    </a>
+
+
+    <!-- Informativo -->
+    <a href="informativo.html"
+       class="flex flex-col items-center justify-center
+              min-w-0 w-full
+              text-on-surface-variant
+              dark:text-on-tertiary-container
+              py-1
+              hover:text-primary
+              dark:hover:text-primary-fixed
+              transition-colors
+              active:scale-90
+              duration-150">
+
+        <span class="material-symbols-outlined">
+            menu
+        </span>
+
+        <span class="font-label-sm text-label-sm">
+            Informativo
+        </span>
+
+    </a>
+
+
+    <!-- Biblioteca -->
     <a href="biblioteca.html"
-       class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 active:scale-90">
+       class="flex flex-col items-center justify-center
+              min-w-0 w-full
+              text-on-surface-variant
+              dark:text-on-tertiary-container
+              py-1
+              hover:text-primary
+              dark:hover:text-primary-fixed
+              transition-all
+              duration-300
+              active:scale-90">
 
         <span class="material-symbols-outlined">
             menu_book
@@ -1187,20 +1261,31 @@ body{
         </span>
 
     </a>
-<!-- Jornada -->
-    <a href="jornada.html" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 active:scale-90">
 
-    <span class="material-symbols-outlined"
-          style="font-variation-settings: 'FILL' 0;">
 
-        directions_walk
+    <!-- Jornada -->
+    <a href="jornada.html"
+       class="flex flex-col items-center justify-center
+              min-w-0 w-full
+              text-on-surface-variant
+              dark:text-on-tertiary-container
+              py-1
+              hover:text-primary
+              dark:hover:text-primary-fixed
+              transition-all
+              duration-300
+              active:scale-90">
 
-    </span>
+        <span class="material-symbols-outlined">
+            directions_walk
+        </span>
 
-    <span class="font-label-sm text-label-sm">
-        Jornada
-    </span>
-</a>
+        <span class="font-label-sm text-label-sm">
+            Jornada
+        </span>
+
+    </a>
+
 </nav>
 <!-- Modal de Avaliação -->
 
