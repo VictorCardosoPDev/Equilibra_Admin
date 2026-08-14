@@ -671,12 +671,7 @@ document
 </a>
 </nav>
 <script>
-    const params = new URLSearchParams(window.location.search);
-    const categoriaURL = params.get("categoria");
-
-    if (categoriaURL) {
-        selecionarCategoria(categoriaURL);
-    }
+    
     const supabaseUrl =
     "https://xashpazesqmnqsmxtedk.supabase.co";
 
@@ -1222,7 +1217,6 @@ async function carregarBiblioteca() {
         
     });
 }
-carregarBiblioteca();
 async function iniciarBiblioteca() {
 
     await carregarBiblioteca();
@@ -1283,6 +1277,12 @@ document
 
             });
     });
+    const params = new URLSearchParams(window.location.search);
+    const categoriaURL = params.get("categoria");
+
+    if (categoriaURL) {
+        selecionarCategoria(categoriaURL);
+    }
 </script>
 <!-- Modal de Avaliação -->
 
